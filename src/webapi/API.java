@@ -41,7 +41,7 @@ public class API extends HttpServlet {
 			return;
 		}
 		
-		//メソッドに対しValidなユーザかどうかを検証する。
+		//メソッドに対しValidなユーザかどうかを検証する。 //TODO これ(Validか否かの確認）はDispacherでおこなうのが良いのでは？
 		if(!Validator.isValidUserForMethod(cmd)){
 			String msg = "この処理は行えません。権限が不足しています。";
 			httpRes.getWriter().println(msg);

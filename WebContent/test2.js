@@ -1,5 +1,4 @@
 $(function(){
-	makeMyID('ootanao++**;;  @@','something');
 	$.ajax({
 			type:"POST",
 			url:_global_scope_myURL,

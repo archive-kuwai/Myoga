@@ -5,35 +5,25 @@
 	<title>myoga</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
-	<script type="text/javascript" src="./jQueryPlugins/Lightbox_me/jquery.lightbox_me.js"></script>
+	<script type="text/javascript" src="myAjaxEngineToMyoga.js"></script>
 	<link rel="stylesheet" href="index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<script type="text/javascript" src="./jQueryPlugins/Lightbox_me/jquery.lightbox_me.js"></script>
 	<link rel="stylesheet" href="./jQueryPlugins/Lightbox_me/styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
-	<script type="text/javascript" src="buildMyCommand.js"></script>
-	<script type="text/javascript" src="mySHA.js"></script>
-	<script>
-		var global_myURL = "./API";
-		function makeMyID(uid,pw){global_myID = {"uid":uid,"key":sHA256WithHEXEncoding(pw)};}
-	</script>
 </head>
                                                      
 <body>
-	<div class="header">
+	<div class="user_info">
 		<ul>
-			<li id="siteid">myoga</li>
-			<li id="who">（ログインしていません）</li>
-			<a href="#" id="sign_up_button" >Login</a>
+			<li><a href="#" id="sign_up_button" >sign up</a></li>
+			<li id="who_am_i">（ログインしていません）</li>
 		</ul>
-		<hr>
 	</div>
 	<div class="navigater">
 		<a href="#" id="page1">page1</a>
 		<a href="#" id="page2">page2</a>	
 		<a href="#" id="page3">page3</a>
-		<hr>
 	</div>
-	<iframe id="content_frame" src="page1.html">
-		（お使いのブラウザーアプリでは、当サイトは表示できません）
-	</iframe>
+	<iframe id="content_frame" src="">（お使いのブラウザーアプリでは、当サイトは表示できません）</iframe>
 
 	<!-- ログイン（sign_up）に関する記述 -->	
 	<div id="sign_up" style="display: none; left: 50%; margin-left: -223px; z-index: 1002; position: fixed; top: 50%; margin-top: -159px; ">
@@ -64,17 +54,8 @@
 	</script>
 	<script>
 		$('#log_in').click(function(e) {
-			makeMyID($('#uid').val(),$('#pw').val());
-			$.ajax({
-					type:"POST",
-					url:global_myURL,
-					data:myCommand({
-						who:global_myID,
-						method:{name:"getPerson", params:{a:1,b:2,c:3}},
-					}),
-					success:function(result){console.log(result);},
-					error:function(error){console.log("ajaxエラー。"); console.log(error);}
-			});
+			setGlobalScopeVariable_WHO_AM_I($('#uid').val(),$('#pw').val());
+			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
 			$("#sign_up").trigger('close');
 			e.preventDefault();
 		});
@@ -89,20 +70,10 @@
 	</script>
 	<script>
 		$('#page2').click(function(e) {
-			$.ajax({
-				type:"POST",
-				url:global_myURL,
-				data:myCommand({
-					who:global_myID,
-					method:{name:"showPage2", params:{a:9,b:8,c:7}},
-				}),
-				success:function(result){
-					console.log(result);
-					if(true==result.bool){$("#content_frame").attr("src","page2.html");}	
-					},
-				error:function(error){console.log("ajaxエラー。"); console.log(error);}
-			});
-			//$("#content_frame").attr("src","page2.html");
+			ajaxToMyoga({name:"showPage2",params:{a:9,b:8,c:7}}, function(result){
+				console.log(result);
+				if(true==result.bool){$("#content_frame").attr("src","page2.html");}	
+				});
 			e.preventDefault();
 		});
 	</script>

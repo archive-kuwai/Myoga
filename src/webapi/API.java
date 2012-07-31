@@ -50,8 +50,8 @@ public class API extends HttpServlet {
 		}
 		
 		//Command Javaオブジェクトの内容によってDispatchして、Executeする。
-		String resultInJSONString = Dispatcher.dispatch(cmd);
-		
+		String resultInJSONString = Dispatcher.dispatch(cmd, getServletContext().getRealPath("/"));
+
 		//HTTPレスポンスを作成する
 		httpRes.getWriter().println(resultInJSONString);
 		Logger.getLogger("").info("resultInJSONString is " + resultInJSONString);

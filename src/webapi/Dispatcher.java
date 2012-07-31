@@ -1,16 +1,14 @@
 package webapi;
-import java.io.IOException;
 import java.util.*;
-
 import d.u.SimpleBool;
 import d.u.SimpleString;
 import net.arnx.jsonic.JSON;
 import webapi.model.Command;
-import webapi.pages.PageFileLoader;
+import webapi.pages.PagefileLoader;
 
 class Dispatcher {
 
-	static String dispatch(Command cmd){
+	static String dispatch(Command cmd, String filePathAsServletContext){
 		switch(cmd.getMethod().name){
 		case "getPerson":
 			HashSet<String> s = new HashSet<String>();
@@ -28,7 +26,7 @@ class Dispatcher {
 		case "load_page1":
 			return JSON.encode(new SimpleString("<h1>どうでしょう？サーバ上のJavaEEです。Hello.</h1>"));
 		case "load_page2":
-			return JSON.encode(PageFileLoader.page2());
+			return JSON.encode(PagefileLoader.page2(filePathAsServletContext));
 		default:
 			return null;
 		}

@@ -1,0 +1,16 @@
+<h1>Yap! page1</h1>
+dou?
+<a href="#" id="2nd_button">2nd_button</a>
+desho?
+日本語は？
+<script>
+	$('#2nd_button').click(function(e) {
+	    $('#sign_up').lightbox_me({
+	        centered: true, 
+	        onLoad: function() { 
+	            $('#login').find('input:first').focus()
+	            }
+	        });
+	    e.preventDefault();
+	});
+</script>

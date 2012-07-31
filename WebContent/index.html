@@ -19,7 +19,6 @@
 		</ul>
 	</div>
 	<div id="navigater"></div>
-	<iframe id="content_frame" src="">（お使いのブラウザーアプリでは、当サイトは表示できません）</iframe>
 	<div id="main_content"></div>
 
 	<!-- ログイン（sign_up）に関する記述 -->	
@@ -60,29 +59,6 @@
 
 	<!-- ナビゲーション（navigation）に関する記述 -->	
 	<script>
-	/*
-		$(function(){
-			var pages = ["page1","page2","page3"];
-			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
-			for(var i=0; i<pages.length; i++){
-				$("#navigater").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
-				console.log(pages[i])
-				$("#"+pages[i]).click(
-						function(e){
-							ajaxToMyoga(
-									{name: "show_" + e.currentTarget.id},  
-									function(result){
-										if(result.bool){$("#content_frame").attr("src", e.currentTarget.id + ".html");}
-									}
-							);
-							e.preventDefault();
-						}
-				);
-			}
-		});
-	*/
-	</script>
-	<script>
 		$(function(){
 			var pages = ["page1","page2","page3"];
 			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
@@ -94,9 +70,9 @@
 		});
 		var functionThatShowsPage = function(e){
 			ajaxToMyoga(
-					{name: "show_" + e.currentTarget.id},  
+					{name: "load_" + e.currentTarget.id},  
 					function(result){
-						if(result.bool){$("#content_frame").attr("src", e.currentTarget.id + ".html");}
+						$("#main_content").html(result.string);  //attr("src", e.currentTarget.id + ".html");
 					}
 			);
 			e.preventDefault();

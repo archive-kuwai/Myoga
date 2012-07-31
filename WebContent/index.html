@@ -18,11 +18,7 @@
 			<li id="who_am_i">（ログインしていません）</li>
 		</ul>
 	</div>
-	<div class="navigater">
-		<a href="#" id="page1">page1</a>
-		<a href="#" id="page2">page2</a>	
-		<a href="#" id="page3">page3</a>
-	</div>
+	<div id="navigater"></div>
 	<iframe id="content_frame" src="">（お使いのブラウザーアプリでは、当サイトは表示できません）</iframe>
 
 	<!-- ログイン（sign_up）に関する記述 -->	
@@ -63,24 +59,24 @@
 
 	<!-- ナビゲーション（navigation）に関する記述 -->	
 	<script>
-		$('#page1').click(function(e) {
-			$("#content_frame").attr("src","page1.html");
-			e.preventDefault();
-		});
-	</script>
-	<script>
-		$('#page2').click(function(e) {
-			ajaxToMyoga({name:"showPage2",params:{a:9,b:8,c:7}}, function(result){
-				console.log(result);
-				if(true==result.bool){$("#content_frame").attr("src","page2.html");}	
-				});
-			e.preventDefault();
-		});
-	</script>
-	<script>
-		$('#page3').click(function(e) {
-			$("#content_frame").attr("src","page3.html");
-			e.preventDefault();
+		$(function(){
+			var pages = ["page1","page2","page3"];
+			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
+			for(var i=0; i<pages.length; i++){
+				$("#navigater").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
+				console.log(pages[i])
+				$("#"+pages[i]).click(
+						function(e){
+							ajaxToMyoga(
+									{name: "show_" + e.currentTarget.id},  
+									function(result){
+										if(result.bool){$("#content_frame").attr("src", e.currentTarget.id + ".html");}
+									}
+							);
+							e.preventDefault();
+						}
+				);
+			}
 		});
 	</script>
 </body>

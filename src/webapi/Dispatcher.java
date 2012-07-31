@@ -2,8 +2,6 @@ package webapi;
 import java.util.*;
 
 import d.u.SimpleBool;
-import d.u.SimpleString;
-
 import net.arnx.jsonic.JSON;
 import webapi.model.Command;
 
@@ -18,7 +16,11 @@ class Dispatcher {
 			d.u.Role r = new d.u.Role("オペレーター第2種", s);
 			d.u.User u = new d.u.User("nao01", "a++b++C--qwert", "太田直宏", r);
     		return JSON.encode(u);
-		case "showPage2":
+		case "show_page1":
+			return JSON.encode(new SimpleBool(true));
+		case "show_page2":
+			return JSON.encode(new SimpleBool(true));
+		case "show_page3":
 			return JSON.encode(new SimpleBool(true));
 		default:
 			return null;

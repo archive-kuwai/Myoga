@@ -42,7 +42,7 @@
 		    $('#sign_up').lightbox_me({
 		        centered: true, 
 		        onLoad: function() { 
-		            $('#login').find('input:first').focus()
+		            $('#sign_up_form').find('#uid').focus()
 		            }
 		        });
 		    e.preventDefault();
@@ -72,7 +72,7 @@
 			ajaxToMyoga(
 					{name: "load_" + e.currentTarget.id},  
 					function(result){
-						$("#main_content").html(result.string);  //attr("src", e.currentTarget.id + ".html");
+						$("#main_content").html(result.string);
 					}
 			);
 			e.preventDefault();

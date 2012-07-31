@@ -26,7 +26,7 @@ class Dispatcher {
 		case "load_page1":
 			return JSON.encode(new SimpleString("<h1>どうでしょう？サーバ上のJavaEEです。Hello.</h1>"));
 		case "load_page2":
-			return JSON.encode(PagefileLoader.page2(filePathAsServletContext));
+			return JSON.encode(PagefileLoader.loadedOne(filePathAsServletContext, "page2.html"));
 		default:
 			return null;
 		}

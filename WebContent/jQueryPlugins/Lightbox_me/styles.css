@@ -203,7 +203,7 @@ table tr.stripe td {
 h2 { margin-top: 50px;}
 
 
-  #sign_up {
+  #login_dialog {
         -moz-border-radius: 6px;
         background: #eef2f7;
         -webkit-border-radius: 6px;
@@ -215,17 +215,17 @@ h2 { margin-top: 50px;}
         position: relative;
         display: none;
     }
-    #sign_up #sign_up_form {
+    #login_dialog #login_form {
         margin-top: 13px;
     }
-    #sign_up label {
+    #login_dialog label {
         display: block;
         margin-bottom: 10px; 
         color: #536376;
         font-size: .9em;
     }
   
-    #sign_up label input {
+    #login_dialog label input {
         display: block;
         width: 393px;
         height: 31px;
@@ -244,7 +244,7 @@ h2 { margin-top: 50px;}
         background-position: -202px -158px;
         width: 113px; height: 16px;
     }
-    #sign_up_form {
+    #login_form {
         position: relative;
         background: url(divider.png) repeat-x bottom left;
         padding-bottom: 54px;

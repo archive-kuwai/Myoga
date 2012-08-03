@@ -1,33 +1,68 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta charset="utf-8">
 	<title>myoga</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 	<script type="text/javascript" src="myAjaxEngineToMyoga.js"></script>
-	<link rel="stylesheet" href="index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="index.css" type="text/css" media="screen" title="no title">
 	<script type="text/javascript" src="./jQueryPlugins/Lightbox_me/jquery.lightbox_me.js"></script>
-	<link rel="stylesheet" href="./jQueryPlugins/Lightbox_me/styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="./jQueryPlugins/Lightbox_me/styles.css" type="text/css" media="screen" title="no title">
 </head>
                                                      
 <body>
-	<div class="user_info">
+	<header>
 		<ul>
-			<li><a href="#" id="sign_up_button" >sign up</a></li>
-			<li id="who_am_i">（ログインしていません）</li>
+			<li><a href="#" id="button_to_open_login_dialog" >Log In</a></li>
+			<li id="who_am_i">（Log Inしていません）</li>
 		</ul>
-	</div>
-	<div id="navigater"></div>
-	<div id="main_content"></div>
+		<nav id="nav"></nav>
+	</header>
+	<section id="main_section"/>
+	<footer/>
 
-	<!-- ログイン（sign_up）に関する記述 -->	
-	<div id="sign_up" style="display: none; left: 50%; margin-left: -223px; z-index: 1002; position: fixed; top: 50%; margin-top: -159px; ">
+	<!-- ナビゲーション（navigation）に関する記述 -->	
+	<script>
+	var loadArticle_signin = function(){
+		ajaxToMyoga({
+			name: "giveme_signin"},  
+			function(result){
+				$("#signin").html(result.string);
+			}
+		);
+	}
+	var functionThatShowsPage = function(e){
+		ajaxToMyoga(
+				{name: "giveme_" + e.currentTarget.id},  
+				function(result){
+					$("#main_section").html(result.string);
+				}
+		);
+		e.preventDefault();
+	}
+		$(function(){
+			loadArticle_signin();
+			var pages = ["page1","page2","page3"];
+			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
+			for(var i=0; i<pages.length; i++){
+				$("#nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
+				console.log(pages[i])
+				$("#"+pages[i]).click(functionThatShowsPage);
+			}
+		});
+	</script>
+	
+	
+	
+	
+	
+	<article id="login_dialog" style="display:none; left:50%; margin-left:-223px; z-index:1002; position:fixed; top:50%; margin-top:-159px;">
 		<h3 id="see_id" class="sprited">Can I see some ID?</h3>
 		<span>Please sign in using the form below</span>
-		<div id="sign_up_form">
-		    <label><strong>Username:</strong> <input id="uid" class="sprited"></label>
-		    <label><strong>Password:</strong> <input id="pw" class="sprited"></label>
+		<div id="login_form">
+		    <label><strong>Username:</strong> <input id="uid" class="sprited" type="text" required></label>
+		    <label><strong>Password:</strong> <input id="pw" class="sprited" type="password" required></label>
 		    <div id="actions">
 		        <a class="close form_button sprited" id="cancel" href="#">Cancel</a>
 		        <a class="form_button sprited" id="log_in" href="#">Sign in</a>
@@ -36,47 +71,26 @@
 		<h3 id="left_out" class="sprited">Feeling left out?</h3>
 		<span>Don't be sad, just <a href="#">click here</a> to sign up!</span>
 		<a id="close_x" class="close sprited" href="#">close</a>
-	</div>
+	</article>
+	
 	<script>
-		$('#sign_up_button').click(function(e) {
-		    $('#sign_up').lightbox_me({
+		$('#button_to_open_login_dialog').click(function(e) {
+		    $('#login_dialog').lightbox_me({
 		        centered: true, 
-		        onLoad: function() { 
-		            $('#uid').focus()
-		            }
-		        });
+		        onLoad: function() {$('#uid').focus()}
+		    });
 		    e.preventDefault();
 		});
-	</script>
-	<script>
 		$('#log_in').click(function(e) {
-			setGlobalScopeVariable_WHO_AM_I($('#uid').val(),$('#pw').val());
+			var pw = $("#pw").val();
+			$("#pw").val("");			
+			setGlobalScopeVariable_WHO_AM_I($('#uid').val(),pw);
+			pw = "";
 			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
-			$("#sign_up").trigger('close');
+			$("#login_dialog").trigger('close');
 			e.preventDefault();
 		});
 	</script>
-
-	<!-- ナビゲーション（navigation）に関する記述 -->	
-	<script>
-		$(function(){
-			var pages = ["page1","page2","page3"];
-			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
-			for(var i=0; i<pages.length; i++){
-				$("#navigater").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
-				console.log(pages[i])
-				$("#"+pages[i]).click(functionThatShowsPage);
-			}
-		});
-		var functionThatShowsPage = function(e){
-			ajaxToMyoga(
-					{name: "load_" + e.currentTarget.id},  
-					function(result){
-						$("#main_content").html(result.string);
-					}
-			);
-			e.preventDefault();
-		}
-	</script>
+		
 </body>
 </html>

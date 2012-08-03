@@ -3,22 +3,22 @@ import java.util.*;
 import d.u.SimpleBool;
 import d.u.SimpleString;
 import net.arnx.jsonic.JSON;
+import webapi.htmlelements.FileLoader;
 import webapi.model.Command;
-import webapi.pages.PagefileLoader;
 
 class Dispatcher {
 
 	static String dispatch(Command cmd, String filePathAsServletContext){
-		if(cmd.getMethod().name.matches("load_.*")){
-			return loadPage(cmd, filePathAsServletContext);
+		if(cmd.getMethod().name.matches("giveme_.*")){
+			return loadHTMLElementAsString(cmd, filePathAsServletContext);
 		}else{
 			return doOtherOperation(cmd);
 		}
 	}
 
-	static String loadPage(Command cmd, String filePathAsServletContext){
-		String pageName = cmd.getMethod().name.replaceFirst("load_", "");
-		return JSON.encode(PagefileLoader.loadedOne(pageName + ".html", filePathAsServletContext));
+	static String loadHTMLElementAsString(Command cmd, String filePathAsServletContext){
+		String fileName = cmd.getMethod().name.replaceFirst("giveme_", "");
+		return JSON.encode(FileLoader.load(fileName + ".html", filePathAsServletContext));
 	}
 	
 	static String doOtherOperation(Command cmd){

@@ -1,13 +1,32 @@
 package webapi.htmlelements;
 
-import java.io.IOException;
-import java.nio.charset.*;
-import java.nio.*;
-import java.nio.file.*;
+import java.io.*;
 import d.u.SimpleString;
 
 public class FileLoader {
 
+	public static SimpleString load(String filenameWannaLoad, String filePathAsServletContext) {
+		StringBuffer sb = new StringBuffer();
+		try {
+			InputStream stream = new FileInputStream(filePathAsServletContext + "WEB-INF/classes/webapi/htmlelements/" + filenameWannaLoad); 
+			InputStreamReader sReader = new InputStreamReader(stream, "UTF-8");
+			BufferedReader bfdReader = new BufferedReader(sReader);
+			String s;
+			while(null != (s=bfdReader.readLine())) {
+			    sb.append(s);
+			}
+			bfdReader.close();
+			sReader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new SimpleString(sb.toString());
+	}	
+
+	//--------------------------------
+	// Using Java SE7 (java.nio.File)
+    /*--------------------------------
 	public static SimpleString load(String filenameWannaLoad, String filePathAsServletContext) {
 		StringBuffer sb = new StringBuffer();
 		try {
@@ -20,7 +39,7 @@ public class FileLoader {
 		}		
 		return new SimpleString(sb.toString());
 	}	
-
+	*/
 
 
 }

@@ -22,42 +22,27 @@
 	<section id="main_section"/>
 	<footer/>
 
-	<!-- ナビゲーション（navigation）に関する記述 -->	
+	<!-- ナビゲーションに関する記述 -->	
 	<script>
-	var loadArticle_signin = function(){
-		ajaxToMyoga({
-			name: "giveme_signin"},  
-			function(result){
-				$("#signin").html(result.string);
-			}
-		);
-	}
-	var functionThatShowsPage = function(e){
-		ajaxToMyoga(
-				{name: "giveme_" + e.currentTarget.id},  
-				function(result){
-					$("#main_section").html(result.string);
-				}
-		);
-		e.preventDefault();
-	}
+		var showPageFunction = function(e){
+			ajaxToMyoga(
+					{name: "giveme_" + e.currentTarget.id},  
+					function(result){$("#main_section").html(result.string);}
+			);
+			e.preventDefault();
+		}
 		$(function(){
-			loadArticle_signin();
 			var pages = ["page1","page2","page3"];
 			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
 			for(var i=0; i<pages.length; i++){
 				$("#nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
-				console.log(pages[i])
-				$("#"+pages[i]).click(functionThatShowsPage);
+				$("#"+pages[i]).click(showPageFunction);
 			}
 		});
 	</script>
 	
-	
-	
-	
-	
-	<article id="login_dialog" style="display:none; left:50%; margin-left:-223px; z-index:1002; position:fixed; top:50%; margin-top:-159px;">
+	<!-- ログインダイアログに関する記述 -->	
+	<div id="login_dialog" style="display:none; left:50%; margin-left:-223px; z-index:1002; position:fixed; top:50%; margin-top:-159px;">
 		<h3 id="see_id" class="sprited">Can I see some ID?</h3>
 		<span>Please sign in using the form below</span>
 		<div id="login_form">
@@ -71,8 +56,7 @@
 		<h3 id="left_out" class="sprited">Feeling left out?</h3>
 		<span>Don't be sad, just <a href="#">click here</a> to sign up!</span>
 		<a id="close_x" class="close sprited" href="#">close</a>
-	</article>
-	
+	</div>
 	<script>
 		$('#button_to_open_login_dialog').click(function(e) {
 		    $('#login_dialog').lightbox_me({

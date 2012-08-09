@@ -1,27 +1,25 @@
 package webapi;
 import java.util.*;
-import d.u.SimpleBool;
-import d.u.SimpleString;
 import net.arnx.jsonic.JSON;
-import webapi.htmlelements.FileLoader;
+import webapi.htmlelements.FileCacher;
 import webapi.model.Command;
 
 class Dispatcher {
 
-	static String dispatch(Command cmd, String filePathAsServletContext){
+	static public String dispatch(Command cmd){
 		if(cmd.getMethod().name.matches("giveme_.*")){
-			return loadHTMLElementAsString(cmd, filePathAsServletContext);
+			return loadHTMLElementAsString(cmd);
 		}else{
 			return doOtherOperation(cmd);
 		}
 	}
 
-	static String loadHTMLElementAsString(Command cmd, String filePathAsServletContext){
+	static private String loadHTMLElementAsString(Command cmd){
 		String fileName = cmd.getMethod().name.replaceFirst("giveme_", "");
-		return JSON.encode(FileLoader.load(fileName + ".html", filePathAsServletContext));
+		return JSON.encode(FileCacher.giveme(fileName + ".html"));
 	}
 	
-	static String doOtherOperation(Command cmd){
+	static private String doOtherOperation(Command cmd){
 		String methodName = cmd.getMethod().name;
 		if("getPerson".equals(methodName)){
 			HashSet<String> s = new HashSet<String>();

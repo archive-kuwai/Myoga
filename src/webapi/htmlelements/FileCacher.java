@@ -32,7 +32,7 @@ public class FileCacher {
 		}
 	}
 	
-	/* JavaSE7で提供されるnioライブラリを使用すると簡潔に記述できるが、
+	/* JavaSE7で提供されるnioライブラリのFileを使用すると簡潔に記述できるが、
 	 * AWSは現在（2012年08月）、JavaSE7に対応していない為、JavaSE6を使用して記述している */
 	static public SimpleString readFromFile(String filenameWannaLoad) {
 		StringBuffer sb = new StringBuffer();

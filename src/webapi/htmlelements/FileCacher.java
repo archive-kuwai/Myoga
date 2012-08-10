@@ -31,7 +31,7 @@ public class FileCacher {
 		}
 	}
 	
-	/* JavaSE7で提供されるnioライブラリのFileを使用すると簡潔に記述できるが、
+	/* JavaSE7で提供されるjava.nio.fileライブラリを使用すると簡潔に記述できるが、
 	 * AWSは現在（2012年08月）、JavaSE7に対応していない為、JavaSE6を使用して記述している */
 	static public SimpleString readFromFile(String filenameWannaLoad) {
 		StringBuffer sb = new StringBuffer();
@@ -52,5 +52,21 @@ public class FileCacher {
 		}
 		return new SimpleString(sb.toString());
 	}	
-
 }
+/* JavaSE7を使用するとこんな感じで記述できると思います。
+import java.nio.*;
+import java.nio.file.*;
+public class FileLoader {
+	public static SimpleString load(String filenameWannaLoad) {
+		StringBuffer sb = new StringBuffer();
+		try {
+			for(String s : Files.readAllLines(Paths.get(rootPath, "WEB-INF/classes/webapi/htmlelements/", filenameWannaLoad), Charset.forName("UTF-8"))){
+			    sb.append(s);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return new SimpleString(sb.toString());
+	}	
+*/

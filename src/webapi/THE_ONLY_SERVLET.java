@@ -1,5 +1,5 @@
 package webapi;
-import webapi.htmlelements.FileCacher;
+import webapi.html.HTMLCacher;
 import webapi.model.Command;
 import net.arnx.jsonic.JSON;
 import javax.servlet.*;
@@ -8,15 +8,12 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.util.logging.*;
 
-//@WebServlet(name="API", urlPatterns={"/API"})
 @WebServlet("/API")
-public class API extends HttpServlet {
+public class THE_ONLY_SERVLET extends HttpServlet {
+
 	private static final long serialVersionUID = 3383077259036476263L;
 
 	protected void doPost(HttpServletRequest httpReq, HttpServletResponse httpRes) throws ServletException, IOException {
-
-		FileCacher.initNormal(getServletContext().getRealPath("/"));
-		
 		//HTTPレスポンスにコンテントタイプを設定する
 		httpRes.setContentType("application/json;charset=utf-8");
 		
@@ -54,6 +51,7 @@ public class API extends HttpServlet {
 		}
 		
 		//Command Javaオブジェクトの内容によってDispatchして、Executeする。
+		HTMLCacher.initNORMAL(getServletContext().getRealPath("/"));
 		String resultInJSONString = Dispatcher.dispatch(cmd);
 
 		//HTTPレスポンスを作成する

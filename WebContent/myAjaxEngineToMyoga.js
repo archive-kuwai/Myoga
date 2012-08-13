@@ -14,7 +14,10 @@ function encordedCommandString(s){
 }
 
 function ajaxToMyoga(method_obj, success_funciton){
-	if(GlobalScopeVariable_WHO_AM_I == ""){console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call. (I am WebBrowser's javascript)"); return false;}
+	if(GlobalScopeVariable_WHO_AM_I == ""){
+		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call. (I am WebBrowser's javascript)");
+		return false;
+	}
 	$.ajax({
 		type:"POST",
 		url:"./API",
@@ -23,6 +26,9 @@ function ajaxToMyoga(method_obj, success_funciton){
 			method: method_obj
 		}),
 		success:success_funciton,
-		error:function(error){console.log("ブラウザで感知したajaxエラーです。console.logにエラー内容を出力しました。"); console.log(error);}
+		error:function(error){
+			console.log("[myAjaxEnginToMyoga.js#ajaxToMyoga]function. Error, I did ajax call, but server returned Error object. I'll log it here.");
+			console.log(error);
+		}
 	});	
 }

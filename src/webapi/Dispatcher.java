@@ -1,9 +1,30 @@
 package webapi;
 import java.util.*;
 import net.arnx.jsonic.JSON;
-import webapi.htmlelements.FileCacher;
+import webapi.html.HTMLCacher;
 import webapi.model.Command;
 
+class Dispatcher {
+
+	static public String dispatch(Command cmd){
+		String methodName = cmd.getMethod().name;
+		if("getHTML".equals(methodName)){
+			String filename = cmd.getMethod().params.get("filename") + ".html";
+			return JSON.encode(HTMLCacher.getHTML(filename));
+		}else if("getPerson".equals(methodName)){
+			HashSet<String> s = new HashSet<String>();
+			s.add("受注入力");
+			s.add("出荷案内");
+			d.u.Role r = new d.u.Role("オペレーター第2種", s);
+			d.u.User u = new d.u.User("nao01", "a++b++C--qwert", "太田直宏", r);
+    		return JSON.encode(u);
+		}else{
+			return null;
+		}
+	}
+	
+}
+/*
 class Dispatcher {
 
 	static public String dispatch(Command cmd){
@@ -16,7 +37,7 @@ class Dispatcher {
 
 	static private String loadHTMLElementAsString(Command cmd){
 		String fileName = cmd.getMethod().name.replaceFirst("giveme_", "");
-		return JSON.encode(FileCacher.giveme(fileName + ".html"));
+		return JSON.encode(HTMLCacher.giveMeFileAsSimpleString(fileName + ".html"));
 	}
 	
 	static private String doOtherOperation(Command cmd){
@@ -34,3 +55,5 @@ class Dispatcher {
 	}
 	
 }
+
+*/

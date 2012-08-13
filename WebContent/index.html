@@ -25,8 +25,9 @@
 	<!-- ナビゲーションに関する記述 -->	
 	<script>
 		var showPageFunction = function(e){
+			console.log("hi1");
 			ajaxToMyoga(
-					{name: "giveme_" + e.currentTarget.id},  
+					{name:"getHTML", params:{"filename":e.currentTarget.id} },  
 					function(result){$("#main_section").html(result.string);}
 			);
 			e.preventDefault();

@@ -9,10 +9,6 @@ function sHA256WithHEXEncoding(s){
     return CryptoJS.SHA256(s).toString(CryptoJS.enc.HEX);
 }
 
-function encordedCommandString(s){
-	return "command=" + encodeURIComponent(JSON.stringify(s));
-}
-
 function ajaxToMyoga(method_obj, success_funciton){
 	if(GlobalScopeVariable_WHO_AM_I == ""){
 		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call. (I am WebBrowser's javascript)");
@@ -21,10 +17,10 @@ function ajaxToMyoga(method_obj, success_funciton){
 	$.ajax({
 		type:"POST",
 		url:"./API",
-		data:encordedCommandString({
-			who: GlobalScopeVariable_WHO_AM_I,
-			method: method_obj
-		}),
+		data:"command=" + encodeURIComponent(JSON.stringify({
+			method: method_obj,
+			who: GlobalScopeVariable_WHO_AM_I
+		})),
 		success:success_funciton,
 		error:function(error){
 			console.log("[myAjaxEnginToMyoga.js#ajaxToMyoga]function. Error, I did ajax call, but server returned Error object. I'll log it here.");

@@ -1,8 +1,8 @@
 package webapi;
 import java.util.*;
 import net.arnx.jsonic.JSON;
+import webapi.ask.Command;
 import webapi.html.HTMLCacher;
-import webapi.model.Command;
 
 class Dispatcher {
 

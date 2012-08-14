@@ -1,4 +1,4 @@
-package webapi.model;
+package webapi.ask;
 
 public class Command {
 	Who who;

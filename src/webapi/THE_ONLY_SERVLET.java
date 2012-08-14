@@ -1,6 +1,6 @@
 package webapi;
+import webapi.ask.Command;
 import webapi.html.HTMLCacher;
-import webapi.model.Command;
 import net.arnx.jsonic.JSON;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,13 @@ import java.util.logging.*;
 
 @WebServlet("/API")
 public class THE_ONLY_SERVLET extends HttpServlet {
-
 	private static final long serialVersionUID = 3383077259036476263L;
 
 	protected void doPost(HttpServletRequest httpReq, HttpServletResponse httpRes) throws ServletException, IOException {
+
+		//Couchbaseサンプルをrunさせる。
+		couchbase_sample.Couchbase_Sample_Runner.run();
+		
 		//HTTPレスポンスにコンテントタイプを設定する
 		httpRes.setContentType("application/json;charset=utf-8");
 		

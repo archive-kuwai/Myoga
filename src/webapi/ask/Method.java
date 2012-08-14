@@ -1,4 +1,4 @@
-package webapi.model;
+package webapi.ask;
 import java.util.Map;
 
 public class Method {

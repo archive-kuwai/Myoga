@@ -1,4 +1,4 @@
-package webapi.model;
+package webapi.ask;
 
 public class Who {
 	String uid;

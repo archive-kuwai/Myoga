@@ -1,4 +1,4 @@
-package couchbase_sample;
+package couchbase181_sample;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;

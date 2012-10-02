@@ -47,7 +47,9 @@
 				$("#row_of_nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
 				$("#"+pages[i]).click(showPageFunction);
 			}
-			window.scrollTo(0,1);
+			setTimeout(function () {
+				  window.scrollTo(0, 1);
+				}, 1000);
 		});
 	</script>
 	

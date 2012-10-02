@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	text-decoration: none;
+	border: none;
+	list-style: none;
+	outline: none;
+}
+
+body {
+    background: #eef2f7;
+    font: 13px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #536376;
+}
+
+a {
+    color: #067dd7;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ 
+#content { 
+    width: 419px;
+    float: left;
+    margin: -40px 25px 25px 0;
+}
+
+#content p, #demo p{
+    margin: 0 0 15px 0;
+}

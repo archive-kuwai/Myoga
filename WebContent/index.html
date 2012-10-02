@@ -7,8 +7,12 @@
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 	<script src="myAjaxEngineToMyoga.js"></script>
 	<link rel="stylesheet" href="index.css">
-	<script src="./jQueryPlugins/Lightbox_me/jquery.lightbox_me.js"></script>
-	<link rel="stylesheet" href="./jQueryPlugins/Lightbox_me/styles.css">
+	<script src="./Plugins/Lightbox_me/jquery.lightbox_me.js"></script>
+	<link rel="stylesheet" href="./Plugins/Lightbox_me/styles.css">
+	<link rel="stylesheet" href="./Plugins/SimpleGrid/css/base.css">
+	<link rel="stylesheet" href="./Plugins/SimpleGrid/css/720_grid.css">
+	<link rel="stylesheet" href="./Plugins/SimpleGrid/css/986_grid.css">
+	<link rel="stylesheet" href="./Plugins/SimpleGrid/css/1236_grid.css">
 </head>
                                                      
 <body>
@@ -18,8 +22,16 @@
 			<li id="who_am_i">（Log Inしていません）</li>
 		</ul>
 	</header>
-	<nav></nav>
-	<section></section>
+
+	<nav>
+		<div class="grid">
+			<div id="row_of_nav" class="row">
+			</div>
+		</div>
+	</nav>
+
+	<section>
+	</section>
 
 	<!-- ナビゲーションに関する記述 -->	
 	<script>
@@ -35,7 +47,7 @@
 			var pages = ["page1","page2","page3"];
 			var namesForDisplay = pages;
 			for(var i=0; i<pages.length; i++){
-				$("nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
+				$("#row_of_nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
 				$("#"+pages[i]).click(showPageFunction);
 			}
 		});

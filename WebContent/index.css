@@ -1,3 +1,12 @@
 @CHARSET "UTF-8";
-ul{list-style:none;},
-li{float:left;}
+* {
+  color: black; }
+
+a:visited, a:link {
+  font-weight: bold;
+  color: black; }
+
+header {
+  background-color: black; }
+  header *, header a:visited, header a:link {
+    color: white; }

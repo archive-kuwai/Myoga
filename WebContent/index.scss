@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+*{
+	color:black;
+}
+a:visited, a:link{
+	font-weight:bold;
+	color:black;
+}
+
+header{
+	background-color:black;
+	*, a:visited, a:link{
+		color:white;
+	}
+}

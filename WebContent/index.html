@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>myoga</title>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
-	<script type="text/javascript" src="myAjaxEngineToMyoga.js"></script>
-	<link rel="stylesheet" href="index.css" type="text/css" media="screen" title="no title">
-	<script type="text/javascript" src="./jQueryPlugins/Lightbox_me/jquery.lightbox_me.js"></script>
-	<link rel="stylesheet" href="./jQueryPlugins/Lightbox_me/styles.css" type="text/css" media="screen" title="no title">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
+	<script src="myAjaxEngineToMyoga.js"></script>
+	<link rel="stylesheet" href="index.css">
+	<script src="./jQueryPlugins/Lightbox_me/jquery.lightbox_me.js"></script>
+	<link rel="stylesheet" href="./jQueryPlugins/Lightbox_me/styles.css">
 </head>
                                                      
 <body>
@@ -17,26 +17,25 @@
 			<li><a href="#" id="button_to_open_login_dialog" >Log In</a></li>
 			<li id="who_am_i">（Log Inしていません）</li>
 		</ul>
-		<nav id="nav"></nav>
 	</header>
-	<section id="main_section"/>
-	<footer/>
+	<nav></nav>
+	<section></section>
 
 	<!-- ナビゲーションに関する記述 -->	
 	<script>
 		var showPageFunction = function(e){
-			console.log("hi1");
 			ajaxToMyoga(
 					{name:"getHTML", params:{"filename":e.currentTarget.id} },  
-					function(result){$("#main_section").html(result.string);}
+					function(result){$("section").html(result.string);}
 			);
 			e.preventDefault();
 		}
+
 		$(function(){
 			var pages = ["page1","page2","page3"];
-			var namesForDisplay = ["ページ１ ","ページ２ ","特別ページ "];
+			var namesForDisplay = pages;
 			for(var i=0; i<pages.length; i++){
-				$("#nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
+				$("nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
 				$("#"+pages[i]).click(showPageFunction);
 			}
 		});

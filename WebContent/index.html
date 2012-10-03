@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="index.css">
 	<script src="./Plugins/Lightbox_me/jquery.lightbox_me.js"></script>
 	<link rel="stylesheet" href="./Plugins/Lightbox_me/styles.css">
+	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
                                                      
 <body>
@@ -28,8 +29,13 @@
 		</div>
 	</nav>
 
+	<hr/>
 	<section>
 	</section>
+
+	<hr/>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 	<!-- ナビゲーションに関する記述 -->	
 	<script>
@@ -42,7 +48,7 @@
 		}
 
 		$(function(){
-			var pages = ["page1","page2","page3"];
+			var pages = ["page1","page2","page3","page4_map"];
 			var namesForDisplay = pages;
 			for(var i=0; i<pages.length; i++){
 				$("#row_of_nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
@@ -55,11 +61,10 @@
 	</script>
 	
 	<!-- ログインダイアログに関する記述 -->	
-	<div id="login_dialog" style="display:none; left:50%; margin-left:-223px; z-index:1002; position:fixed; top:50%; margin-top:-159px;">
-		<h3 id="see_id" class="sprited">Can I see some ID?</h3>
-		<span>Please sign in using the form below</span>
+	<div id="login_dialog" style="display:none; left:50%; margin-left:-223px; z-index:1002; position:fixed; top:0%; margin-top:-159px;">
 		<div id="login_form">
 		    <label><strong>Username:</strong> <input id="uid" class="sprited" type="text" required></label>
+		    <br/>
 		    <label><strong>Password:</strong> <input id="pw" class="sprited" type="password" required></label>
 		    <div id="actions">
 		        <a class="close form_button sprited" id="cancel" href="#">Cancel</a>

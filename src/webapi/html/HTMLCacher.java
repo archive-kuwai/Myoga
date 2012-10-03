@@ -10,10 +10,11 @@ public class HTMLCacher {
 	private static Map<String, SimpleString> files;
 	
 	public static void initNORMAL(String filePathAsServletContext){
-		if(null == rootPath){initFORCE(filePathAsServletContext);}
+		initFORCE(filePathAsServletContext);
+		//if(null == rootPath){initFORCE(filePathAsServletContext);}
 	}
 
-	/*　このメソッドはPublicである必要があるのではないかな。キャッシュをクリアしたい時もあるでしょう。　*/
+	/*　このメソッドはPublicである必要がある。と思う。キャッシュをクリアしたい時もあるでしょう。　*/
 	public static void initFORCE(String filePathAsServletContext){
 		Logger.getLogger("").info("HTMLCacher#initFORCE with arg:" + filePathAsServletContext);
 		rootPath = filePathAsServletContext;

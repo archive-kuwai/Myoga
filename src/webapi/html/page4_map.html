@@ -1,0 +1,15 @@
+<div id="map_canvas" style="height:500px;margin:4px"></div>
+<script>
+	function initialize() {
+		var latlng = new google.maps.LatLng(35.0, 139.0);
+		var myOptions = {
+			zoom: 5,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map($('#map_canvas')[0], myOptions);
+	}
+	$(function(){
+		initialize();
+	});
+</script>

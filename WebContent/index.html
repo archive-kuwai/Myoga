@@ -9,29 +9,32 @@
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 	<script src="myAjaxEngineToMyoga.js"></script>
 	<link rel="stylesheet" href="index.css">
-	<script src="./Plugins/Lightbox_me/jquery.lightbox_me.js"></script>
-	<link rel="stylesheet" href="./Plugins/Lightbox_me/styles.css">
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </head>
                                                      
 <body>
 	<header>
 		<ul>
-			<li><a href="#" id="button_to_open_login_dialog" >Log In</a></li>
-			<li id="who_am_i">（Log Inしていません）</li>
+			<li style="display:inline;"><a href="#" id="who_am_i" >（Log Inしていません）</a></li>
+			<li style="display:inline;background-color:black;">
+				<nav style="display:inline;background-color:black;">
+					<select id="page_select"name="select" onChange="jump()" style="background-color:black;"></select>
+				</nav>
+			</li>
 		</ul>
 	</header>
-
-	<nav>
-		<div class="grid">
-			<div id="row_of_nav" class="row">
-			</div>
-		</div>
-	</nav>
-
-	<hr/>
-	<section>
-	</section>
+	
+	<script>
+		function jump(){
+			var page = $('#page_select').val();
+			ajaxToMyoga(
+					{name:"getHTML", params:{"filename":page} },  
+					function(result){$("section").html(result.string);}
+			);
+		}
+	</script>
+	
+	<hr/><section></section>
 
 	<hr/>
 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -39,55 +42,23 @@
 
 	<!-- ナビゲーションに関する記述 -->	
 	<script>
-		var showPageFunction = function(e){
-			ajaxToMyoga(
-					{name:"getHTML", params:{"filename":e.currentTarget.id} },  
-					function(result){$("section").html(result.string);}
-			);
-			e.preventDefault();
-		}
-
 		$(function(){
 			var pages = ["page1","page2","page3","page4_map"];
 			var namesForDisplay = pages;
+
 			for(var i=0; i<pages.length; i++){
-				$("#row_of_nav").append("<a href='#' id='" + pages[i] + "'>" + namesForDisplay[i] + "</a>");
-				$("#"+pages[i]).click(showPageFunction);
+				$("#page_select").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + namesForDisplay[i] + "</a>");
 			}
-			setTimeout(function () {
-				  window.scrollTo(0, 1);
-				}, 1000);
+			setTimeout(function(){window.scrollTo(0, 1);}, 200);
+			setTimeout(function(){window.scrollTo(0, 1);}, 1000);
 		});
 	</script>
 	
-	<!-- ログインダイアログに関する記述 -->	
-	<div id="login_dialog" style="display:none; left:50%; margin-left:-223px; z-index:1002; position:fixed; top:0%; margin-top:-159px;">
-		<div id="login_form">
-		    <label><strong>Username:</strong> <input id="uid" class="sprited" type="text" required></label>
-		    <br/>
-		    <label><strong>Password:</strong> <input id="pw" class="sprited" type="password" required></label>
-		    <div id="actions">
-		        <a class="close form_button sprited" id="cancel" href="#">Cancel</a>
-		        <a class="form_button sprited" id="log_in" href="#">Sign in</a>
-		    </div>
-		</div>
-	</div>
+	<!-- ログイン -->	
 	<script>
-		$('#button_to_open_login_dialog').click(function(e) {
-		    $('#login_dialog').lightbox_me({
-		        centered: true, 
-		        onLoad: function() {$('#uid').focus()}
-		    });
-		    e.preventDefault();
-		});
-		$('#log_in').click(function(e) {
-			var pw = $("#pw").val();
-			$("#pw").val("");			
-			setGlobalScopeVariable_WHO_AM_I($('#uid').val(),pw);
-			pw = "";
+		$(function(){
+			setGlobalScopeVariable_WHO_AM_I("デフォルトユーザ","default_password");
 			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
-			$("#login_dialog").trigger('close');
-			e.preventDefault();
 		});
 	</script>
 		

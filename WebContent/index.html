@@ -6,34 +6,11 @@
 	<meta name = "viewport" content = "width = device-width, initial-scale = 1, user-scalable = no">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="plugins/jquery.cookie.js"></script>
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
-	<script src="myAjaxEngineToMyoga.js"></script>
-	<link rel="stylesheet" href="index.css">
 	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-</head>
-                                                     
-<body>
-	<header>
-		<ul>
-			<li style="display:inline;"><a href="#" id="who_am_i" >（Log Inしていません）</a></li>
-			<li style="display:inline;background-color:black;">
-				<nav style="display:inline;background-color:black;">
-					<select id="page_select"name="select" onChange="jump()" style="background-color:black;">
-						<option value='page0' id='page0'>選択して下さい</option>
-					</select>
-				</nav>
-			</li>
-		</ul>
-	</header>
-	
-	<hr/><section id='main_content'></section><hr/>
-
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	
-	<footer>
-		&copy; 2012 Naohiro OHTA
-	</footer>
-
+	<link rel="stylesheet" href="index.css">
+	<script src="myAjaxEngineToMyoga.js"></script>
 	<script>
 		function hideURLBar(){
 			setTimeout(function(){window.scrollTo(0, 1);},200);
@@ -48,16 +25,32 @@
 		}
 		$(function(){
 			var pages = ["page1","page2","page3","page4_map"];
-			var namesForDisplay = pages;
-
+			var alias = pages;
 			for(var i=0; i<pages.length; i++){
-				$("#page_select").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + namesForDisplay[i] + "</a>");
+				$("#page_select").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
 			}
 			setGlobalScopeVariable_WHO_AM_I("太田直宏","default_password");
 			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
 			hideURLBar();
 		});
 	</script>
-		
+</head>
+                                                     
+<body>
+	<header>
+		<ul>
+			<li style="display:inline;"><a href="#" id="who_am_i" onClick="">（Log Inしていません）</a></li>
+			<li style="display:inline;background-color:black;">
+				<nav style="display:inline;background-color:black;">
+					<select id="page_select"name="select" onChange="jump()" style="background-color:black;">
+						<option value='page0' id='page0'>選択して下さい</option>
+					</select>
+				</nav>
+			</li>
+		</ul>
+	</header>
+	<section id='main_content'></section>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<footer>&copy; 2012 Naohiro OHTA</footer>
 </body>
 </html>

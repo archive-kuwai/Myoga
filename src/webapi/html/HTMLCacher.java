@@ -10,6 +10,9 @@ public class HTMLCacher {
 	private static Map<String, SimpleString> files;
 	
 	public static void initNORMAL(String filePathAsServletContext){
+
+		// TODO 一時的にこうします。（太田）
+		
 		initFORCE(filePathAsServletContext);
 		//if(null == rootPath){initFORCE(filePathAsServletContext);}
 	}

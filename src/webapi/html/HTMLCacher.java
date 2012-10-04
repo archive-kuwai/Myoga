@@ -30,7 +30,7 @@ public class HTMLCacher {
 			return ss;
 		}
 	}
-	
+
 	/* JavaSE7で提供されるjava.nio.fileライブラリを使用すると簡潔に記述できるが、
 	 * AWSは現在（2012年08月）、JavaSE7に対応していない為、JavaSE6を使用して記述している */
 	private static SimpleString readFile(String filenameWannaLoad) {
@@ -48,8 +48,8 @@ public class HTMLCacher {
 			bfdReader.close();
 			sReader.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// e.printStackTrace();
+			return new SimpleString("");
 		}
 		return new SimpleString(sb.toString());
 	}

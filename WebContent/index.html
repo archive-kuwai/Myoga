@@ -16,9 +16,9 @@
 			// Initialize cookie
 			$.cookie.json = true;
 			
-			// Make login selector
+			// Make user selector
 			NEW_USER = '(入力する)';
-			var users = login_user_history_from_cookie();
+			var users = logged_in_users();
 			for(var i=0; i<users.length; i++){
 				$('#user_selector').append("<option value='" +users[i]+ "'>" +users[i]+ "</option>");
 			}
@@ -27,50 +27,64 @@
 			hideURLBar();
 		});
 	</script>
+
 	<script>
-		function hideURLBar(){
-			setTimeout(function(){window.scrollTo(0, 1);},200);
-			setTimeout(function(){window.scrollTo(0, 1);},1000);
+		function login(){
+			var user = $('#user_selector').val();
+			if(user==NEW_USER){
+				login_with_new_user();
+			}else{
+				login_with_password(user);
+			}
+			make_page_selector();
 		}
+		
+		function login_with_new_user(){
+			var user = prompt('ユーザ','myoga');
+			login_with_password(user);
+			var users = $.cookie('logged_in_users');
+			users.push(user);
+			$.cookie('logged_in_users',users);
+		}
+
+		function login_with_password(user){
+			var password = prompt('パスワード','myoga');
+			setGlobalScopeVariable_WHO_AM_I(user, password);
+			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
+						
+		}
+		
+		
 		function jump(){
-			var page = $('#page_select').val();
+			console.log("here!");
+			var page = $('#page_selector').val();
 			ajaxToMyoga(
 					{name:"getHTML", params:{"filename":page} },  
 					function(result){$("#main_content").html(result.string); hideURLBar();}
 			);
 		}
-		function login(){
-			var user = $('#user_selector').val();
-			if(user==NEW_USER){
-				alert("New user sign up sqeuence.");
-				setGlobalScopeVariable_WHO_AM_I(user,"default_password");
-			}else{
-				setGlobalScopeVariable_WHO_AM_I(user,"default_password");
-				ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
+
+		function logged_in_users(){
+			var users = $.cookie('logged_in_users');
+			if(users == null){
+				users = [NEW_USER];
+				$.cookie('logged_in_users',users);
 			}
-			make_page_selector();
-		}
-		
-		function login_user_history_from_cookie(){
-			console.log('#1');
-			console.log($.cookie('login_user_history'));
-			var login_user_history = $.cookie('login_user_history');
-			console.log('#2');
-			console.log(login_user_history);
-			if(login_user_history == null){
-				login_user_history = [NEW_USER];
-				$.cookie('login_user_history',login_user_history);
-			}
-			return login_user_history;
+			return users;
 		}
 		
 		function make_page_selector(){
-			$("#page_select").empty;
+			$("#page_selector").empty();
 			var pages = ["page1","page2","page3","page4_map"];
 			var alias = pages;
 			for(var i=0; i<pages.length; i++){
-				$("#page_select").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
+				$("#page_selector").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
 			}
+		}
+
+		function hideURLBar(){
+			setTimeout(function(){window.scrollTo(0, 1);},200);
+			setTimeout(function(){window.scrollTo(0, 1);},1000);
 		}
 	</script>
 </head>
@@ -80,13 +94,13 @@
 		<ul>
 			<li style="display:inline;">
 				<select id="user_selector" onChange="login()" style="background-color:black;">
-						<option value='user0'>ユーザ選択</option>
+						<option value='user0'>ユーザ</option>
 				</select>
 			</li>
 			<li style="display:inline;background-color:black;">
 				<nav style="display:inline;background-color:black;">
-					<select id="page_select" onChange="jump()" style="background-color:black;">
-						<option value='page0' id='page0'>ページ選択</option>
+					<select id="page_selector" onChange="jump()" style="background-color:black;">
+						<option value='page0' id='page0'>ページ</option>
 					</select>
 				</nav>
 			</li>

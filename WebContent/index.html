@@ -35,21 +35,27 @@
 		function login(){
 			var user = $('#user_selector').val();
 			if(user == INPUT_USER_NAME_OPTION){
+				$('#page_selector').empty();
+				jump("login");
 				return;
 			}
 			var password = prompt('パスワード','myoga');
 			setGlobalScopeVariable_WHO_AM_I(user, password);
 			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
-			make_page_selector();
+
+			reset_page_selector();
+			reset_main_content();
 		}
 		
-		function jump(){
-			console.log("here!");
-			var page = $('#page_selector').val();
+		function jump(filename_without_extension){
 			ajaxToMyoga(
-					{name:"getHTML", params:{"filename":page} },  
+					{name:"getHTML", params:{"filename":filename_without_extension} },  
 					function(result){$("#main_content").html(result.string); hideURLBar();}
 			);
+		}
+		
+		function jump_with_page_selector(){
+			jump($('#page_selector').val());
 		}
 	</script>
 	
@@ -71,13 +77,17 @@
 			return users;
 		}
 		
-		function make_page_selector(){
+		function reset_page_selector(){
 			$("#page_selector").empty();
-			var pages = ["page1","page2","page3","page4_map"];
-			var alias = pages;
+			var pages = ["page0","page1","page2","page3","page4_map"];
+			var alias = pages; alias[0]="ページ";
 			for(var i=0; i<pages.length; i++){
 				$("#page_selector").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
 			}
+		}
+
+		function reset_main_content(){
+			$("#main_content").empty();
 		}
 
 		function hideURLBar(){
@@ -97,15 +107,29 @@
 			</li>
 			<li style="display:inline;background-color:black;">
 				<nav style="display:inline;background-color:black;">
-					<select id="page_selector" onChange="jump()" style="background-color:black;">
-						<option value='page0' id='page0'>ページ</option>
+					<select id="page_selector" onChange="jump_with_page_selector()" style="background-color:black;">
 					</select>
 				</nav>
 			</li>
 		</ul>
 	</header>
-	<section id='main_content'></section>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-	<footer>&copy; 2012 Naohiro OHTA</footer>
+	
+	<section id='main_content'>
+		<h2>myoga</h2>
+		<h4>
+		<ul>
+			<li>myoga is webapp by Naohiro OHTA.</li>
+			<li>myoga is webapp fot study.</li>
+			<li>myoga use JavaEE-Servlet for WebService , jQuery, JSONIC, jquery.cookie, and so on.</li>
+		</ul>
+		</h4>
+	</section>
+
+	<footer>
+		<br/><hr/>
+		&copy; 2012 Naohiro OHTA
+	</footer>
+
 </body>
+
 </html>

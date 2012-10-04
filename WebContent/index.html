@@ -12,6 +12,22 @@
 	<link rel="stylesheet" href="index.css">
 	<script src="myAjaxEngineToMyoga.js"></script>
 	<script>
+		$(function(){
+			// Initialize cookie
+			$.cookie.json = true;
+			
+			// Make login selector
+			NEW_USER = '(入力する)';
+			var users = login_user_history_from_cookie();
+			for(var i=0; i<users.length; i++){
+				$('#user_selector').append("<option value='" +users[i]+ "'>" +users[i]+ "</option>");
+			}
+			
+			// Hide URL bar
+			hideURLBar();
+		});
+	</script>
+	<script>
 		function hideURLBar(){
 			setTimeout(function(){window.scrollTo(0, 1);},200);
 			setTimeout(function(){window.scrollTo(0, 1);},1000);
@@ -20,30 +36,57 @@
 			var page = $('#page_select').val();
 			ajaxToMyoga(
 					{name:"getHTML", params:{"filename":page} },  
-					function(result){$("#main_content").html(result.string);hideURLBar();}
+					function(result){$("#main_content").html(result.string); hideURLBar();}
 			);
 		}
-		$(function(){
+		function login(){
+			var user = $('#user_selector').val();
+			if(user==NEW_USER){
+				alert("New user sign up sqeuence.");
+				setGlobalScopeVariable_WHO_AM_I(user,"default_password");
+			}else{
+				setGlobalScopeVariable_WHO_AM_I(user,"default_password");
+				ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
+			}
+			make_page_selector();
+		}
+		
+		function login_user_history_from_cookie(){
+			console.log('#1');
+			console.log($.cookie('login_user_history'));
+			var login_user_history = $.cookie('login_user_history');
+			console.log('#2');
+			console.log(login_user_history);
+			if(login_user_history == null){
+				login_user_history = [NEW_USER];
+				$.cookie('login_user_history',login_user_history);
+			}
+			return login_user_history;
+		}
+		
+		function make_page_selector(){
+			$("#page_select").empty;
 			var pages = ["page1","page2","page3","page4_map"];
 			var alias = pages;
 			for(var i=0; i<pages.length; i++){
 				$("#page_select").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
 			}
-			setGlobalScopeVariable_WHO_AM_I("太田直宏","default_password");
-			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
-			hideURLBar();
-		});
+		}
 	</script>
 </head>
                                                      
 <body>
 	<header>
 		<ul>
-			<li style="display:inline;"><a href="#" id="who_am_i" onClick="">（Log Inしていません）</a></li>
+			<li style="display:inline;">
+				<select id="user_selector" onChange="login()" style="background-color:black;">
+						<option value='user0'>ユーザ選択</option>
+				</select>
+			</li>
 			<li style="display:inline;background-color:black;">
 				<nav style="display:inline;background-color:black;">
-					<select id="page_select"name="select" onChange="jump()" style="background-color:black;">
-						<option value='page0' id='page0'>選択して下さい</option>
+					<select id="page_select" onChange="jump()" style="background-color:black;">
+						<option value='page0' id='page0'>ページ選択</option>
 					</select>
 				</nav>
 			</li>

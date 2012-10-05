@@ -1,12 +1,21 @@
 <script>
 	$(function(){
+		$('.user a').text('---');
+		
 		setGlobalScopeVariable_WHO_AM_I("Dummy_User","Dummy_Password");
 		reset_page_selector();
+		var when_succeed = function(result){
+			console.log(result);
+			console.log(result.realname);
+			$('.user a').text(result.realname);
+		};
+		alert('waiting for you...');
+		ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);
 		hideURLBar();
 	});
 </script>
 
-<h1>ログインページ3</h1>
+<h1>ログインページ4</h1>
 <form>
 	<p>user</p>
 	<p>password</p>

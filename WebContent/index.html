@@ -47,15 +47,15 @@
 			reset_main_content();
 		}
 		
+		function jump_with_page_selector(){
+			jump($('#page_selector').val());
+		}
+
 		function jump(filename_without_extension){
 			ajaxToMyoga(
 					{name:"getHTML", params:{"filename":filename_without_extension} },  
 					function(result){$("#main_content").html(result.string); hideURLBar();}
 			);
-		}
-		
-		function jump_with_page_selector(){
-			jump($('#page_selector').val());
 		}
 	</script>
 	
@@ -78,11 +78,12 @@
 		}
 		
 		function reset_page_selector(){
-			$("#page_selector").empty();
+			$('nav').empty();
 			var pages = ["page0","page1","page2","page3","page4_map"];
 			var alias = pages; alias[0]="ページ";
+			$('nav').append('<select id="page_selector" onChange="jump_with_page_selector()"></select>');
 			for(var i=0; i<pages.length; i++){
-				$("#page_selector").append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
+				$('#page_selector').append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
 			}
 		}
 
@@ -99,28 +100,19 @@
                                                      
 <body>
 	<header>
-		<ul>
-			<li style="display:inline;">
-				<select id="user_selector" onChange="login()">
-						<option value='user0'>ユーザ</option>
-				</select>
-			</li>
-			<li style="display:inline;">
-				<nav style="display:inline;">
-					<select id="page_selector" onChange="jump_with_page_selector()">
-					</select>
-				</nav>
-			</li>
-		</ul>
-		<hr/>
+			<nav></nav>
+			<div class='user'>
+				<a onClick='jump("login")' href='#'>ログインする</a>
+			</div>
 	</header>
+	<hr/>
 	
 	<section id='main_content'>
 		<h2>myoga web application</h2>
 	</section>
 
+	<hr/>
 	<footer>
-		<hr/>
 		&copy; 2012 Naohiro OHTA
 	</footer>
 

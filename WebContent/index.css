@@ -1,34 +1,33 @@
 @CHARSET "UTF-8";
 * {
   margin: 0;
-  padding: 0; }
-
-body {
-  font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #EFEFE8;
-  color: #8E918F;
-  margin: 0;
-  padding: 0; }
-  body a:hover {
-    text-decoration: underline; }
-  body select, body option {
-    background-color: #EFEFE8;
-    color: #8E918F; }
-  body header {
-    margin: 0;
-    padding: 0;
-    text-decoration: none; }
-  body #main_content {
-    font: 18pt/22pt; }
-
-/*
-*{
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-	border: none;
-	list-style: none;
-	outline: none;
-	color: #8E918F;
+  padding: 0;
 }
-*/
+body{
+  	color: #8E918F;
+	background-color: #EFEFE8;
+}
+body a:hover {
+    text-decoration: underline;
+}
+body header {
+	font-size: 14pt/16pt;
+	text-decoration: none;
+}
+body header nav {
+	float: left;	
+}
+body header .user{
+	text-align: right;
+}
+
+body #main_content {
+	margin: 4px;
+	padding: 3px;
+	font-size: 18pt/22pt;
+	text-align: center;
+}
+body footer {
+	font-size: 6pt/7pt;
+	text-align: center;
+}

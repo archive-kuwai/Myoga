@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: 28px;
 }
 body{
   	color: #8E918F;
@@ -10,21 +11,22 @@ body{
 body a:hover {
     text-decoration: underline;
 }
-body header {
-	font-size: 14pt/16pt;
-	text-decoration: none;
-}
 body header nav {
 	float: left;	
 }
+#page_selector option{
+	font-size: 28px;
+	float: left;	
+}
 body header .user{
+	font-size: 13pt/14pt;
 	text-align: right;
 }
 
 body #main_content {
 	margin: 4px;
 	padding: 3px;
-	font-size: 18pt/22pt;
+	font-size: 18pt/20pt;
 	text-align: center;
 }
 body footer {

@@ -39,7 +39,7 @@
 				jump("login");
 				return;
 			}
-			var password = prompt('パスワード','myoga');
+			var password = prompt('[myoga] パスワードを入力して下さい。','myoga');
 			setGlobalScopeVariable_WHO_AM_I(user, password);
 			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
 
@@ -101,13 +101,13 @@
 	<header>
 		<ul>
 			<li style="display:inline;">
-				<select id="user_selector" onChange="login()" style="background-color:black;">
+				<select id="user_selector" onChange="login()">
 						<option value='user0'>ユーザ</option>
 				</select>
 			</li>
-			<li style="display:inline;background-color:black;">
-				<nav style="display:inline;background-color:black;">
-					<select id="page_selector" onChange="jump_with_page_selector()" style="background-color:black;">
+			<li style="display:inline;">
+				<nav style="display:inline;">
+					<select id="page_selector" onChange="jump_with_page_selector()">
 					</select>
 				</nav>
 			</li>
@@ -115,18 +115,13 @@
 	</header>
 	
 	<section id='main_content'>
-		<h2>myoga</h2>
-		<h4>
-		<ul>
-			<li>myoga is webapp by Naohiro OHTA.</li>
-			<li>myoga is webapp fot study.</li>
-			<li>myoga use JavaEE-Servlet for WebService , jQuery, JSONIC, jquery.cookie, and so on.</li>
-		</ul>
-		</h4>
+		<br/>
+		<h2>myoga web application</h2>
+		<br/>
 	</section>
 
 	<footer>
-		<br/><hr/>
+		<hr/>
 		&copy; 2012 Naohiro OHTA
 	</footer>
 

@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+//#main_content{
 *{
 	color:black;
     font: 18pt/22pt "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -8,23 +9,24 @@
 	border: none;
 	list-style: none;
 	outline: none;
+	color: #8E918F;
 }
+
 a:visited, a:link{
 	font-weight:bold;
 	color:black;
 }
 
-header{
-	background-color:black;
-	*, a:visited, a:link{
-		color:white;
-	}
+select,option{
+	background-color:#E2EAEB;
+	color:#41424A;
 }
 
-body {
-    background: #eef2f7;
-	color: #536376;
+body{
+    background: #EFEFE8;
+	color: #8E918F;
 }
+
 a:hover {
     text-decoration: underline;
 }

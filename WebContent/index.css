@@ -7,20 +7,20 @@
   text-decoration: none;
   border: none;
   list-style: none;
-  outline: none; }
+  outline: none;
+  color: #8E918F; }
 
 a:visited, a:link {
   font-weight: bold;
   color: black; }
 
-header {
-  background-color: black; }
-  header *, header a:visited, header a:link {
-    color: white; }
+select, option {
+  background-color: #E2EAEB;
+  color: #41424A; }
 
 body {
-  background: #eef2f7;
-  color: #536376; }
+  background: #EFEFE8;
+  color: #8E918F; }
 
 a:hover {
   text-decoration: underline; }

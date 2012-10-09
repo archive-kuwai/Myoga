@@ -18,19 +18,19 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		httpRes.setContentType("application/json;charset=utf-8");
 		
 		//HTTPリクエストからcommandパラメータの内容を取り出す。
-		String commandInJSONString = httpReq.getParameter("command");
-		if(commandInJSONString == null){
+		String commandInJSON = httpReq.getParameter("command");
+		if(commandInJSON == null){
 			httpRes.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			String msg = "あなたが送信したHTTPリクエストの中に「command」パラメータがありませんでした。";
 			httpRes.getWriter().println(msg);
 			Logger.getLogger("").info(msg);
 			return;
 		}
-		Logger.getLogger("").info("httpリクエストのcommandパラメータ(JSON文字列) ->" + commandInJSONString);
+		Logger.getLogger("").info("httpリクエストのcommandパラメータ(JSON文字列) ->" + commandInJSON);
 		
 		
 		//commandパラメータの内容（JSON文字列が期待されている）をCommand Javaオブジェクトにデコードする。
-		Command cmd = JSON.decode(commandInJSONString, Command.class);
+		Command cmd = JSON.decode(commandInJSON, Command.class);
 		Logger.getLogger("").info("Command(Javaオブジェクト) ->" + cmd.toString());
 
 

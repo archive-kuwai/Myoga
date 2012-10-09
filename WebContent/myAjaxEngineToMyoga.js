@@ -21,11 +21,11 @@ function ajaxToMyoga(method_obj, success_funciton){
 	console.log("GlobalScopeVariable_WHO_AM_I:");
 	console.log(GlobalScopeVariable_WHO_AM_I);
 
-	var d = {command: JSON.stringify({method:method_obj, who:GlobalScopeVariable_WHO_AM_I})};
+	var commandInJSON = {command: JSON.stringify({method:method_obj, who:GlobalScopeVariable_WHO_AM_I})};
 	$.ajax({
 		type:"POST",
 		url:"./API",
-		data:d,
+		data:commandInJSON,
 		success:function(result){
 				console.log("-------- Ajax response, Success");
 				console.log("result response:");

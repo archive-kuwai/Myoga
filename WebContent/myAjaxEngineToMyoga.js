@@ -11,9 +11,16 @@ function sHA256WithHEXEncoding(s){
 
 function ajaxToMyoga(method_obj, success_funciton){
 	if(GlobalScopeVariable_WHO_AM_I == ""){
-		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call. (I am WebBrowser's javascript)");
+		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call.");
 		return false;
 	}
+
+	console.log("-------- Ajax request");
+	console.log("method_obj:");
+	console.log(method_obj);
+	console.log("GlobalScopeVariable_WHO_AM_I:");
+	console.log(GlobalScopeVariable_WHO_AM_I);
+
 	$.ajax({
 		type:"POST",
 		url:"./API",
@@ -21,9 +28,15 @@ function ajaxToMyoga(method_obj, success_funciton){
 			method: method_obj,
 			who: GlobalScopeVariable_WHO_AM_I
 		})),
-		success:success_funciton,
+		success:function(result){
+				console.log("-------- Ajax response, Success");
+				console.log("result response:");
+				console.log(result);
+				success_funciton(result);
+			},
 		error:function(error){
-			console.log("[myAjaxEnginToMyoga.js#ajaxToMyoga]function. Error, I did ajax call, but server returned Error object. I'll log it here.");
+			console.log("-------- Ajax response, Error");
+			console.log("error response:");
 			console.log(error);
 		}
 	});	

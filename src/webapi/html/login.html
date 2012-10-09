@@ -1,12 +1,10 @@
 <script>
 	$(function(){
-		$('.user a').text('---');
+		$('#login_user').text('---');
 		
 		setGlobalScopeVariable_WHO_AM_I("Dummy_User","Dummy_Password");
 		reset_page_selector();
 		var when_succeed = function(result){
-			console.log(result);
-			console.log(result.realname);
 			$('#login_user').text(result.realname);
 		};
 		alert('waiting for you...');

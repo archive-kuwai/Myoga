@@ -1,8 +1,10 @@
 @CHARSET "UTF-8";
 .left {
+  display: block;
   float: left; }
 
 .right {
+  display: block;
   text-align: right; }
 
 * {

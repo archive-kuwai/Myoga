@@ -1,121 +1,37 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>myoga by Naohiro OHTA</title>
-	<meta name = "viewport" content = "width = device-width, initial-scale = 1, user-scalable = no">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script src="plugins/jquery.cookie.js"></script>
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<link rel="stylesheet" href="index.css">
-	<script src="myAjaxEngineToMyoga.js"></script>
-	<script>
-		$(function(){
 
-			setGlobalScopeVariable_WHO_AM_I("dummy","dummy_PW");
-			
-			// Initialize cookie
-			$.cookie.json = true;
-			
-			// Make user selector
-			INPUT_USER_NAME_OPTION = '(入力する)';
-			var users = logged_in_users();
-			for(var i=0; i<users.length; i++){
-				$('#user_selector').append("<option value='" +users[i]+ "'>" +users[i]+ "</option>");
-			}
-			
-			// Hide URL bar
-			hideURLBar();
-		});
-	</script>
-	
-	<script>
-		function login(){
-			var user = $('#user_selector').val();
-			if(user == INPUT_USER_NAME_OPTION){
-				$('#page_selector').empty();
-				jump("login");
-				return;
-			}
-			var password = prompt('myoga パスワード ','myoga');
-			setGlobalScopeVariable_WHO_AM_I(user, password);
-			ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
+	<head>
+		<meta charset="utf-8">
+		<title>myoga by Naohiro OHTA</title>
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1, user-scalable = no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="plugins/jquery.cookie.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<link rel="stylesheet" href="index.css">
+		<script src="myAjaxEngineToMyoga.js"></script>
+		<script src="index.js"></script>
+	</head>
+                                        
+	<body>
+		<header>
+				<nav class='left'></nav>
+				<div class='right'>
+					<button id="login_user" onClick='jump("login")'>ログインする</button>
+				</div>
+		</header>
 
-			reset_page_selector();
-			reset_main_content();
-		}
-		
-		function jump_with_page_selector(){
-			jump($('#page_selector').val());
-		}
+		<hr/>
+		<section id='main_content'>
+			<h2>myoga web application</h2>
+		</section>
 
-		function jump(filename_without_extension){
-			ajaxToMyoga(
-					{name:"getHTML", params:{"filename":filename_without_extension} },  
-					function(result){$("#main_content").html(result.string); hideURLBar();}
-			);
-		}
-	</script>
-	
-	<script>
-		function jump_to_login_page(){
-			var user = prompt('ユーザ','myoga');
-			login_with_password(user);
-			var users = $.cookie('logged_in_users');
-			users.push(user);
-			$.cookie('logged_in_users',users);
-		}
-
-		function logged_in_users(){
-			var users = $.cookie('logged_in_users');
-			if(users == null){
-				users = [INPUT_USER_NAME_OPTION];
-				$.cookie('logged_in_users',users);
-			}
-			return users;
-		}
-		
-		function reset_page_selector(){
-			$('nav').empty();
-			var pages = ["page0","page1","page2","page3","page4_map"];
-			var alias = pages; alias[0]="ページ";
-			$('nav').append('<select id="page_selector" onChange="jump_with_page_selector()"></select>');
-			for(var i=0; i<pages.length; i++){
-				$('#page_selector').append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
-			}
-		}
-
-		function reset_main_content(){
-			$("#main_content").empty();
-		}
-
-		function hideURLBar(){
-			setTimeout(function(){window.scrollTo(0, 1);},200);
-			setTimeout(function(){window.scrollTo(0, 1);},1000);
-		}
-	</script>
-</head>
-                                                     
-<body>
-	<header>
-			<nav></nav>
-			<div class='user'>
-				<a onClick='jump("login")' href='#'>ログインする</a>
-			</div>
-	</header>
-	<hr/>
-	
-	<section id='main_content'>
-		<h2>myoga web application</h2>
-	</section>
-
-	<hr/>
-	<footer>
-		&copy; 2012 Naohiro OHTA
-	</footer>
-
-</body>
+		<hr/>
+		<footer>
+			&copy; 2012 Naohiro OHTA
+		</footer>
+	</body>
 
 </html>

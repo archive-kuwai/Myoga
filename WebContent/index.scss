@@ -1,4 +1,10 @@
 @CHARSET "UTF-8";
+.left{
+	float: left;
+}
+.right{
+	text-align: right;		
+}
 *{
 	margin: 0;
 	padding: 0;
@@ -16,13 +22,6 @@
 			a:hover {
 					text-decoration: underline;
 			}
-			nav{
-				float: left;
-			}
-			.user{
-				text-align: right;			
-			}
-			
 		}
 		#main_content{
 			margin: 4px;

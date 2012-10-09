@@ -7,7 +7,7 @@
 		var when_succeed = function(result){
 			console.log(result);
 			console.log(result.realname);
-			$('.user a').text(result.realname);
+			$('#login_user').text(result.realname);
 		};
 		alert('waiting for you...');
 		ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);

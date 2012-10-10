@@ -51,23 +51,24 @@ a:hover {
 	@include pink_color_set;
 }
 
+.S{font-size: 10pt;}
+.M{font-size: 14pt;}
+.L{font-size: 18pt;}
+
 *{
 	margin: 0;
 	padding: 0;
 }
 body{
-		min-height:940px;
-		height: auto !important;
-		font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
-		@include white_color_set_weak;
+	min-height:940px;
+	height: auto !important;
+	font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+	@include white_color_set_weak;
 }
 header{
 	select,option{
-		font-size: 16pt;
-		@include blue_color_set;
-	}
-	#login_user{
 		font-size: 14pt;
+		@include blue_color_set;
 	}
 }
 #main_content{

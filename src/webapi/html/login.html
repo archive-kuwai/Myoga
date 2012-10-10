@@ -1,14 +1,15 @@
 <script>
 	$(function(){
 		$('#login_user').text('---');
-		
 		setGlobalScopeVariable_WHO_AM_I("Dummy_User","Dummy_Password");
 		reset_page_selector();
 		var when_succeed = function(result){
 			$('#login_user').text(result.realname);
+			$('#login_user').removeClass("pink");
+			$('#login_user').addClass("white_weak");
 		};
 		alert('waiting for you...');
-		ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);
+		ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);
 		hideURLBar();
 	});
 </script>

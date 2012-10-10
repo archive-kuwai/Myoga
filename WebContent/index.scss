@@ -1,12 +1,16 @@
 @CHARSET "UTF-8";
 
-//Monochromatic
+// =============================================
+// Color
+// =============================================
+
+// Monochromatic
 $star_white: rgba(239,239,232,1);
 $black_ink: rgba(68,65,60,1);
 $natural_gray: rgba(142,145,143,1);
 
 //Triadic
-//star_white
+/*star_white*/
 $bridal_blush: rgba(238,226,221,1);
 $bit_of_blue: rgba(226,234,235,1);
 
@@ -27,6 +31,15 @@ $bit_of_blue: rgba(226,234,235,1);
 	color:$black_ink;
 }
 
+.white_strong{@include white_color_set_strong;}
+.white_weak{@include white_color_set_weak;}
+.blue{@include blue_color_set;}
+.pink{@include pink_color_set;}
+
+
+// =============================================
+// Parts
+// =============================================
 .left{
 	display: block;
 	float: left;
@@ -43,28 +56,38 @@ a:hover {
 .M{font-size: 14pt;}
 .L{font-size: 18pt;}
 
+.round_rect{
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+}
+
+
+// =============================================
+// According HTML Structure
+// =============================================
 body{
 	min-height:940px;
 	height: auto !important;
+	font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
 	@include white_color_set_weak;
 }
 header *{
-	margin: 0;
+	margin: 2;
 	padding: 0;
 	font-size: 14pt;
 }
+nav * {
+	@include blue_color_set;
+}
 
-#main_content *{
-	margin: 4px;
-	padding: 3px;
+#main_content{
+	margin: 0;
+	padding: 0;
 	text-align: center;
 	@include white_color_set_strong;
 }
 
-footer *{
-	margin: 1px;
-	padding: 1px;
-	font-size: 6pt;
+footer{
 	text-align: center;
 	@include white_color_set_weak;
 }

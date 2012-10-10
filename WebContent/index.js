@@ -27,7 +27,7 @@ function login(){
 	}
 	var password = prompt('myoga パスワード ','myoga');
 	setGlobalScopeVariable_WHO_AM_I(user, password);
-	ajaxToMyoga({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
+	ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
 
 	reset_page_selector();
 	reset_main_content();
@@ -38,7 +38,7 @@ function jump_with_page_selector(){
 }
 
 function jump(filename_without_extension){
-	ajaxToMyoga(
+	ajaxToMyogaAPI(
 			{name:"getHTML", params:{"filename":filename_without_extension} },  
 			function(result){$("#main_content").html(result.string); hideURLBar();}
 	);
@@ -62,7 +62,8 @@ function logged_in_users(){
 	return users;
 }
 
-function reset_page_selector(){
+
+function reset_page_selector(){ // TODO RENAME!!!!!!
 	$('nav').empty();
 	var pages = ["page0","page1","page2","page3","page4_map"];
 	var alias = pages; alias[0]="ページ";

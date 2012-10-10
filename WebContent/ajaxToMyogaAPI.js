@@ -9,7 +9,7 @@ function sHA256WithHEXEncoding(s){
     return CryptoJS.SHA256(s).toString(CryptoJS.enc.HEX);
 }
 
-function ajaxToMyoga(method_obj, success_funciton){
+function ajaxToMyogaAPI(method_obj, success_funciton){
 	if(GlobalScopeVariable_WHO_AM_I == ""){
 		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call.");
 		return false;

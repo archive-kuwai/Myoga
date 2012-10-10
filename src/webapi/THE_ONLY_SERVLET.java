@@ -17,6 +17,9 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		//HTTPレスポンスにコンテントタイプを設定する
 		httpRes.setContentType("application/json;charset=utf-8");
 		
+		//HTTPレスポンスのヘッダにキャッシュコントロールを設定する
+		httpRes.setHeader("cache-control","no-cache");
+
 		//HTTPリクエストからcommandパラメータの内容を取り出す。
 		String commandInJSON = httpReq.getParameter("command");
 		if(commandInJSON == null){

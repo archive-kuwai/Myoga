@@ -1,4 +1,32 @@
 @CHARSET "UTF-8";
+
+//Monochromatic
+$star_white: rgba(239,239,232,1);
+$black_ink: rgba(68,65,60,1);
+$natural_gray: rgba(142,145,143,1);
+
+//Triadic
+//star_white
+$bridal_blush: rgba(238,226,221,1);
+$bit_of_blue: rgba(226,234,235,1);
+
+@mixin white_color_set_strong {
+	background-color:$star_white;
+	color:$black_ink;
+}
+@mixin white_color_set_weak {
+	background-color:$star_white;
+	color:$natural_gray;
+}
+@mixin blue_color_set {
+	background-color:$bit_of_blue;
+	color:$black_ink;
+}
+@mixin pink_color_set {
+	background-color:$bridal_blush;
+	color:$black_ink;
+}
+
 .left{
 	display: block;
 	float: left;
@@ -7,33 +35,50 @@
 	display: block;
 	text-align: right;		
 }
+a:hover {
+	text-decoration: underline;
+}
+
+.weak_button{
+	@include white_color_set_weak;
+}
+
+.normal_button{
+	@include white_color_set_strong;
+}
+
+.strong_button{
+	@include pink_color_set;
+}
+
 *{
 	margin: 0;
 	padding: 0;
-	body{
+}
+body{
 		min-height:940px;
 		height: auto !important;
 		font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
-		background-color: #EFEFE8;
-		color: #8E918F;
-		select,option{
-			background-color:#E2EAEB;
-			color:#41424A;
-		}
-		header{
-			a:hover {
-					text-decoration: underline;
-			}
-		}
-		#main_content{
-			margin: 4px;
-			padding: 3px;
-			font-size: 18pt/20pt;
-			text-align: center;
-		}
-		footer{
-			font-size: 6pt/7pt;
-			text-align: center;		
-		}
+		@include white_color_set_weak;
+}
+header{
+	select,option{
+		font-size: 16pt;
+		@include blue_color_set;
 	}
+	#login_user{
+		font-size: 14pt;
+	}
+}
+#main_content{
+	margin: 4px;
+	padding: 3px;
+	font-size: 18pt/20pt;
+	text-align: center;
+	@include white_color_set_strong;
+}
+footer{
+	font-size: 6pt/7pt;
+	text-align: center;
+	@include white_color_set_weak;
 }

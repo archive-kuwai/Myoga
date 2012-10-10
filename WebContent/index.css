@@ -7,25 +7,49 @@
   display: block;
   text-align: right; }
 
+a:hover {
+  text-decoration: underline; }
+
+.weak_button {
+  background-color: #efefe8;
+  color: #8e918f; }
+
+.normal_button {
+  background-color: #efefe8;
+  color: #44413c; }
+
+.strong_button {
+  background-color: #eee2dd;
+  color: #44413c; }
+
 * {
   margin: 0;
   padding: 0; }
-  * body {
-    min-height: 940px;
-    height: auto !important;
-    font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #EFEFE8;
-    color: #8E918F; }
-    * body select, * body option {
-      background-color: #E2EAEB;
-      color: #41424A; }
-    * body header a:hover {
-      text-decoration: underline; }
-    * body #main_content {
-      margin: 4px;
-      padding: 3px;
-      font-size: 18pt/20pt;
-      text-align: center; }
-    * body footer {
-      font-size: 6pt/7pt;
-      text-align: center; }
+
+body {
+  min-height: 940px;
+  height: auto !important;
+  font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #efefe8;
+  color: #8e918f; }
+
+header select, header option {
+  font-size: 16pt;
+  background-color: #e2eaeb;
+  color: #44413c; }
+header #login_user {
+  font-size: 14pt; }
+
+#main_content {
+  margin: 4px;
+  padding: 3px;
+  font-size: 18pt/20pt;
+  text-align: center;
+  background-color: #efefe8;
+  color: #44413c; }
+
+footer {
+  font-size: 6pt/7pt;
+  text-align: center;
+  background-color: #efefe8;
+  color: #8e918f; }

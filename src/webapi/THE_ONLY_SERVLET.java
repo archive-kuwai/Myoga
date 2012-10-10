@@ -17,6 +17,7 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		//HTTPレスポンスにコンテントタイプを設定する
 		httpRes.setContentType("application/json;charset=utf-8");
 		
+		// TODO ajaxToMyogaAPI_with_NO_CACHEファンクションをクライアント側で使用することにより、この処理はなくす事。iOS6でキャッシュさせたい。
 		//HTTPレスポンスのヘッダにキャッシュコントロールを設定する
 		httpRes.setHeader("cache-control","no-cache");
 

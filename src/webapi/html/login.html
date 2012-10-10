@@ -1,10 +1,15 @@
 <script>
 	$(function(){
-		$('#login_user').text('---');
+		$('#login_user').text("…");
 		setGlobalScopeVariable_WHO_AM_I("Dummy_User","Dummy_Password");
 		reset_page_selector();
 		var when_succeed = function(result){
-			$('#login_user').text(result.realname);
+
+			var n = result.realname;
+			var too_long_letters_to_disp = 6;
+			if (n.length >= too_long_letters_to_disp) n = n.substring(0, too_long_letters_to_disp - 2) + "…";
+			$('#login_user').text(n);
+
 			$('#login_user').removeClass("pink");
 			$('#login_user').addClass("white_weak");
 		};

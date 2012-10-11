@@ -15,12 +15,6 @@ $(function(){
 	
 	// Hide URL bar
 	hideURLBar();
-
-	// Privent touch events on iOS
-	$(document).bind('touchstart', function(event) {event.preventDefault();});
-	$(document).bind('touchmove', function(event) {event.preventDefault();});
-	$(document).bind('touchend', function(event) {event.preventDefault();});	
-
 });
 
 //----------------------------

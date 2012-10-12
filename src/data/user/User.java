@@ -1,4 +1,4 @@
-package d.u;
+package data.user;
 
 public class User {
 	private final String id;

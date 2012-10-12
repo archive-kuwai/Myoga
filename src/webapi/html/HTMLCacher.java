@@ -2,7 +2,8 @@ package webapi.html;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Logger;
-import d.u.SimpleString;
+
+import data.user.SimpleString;
 
 public class HTMLCacher {
 	

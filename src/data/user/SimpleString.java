@@ -1,4 +1,4 @@
-package d.u;
+package data.user;
 
 public class SimpleString {
 	public final String string;

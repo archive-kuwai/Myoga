@@ -1,4 +1,4 @@
-package d.u;
+package data.user;
 
 public class SimpleBool{
 	public final boolean bool;

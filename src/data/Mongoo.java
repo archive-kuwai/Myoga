@@ -5,8 +5,6 @@ import net.arnx.jsonic.*;
 
 public class Mongoo {
 
-	// STATIC ==============================================================
-	
 	/* ********************************************* */
 	//static String mongoURI = "ec2-176-32-67-236.ap-northeast-1.compute.amazonaws.com";
 	static String mongoURI = "localhost";
@@ -14,12 +12,15 @@ public class Mongoo {
 	static String dbname = "test";
 	static Mongo mo = null;
 	static DB db = null;
-
+	public String uniqueName;
 	
-	// EACH INSTANCE ========================================================
-	public UUID uuid = null;
-	public Mongoo(){
-		uuid = UUID.randomUUID();
+	public Mongoo(String uniqueName){
+		if(uniqueName == null){
+			this.uniqueName = UUID.randomUUID().toString();
+		}else{
+			this.uniqueName = uniqueName;
+		}
+
 		if(mo==null){
 			try{
 				mo = new Mongo(mongoURI);
@@ -39,11 +40,24 @@ public class Mongoo {
 		// Make DBObject
 		String json = JSON.encode(this);
 		DBObject obj = (DBObject)com.mongodb.util.JSON.parse(json);
+
 		// Get collection
 		String n = this.getClass().getName();
 		DBCollection coll = db.getCollection(n);
-		// Insert
-		coll.insert(obj);
+		
+		// 
+		BasicDBObject queryObj = new BasicDBObject("uniqueName", this.uniqueName); 
+		DBObject returnedObj = coll.findOne(queryObj);
+		System.out.println(returnedObj);
+		if(returnedObj==null){
+			System.out.println("■■■■■■■Insert■");
+			coll.insert(obj);
+		}else{
+			System.out.println("■■■■■■■Update■");
+			DBCollection history = db.getCollection("history_" + n);
+			history.insert(returnedObj);
+			coll.update(queryObj, obj);
+		}
 	}
 	
 }

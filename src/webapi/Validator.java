@@ -1,7 +1,7 @@
 package webapi;
 
-import webapi.model.Command;
-import webapi.model.Who;
+import webapi.command.Command;
+import webapi.command.Who;
 
 
 class Validator {

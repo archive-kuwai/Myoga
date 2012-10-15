@@ -1,11 +1,12 @@
 package webapi;
+import webapi.command.Command;
 import webapi.html.HTMLCacher;
-import webapi.model.Command;
 import net.arnx.jsonic.JSON;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
+import java.util.Date;
 import java.util.logging.*;
 
 @WebServlet("/API")
@@ -35,11 +36,13 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		
 		//commandパラメータの内容（JSON文字列が期待されている）をCommand Javaオブジェクトにデコードする。
 		Command cmd = JSON.decode(commandInJSON, Command.class);
+		cmd.requestedTime = new Date();
+		cmd.save();
 		Logger.getLogger("").info("Command(Javaオブジェクト) ->" + cmd.toString());
 
 
 		//Validなユーザかどうかを検証する。
-		if(!Validator.isValidUser(cmd.getWho())){
+		if(!Validator.isValidUser(cmd.who)){
 			String msg = "ユーザIDもしくはパスワードが間違っています。";
 			httpRes.getWriter().println(msg);
 			Logger.getLogger("").info(msg);
@@ -57,9 +60,12 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		//Command Javaオブジェクトの内容によってDispatchして、Executeする。
 		HTMLCacher.initNORMAL(getServletContext().getRealPath("/"));
 		String resultInJSONString = Dispatcher.dispatch(cmd);
-
+		cmd.resultInJSON = resultInJSONString;
+		
 		//HTTPレスポンスを作成する
 		httpRes.getWriter().println(resultInJSONString);
 		Logger.getLogger("").info("resultInJSONString is " + resultInJSONString);
+		cmd.responsedTime = new Date();
+		cmd.save();
 	}
 }

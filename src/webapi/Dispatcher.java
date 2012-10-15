@@ -1,25 +1,25 @@
 package webapi;
 import java.util.*;
 import net.arnx.jsonic.JSON;
+import webapi.command.Command;
 import webapi.html.HTMLCacher;
-import webapi.model.Command;
 
 class Dispatcher {
 
 	static public String dispatch(Command cmd){
-		String methodName = cmd.getMethod().name;
+		String methodName = cmd.method.name;
 		if("getHTML".equals(methodName)){
-			String filename = cmd.getMethod().params.get("filename") + ".html";
+			String filename = cmd.method.params.get("filename") + ".html";
 			return JSON.encode(HTMLCacher.getHTML(filename));
 		}else if("getPerson".equals(methodName)){
 			HashSet<String> s = new HashSet<String>();
-			s.add("受注入力");
-			s.add("出荷案内");
-			data.user.Role r = new data.user.Role("オペレーター第2種", s);
+			s.add("Order");
+			s.add("SayShipIt");
+			data.user.Role r = new data.user.Role("the1st_operator", s);
 			r.save();
 			r.save();
 			r.save();
-			r.name = "変更したよ！";
+			r.name = "the2ndOperator";
 			r.save();
 			r.save();
 			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太棚田直一郎", r);

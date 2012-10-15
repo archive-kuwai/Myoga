@@ -6,7 +6,7 @@ public class Role extends data.Mongoo{
 	public final Set<String> runnableMethods;
 	
 	public Role(String name, Set<String> runnableMethods) {
-		super();
+		super(name);
 		this.name = name;
 		this.runnableMethods = runnableMethods;
 	}

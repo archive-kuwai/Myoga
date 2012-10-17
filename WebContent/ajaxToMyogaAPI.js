@@ -19,11 +19,10 @@ function ajaxToMyogaAPI(method_obj, success_funciton){
 		return false;
 	}
 
-	console.log("-------- Ajax request");
-	console.log("method_obj:");
+	console.log("/--- Ajax Request");
 	console.log(method_obj);
-	console.log("GlobalScopeVariable_WHO_AM_I:");
 	console.log(GlobalScopeVariable_WHO_AM_I);
+	console.log("---/");
 
 	var commandInJSON = {command: JSON.stringify({method:method_obj, who:GlobalScopeVariable_WHO_AM_I})};
 	$.ajax({
@@ -31,15 +30,15 @@ function ajaxToMyogaAPI(method_obj, success_funciton){
 		url:"./API",
 		data:commandInJSON,
 		success:function(result){
-				console.log("-------- Ajax response, Success");
-				console.log("result response:");
+				console.log("/--- Ajax Success");
 				console.log(result);
+				console.log("---/");
 				success_funciton(result);
 			},
 		error:function(error){
-			console.log("-------- Ajax response, Error");
-			console.log("error response:");
+			console.log("/--- Ajax Error");
 			console.log(error);
+			console.log("---/");
 		}
 	});	
 }

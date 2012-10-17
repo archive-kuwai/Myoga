@@ -1,13 +1,22 @@
 <h1>Admin Page</h1>
-<div id='sel_division'></div>
+<select id='login_users'></select>
 
 <script>
 $(function(){
-	var items = ["page0","page1","page2","page3","page4_map","admin"];
-	var labels = items;
-	make_selector($('#sel_division'), items, labels);
-	$('#sel_division').find('select').change(function(){
-		alert($('#sel_division').find('select').val());
-	});
+	var selector = $('#login_users');
+
+	ajaxToMyogaAPI(
+		{
+			name:"getLoginUsers",
+			params:{a:1,b:2}
+		},
+		function(result){
+			addOptions(selector, result, result);
+			selector.change(function(){
+				alert(selector.val());
+			});
+		}
+	);
+	
 });
 </script>

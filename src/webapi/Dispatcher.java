@@ -1,5 +1,7 @@
 package webapi;
 import java.util.*;
+
+import data.user.SimpleString;
 import net.arnx.jsonic.JSON;
 import webapi.command.Command;
 import webapi.html.HTMLCacher;
@@ -24,6 +26,10 @@ class Dispatcher {
 			r.save();
 			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太棚田直一郎", r);
     		return JSON.encode(u);
+		}else if("getLoginUsers".equals(methodName)){
+			List<String> ls = new ArrayList<String>();
+			ls.add("nao1"); ls.add("nao2");
+			return JSON.encode(ls);
 		}else{
 			return null;
 		}

@@ -40,7 +40,14 @@ function jump_with_page_selector(){
 function jump(filename_without_extension){
 	ajaxToMyogaAPI(
 			{name:"getHTML", params:{"filename":filename_without_extension} },  
-			function(result){$("#main_content").html(result.string); hideURLBar();}
+			function(result){
+				console.log("result");
+				console.log(result);
+				console.log("result.string");
+				console.log(result.string);
+				$("#main_content").html(result.string);
+				hideURLBar();
+			}
 	);
 }
 
@@ -65,11 +72,11 @@ function logged_in_users(){
 
 function reset_page_selector(){ // TODO RENAME!!!!!!
 	$('nav').empty();
-	var pages = ["page0","page1","page2","page3","page4_map"];
+	var pages = ["page0","page1","page2","page3","page4_map","admin","admin2"];
 	var alias = pages; alias[0]="ページ";
 	$('nav').append('<select id="page_selector" onChange="jump_with_page_selector()"></select>');
 	for(var i=0; i<pages.length; i++){
-		$('#page_selector').append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</a>");
+		$('#page_selector').append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</option>");
 	}
 }
 

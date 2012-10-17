@@ -1,0 +1,23 @@
+<h1>Admin2 Page</h1>
+<div id='sel_division'></div>
+
+<script>
+function sel_changed(){
+	alert($('#sel').val());
+}
+
+function make_sel(items, labels){
+	$('#sel_division').empty();
+	$('#sel_division').append('<select id="sel" onChange="sel_changed()"></select>');
+	for(var i=0; i<items.length; i++){
+		$('#sel').append("<option value='" +items[i]+ "' id='" +items[i]+ "'>" + labels[i] + "</option>");
+	}
+}
+
+$(function(){
+	var items = ["page0","page1","page2","page3","page4_map","admin"];
+	var labels = items;
+	make_sel(items,labels);
+});
+</script>
+

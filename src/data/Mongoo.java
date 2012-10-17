@@ -6,7 +6,7 @@ import net.arnx.jsonic.*;
 public class Mongoo {
 
 	/* ********************************************* */
-	//static String mongoURI = "ec2-176-32-67-236.ap-northeast-1.compute.amazonaws.com";
+	//static String mongoURI = "ec2-54-248-34-183.ap-northeast-1.compute.amazonaws.com";
 	static String mongoURI = "localhost";
 	/* ********************************************* */
 	static String dbname = "test";

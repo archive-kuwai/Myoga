@@ -1,0 +1,15 @@
+<h1>Admin Page</h1>
+<div id='sel_division'></div>
+<div id='sel_div_2'></div>
+
+<script>
+function selChanged(){
+	alert($('#sel_division').find('select').val());
+}
+
+$(function(){
+	var items = ["page0","page1","page2","page3","page4_map","admin"];
+	var labels = items;
+	make_selector($('#sel_division'), 'selChanged()',items, labels);
+});
+</script>

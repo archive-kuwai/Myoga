@@ -1,0 +1,22 @@
+<h1>Test Page</h1>
+<select id='test_selctor'></select>
+
+<script>
+$(function(){
+	var sel = $('#test_selctor');
+
+	ajaxToMyogaAPI(
+		{
+			name:"getListAsTest",
+			params:null
+		},
+		function(result){
+			addOptions(sel, result, result);
+			sel.change(function(){
+				alert(sel.val());
+			});
+		}
+	);
+	
+});
+</script>

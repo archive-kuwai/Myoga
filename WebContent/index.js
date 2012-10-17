@@ -72,7 +72,7 @@ function logged_in_users(){
 
 function reset_page_selector(){ // TODO RENAME!!!!!!
 	$('nav').empty();
-	var pages = ["page0","page1","page2","page3","page4_map","admin","admin2","admin3"];
+	var pages = ["page0","page1","page2","page3","page4_map","admin","test_addOptions"];
 	var alias = pages; alias[0]="ページ";
 	$('nav').append('<select id="page_selector" onChange="jump_with_page_selector()"></select>');
 	for(var i=0; i<pages.length; i++){

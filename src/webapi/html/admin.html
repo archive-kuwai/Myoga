@@ -1,22 +1,57 @@
-<h1>Admin Page</h1>
+<h1>Admin Page 1</h1>
 <select id='login_users'></select>
+<table id='login_users_table' border=1></table>
+
 
 <script>
 $(function(){
-	var selector = $('#login_users');
-
 	ajaxToMyogaAPI(
 		{
 			name:"getLoginUsers",
 			params:{a:1,b:2}
 		},
 		function(result){
-			addOptions(selector, result, result);
-			selector.change(function(){
-				alert(selector.val());
+			var sel = $('#login_users');
+			addOptions(sel, result, result);
+			sel.change(function(){
+				if(sel.val()=='-'){return;}
+				getUserActs(sel.val());
 			});
 		}
 	);
-	
 });
+
+getUserActs = function(user){
+	ajaxToMyogaAPI(
+		{
+			name:"getUserActs",
+			params:{"uid":user}
+		},
+		function(result){
+			showTable($('#login_users_table'), result);
+		}
+	);
+};
+  
+showTable = function(tbl, result){
+	tbl.empty();
+	for(var i=0; i<result.length; i++){
+		var r = result[i];
+		tbl.append("<tr>" 
+				+ td_num_head(i) 
+				+ td(r.requestedTime)
+				+ td(r.who.uid)
+				+ td(r.responsedTime) 
+				+ "</tr>");
+	}
+};
+
+td = function(str){
+	return "<td>" + str + "</td>";
+};
+
+td_num_head = function(i){
+	return td("[" + (i+1) + "]");
+};
+
 </script>

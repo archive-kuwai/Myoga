@@ -7,12 +7,12 @@ import webapi.command.Command;
 import webapi.html.HTMLCacher;
 
 class Dispatcher {
-
-	static public String dispatch(Command cmd){
+	static public String dispatch(Command cmd, JSON json){
+		json.setDateFormat("yyyy/MM/dd_HH:mm:ss.SSS");
 		String methodName = cmd.method.name;
 		if("getHTML".equals(methodName)){
 			String filename = cmd.method.params.get("filename") + ".html";
-			return JSON.encode(HTMLCacher.getHTML(filename));
+			return json.format(HTMLCacher.getHTML(filename));
 		}else if("getPerson".equals(methodName)){
 			HashSet<String> s = new HashSet<String>();
 			s.add("Order");
@@ -25,11 +25,19 @@ class Dispatcher {
 			r.save();
 			r.save();
 			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太棚田直一郎", r);
-    		return JSON.encode(u);
+    		return json.format(u);
 		}else if("getListAsTest".equals(methodName)){
 			List<String> ls = new ArrayList<String>();
 			ls.add("test1"); ls.add("test2"); ls.add("test3"); ls.add("test4");
-			return JSON.encode(ls);
+			return json.format(ls);
+		}else if("getLoginUsers".equals(methodName)){
+			List<String> ls = new webapi.command.Command().distinctUniqueNames();
+			return json.format(ls);
+		}else if("getUserActs".equals(methodName)){
+			String uid = cmd.method.params.get("uid");
+			//List<webapi.command.Command> ls = null;
+			List ls = new webapi.command.Command().userActs(uid);
+			return json.format(ls);
 		}else{
 			return null;
 		}

@@ -59,7 +59,9 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		
 		//Command Javaオブジェクトの内容によってDispatchして、Executeする。
 		HTMLCacher.initNORMAL(getServletContext().getRealPath("/"));
-		String resultInJSONString = Dispatcher.dispatch(cmd);
+		JSON json = new JSON();
+		json.setDateFormat("yyyy/MM/dd_HH:mm:ss.SSS");
+		String resultInJSONString = Dispatcher.dispatch(cmd, json);
 		
 		//HTTPレスポンスを作成する
 		httpRes.getWriter().println(resultInJSONString);

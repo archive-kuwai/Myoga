@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 /*star_white*/
+/*star_white*/
 .white_strong {
   background-color: #efefe8;
   color: #44413c; }
@@ -39,6 +40,21 @@ a:hover {
 .round_rect {
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px; }
+
+table {
+  border-collapse: collapse;
+  cursor: pointer; }
+  table tr:hover {
+    background-color: #eee2dd; }
+  table td {
+    border: 1px solid #8e918f; }
+
+.stripe_table {
+  border-collapse: collapse; }
+  .stripe_table tr:nth-child(even) {
+    background-color: #e7e9e7; }
+  .stripe_table td {
+    border: 1px solid #8e918f; }
 
 body {
   min-height: 940px;

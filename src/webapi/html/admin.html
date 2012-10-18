@@ -1,6 +1,6 @@
-<h1>Admin Page 1</h1>
+<h1>Admin Page 3</h1>
 <select id='login_users'></select>
-<table id='login_users_table' border=1></table>
+<table id='login_users_table' class='simple_table'></table>
 
 
 <script>
@@ -33,15 +33,15 @@ getUserActs = function(user){
 	);
 };
   
-showTable = function(tbl, result){
+showTable = function(tbl, data){
 	tbl.empty();
-	for(var i=0; i<result.length; i++){
-		var r = result[i];
+	for(var i=0; i<data.length; i++){
+		var d = data[i];
 		tbl.append("<tr>" 
 				+ td_num_head(i) 
-				+ td(r.requestedTime)
-				+ td(r.who.uid)
-				+ td(r.responsedTime) 
+				+ td(d.requestedTime)
+				+ td(d.who.uid)
+				+ td(d.responsedTime) 
 				+ "</tr>");
 	}
 };

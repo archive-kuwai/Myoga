@@ -14,6 +14,10 @@ $natural_gray: rgba(142,145,143,1);
 $bridal_blush: rgba(238,226,221,1);
 $bit_of_blue: rgba(226,234,235,1);
 
+//Compliment
+/*star_white*/
+$blanc_de_blanc: rgba(231,233,231,1);
+
 @mixin white_color_set_strong {
 	background-color:$star_white;
 	color:$black_ink;
@@ -54,12 +58,29 @@ a:hover {
 
 .S{font-size: 10pt;}
 .M{font-size: 14pt;}
+
 .L{font-size: 18pt;}
 
 .round_rect{
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 }
+
+table{
+	border-collapse: collapse;
+	cursor: pointer;
+	tr:hover{background-color: $bridal_blush;}
+	td{border: 1px solid $natural_gray;}
+}
+
+// not in use, now.
+.stripe_table{
+	border-collapse: collapse;
+	tr:nth-child(even){background-color: $blanc_de_blanc;}
+	td{border: 1px solid $natural_gray;}
+}
+
+
 
 
 // =============================================

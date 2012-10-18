@@ -49,6 +49,9 @@ table {
   table td {
     border: 1px solid #8e918f; }
 
+.key {
+  color: #8e918f; }
+
 .stripe_table {
   border-collapse: collapse; }
   .stripe_table tr:nth-child(even) {

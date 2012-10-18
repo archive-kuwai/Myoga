@@ -1,4 +1,4 @@
-<h1>Admin Page 3</h1>
+<h1>Admin Page UdX</h1>
 <select id='login_users'></select>
 <table id='login_users_table' class='simple_table'></table>
 
@@ -35,23 +35,69 @@ getUserActs = function(user){
   
 showTable = function(tbl, data){
 	tbl.empty();
-	for(var i=0; i<data.length; i++){
-		var d = data[i];
+	for(var i=0; i<1; i++){
+		console.log("★");
+		console.log(i);
 		tbl.append("<tr>" 
 				+ td_num_head(i) 
-				+ td(d.requestedTime)
-				+ td(d.who.uid)
-				+ td(d.responsedTime) 
+				+ td(digA("",data[i]))
+				+ "</tr>");
+
+		tbl.append("<tr>" 
+				+ td_num_head(i) 
+				+ td(digB("",data[i]))
 				+ "</tr>");
 	}
 };
 
-td = function(str){
-	return "<td>" + str + "</td>";
+function digA(s,o){
+	for(var key in o){
+		if(key=='resultInJSON'){
+			console.log("resultInJSON !!");
+			continue;
+		}
+		var item = o[key];
+		var na = 'primitive';
+		if(typeof(item) == 'object'){
+			na = 'object';
+		}
+		s += td(forKey(na) + forKey(key) + forItem(item));
+	}
+	return s;
+}
+
+function digB(s,o){
+	console.log("■digB");
+	console.log(s);
+	console.log(o);
+	for(var key in o){
+		if(key=='resultInJSON'){console.log("resultInJSON !!");continue;}
+		var item = o[key];
+		var itemType = typeof(item);
+		var eachOne = "";
+		if(itemType == 'object'){
+			s = digB(s,item); /*Recursive call*/
+		}else{
+			var eachOne = td(forKey("("+itemType+")") + forKey(key) + forItem(item));
+			s = s + eachOne;
+		}
+	}
+	return s;
+}
+
+function forKey(k){
+	return "<span class='key'>" +k+ "<br/></span>";
+}
+
+function forItem(i){
+	return "<span class='item'>" +i+ "</span>";
+}
+
+td = function(data){
+	return "<td>" + data + "</td>";
 };
 
 td_num_head = function(i){
 	return td("[" + (i+1) + "]");
 };
-
-</script>
+</script>QQREDDdd

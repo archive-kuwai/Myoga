@@ -1,4 +1,4 @@
-$('#main_content, textarea, input').keydown(function(e){
+$('textarea').keydown(function(e){ /*donot include #main_content*/
 	if(e.keyCode==8){
 	  e.stopPropagation();
 	  return true;

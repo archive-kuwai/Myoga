@@ -35,9 +35,7 @@ getUserActs = function(user){
   
 showTable = function(tbl, data){
 	tbl.empty();
-	for(var i=0; i<1; i++){
-		console.log("★");
-		console.log(i);
+	for(var i=0; i<data.length; i++){
 		tbl.append("<tr>" 
 				+ td_num_head(i) 
 				+ td(dig("",data[i]))
@@ -45,18 +43,27 @@ showTable = function(tbl, data){
 	}
 };
 
-function dig(s,o){
-	console.log("■dig");
-	console.log(s);
-	console.log(o);
+function dig(s,o,parentkey){
 	for(var key in o){
 		if(key=='resultInJSON'){console.log("resultInJSON !!");continue;}
 		var value = o[key];
 		var valueType = typeof(value);
 		if(valueType == 'object'){
-			s = dig(s,value); /*Recursive call*/
+			var k;
+			if(parentkey==null){
+				k = key;
+			}else{
+				k = parentkey + "." + key;
+			}
+			s = dig(s,value,k); /*Recursive call*/
 		}else{
-			s += td( forKey(key) + forValue(value) );
+			var keyForDisp;
+			if(parentkey==null){
+				keyForDisp = key;
+			}else{
+				keyForDisp = parentkey + "." + key;
+			}
+			s += td( forKey(keyForDisp) + forValue(value) );
 		}
 	}
 	return s;

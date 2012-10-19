@@ -66,7 +66,9 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		//HTTPレスポンスを作成する
 		httpRes.getWriter().println(resultInJSONString);
 		Logger.getLogger("").info("resultInJSONString is " + resultInJSONString);
-		cmd.resultInJSON = resultInJSONString;
+		if( ! cmd.method.name.equals("getHTML")){
+			cmd.resultInJSON = resultInJSONString;
+		}
 		cmd.responsedTime = new Date();
 		cmd.save();
 	}

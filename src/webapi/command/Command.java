@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import net.arnx.jsonic.JSON;
+import net.arnx.jsonic.JSONHint;
+
 import com.mongodb.*;
 
 public class Command extends data.Mongoo{
@@ -10,11 +12,11 @@ public class Command extends data.Mongoo{
 	public Command() {
 		super(null);
 	}
-	public Who who;
-	public Method method;
-	public String ans;
-	public Date req;
-	public Date res; 
+	@JSONHint(ordinal=0) public Who who;
+	@JSONHint(ordinal=1) public Date req;
+	@JSONHint(ordinal=2) public Date res; 
+	@JSONHint(ordinal=3) public Method method;
+	@JSONHint(ordinal=4) public String ans;
 
 	public List userActs(String uid){
 		String n = this.getClass().getName();

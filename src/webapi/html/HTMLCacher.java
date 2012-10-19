@@ -47,6 +47,8 @@ public class HTMLCacher {
 			BufferedReader bfdReader = new BufferedReader(sReader);
 			String s;
 			while(null != (s=bfdReader.readLine())) {
+				s = s.replace("\t", " "); // TODO Tabはこの表し方でよいのか？
+				s = s.replace("\n", " "); // TODO Newlineはこの表し方でよいのか？
 			    sb.append(s);
 			}
 			bfdReader.close();

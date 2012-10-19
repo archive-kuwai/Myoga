@@ -18,6 +18,24 @@ $(function(){
 });
 
 //----------------------------
+$('textarea').keydown(function(e){
+	  if(e.keyCode==8){
+		  var me = $(this);
+		  var len = me.val().length;
+		  if(len <= 0){
+			  return false;
+		  }else{
+			  me.val(me.val().substring(0,len-1));
+		  }
+	  }
+});
+$(window).keydown(function(e){
+	  $("#testarea").text(e.keyCode);
+	  if(e.keyCode==8){
+		  return false;
+	  }
+});
+//----------------------------
 function login(){
 	var user = $('#user_selector').val();
 	if(user == INPUT_USER_NAME_OPTION){

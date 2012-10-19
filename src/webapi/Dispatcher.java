@@ -8,7 +8,6 @@ import webapi.html.HTMLCacher;
 
 class Dispatcher {
 	static public String dispatch(Command cmd, JSON json){
-		json.setDateFormat("yyyy/MM/dd_HH:mm:ss.SSS");
 		String methodName = cmd.method.name;
 		if("getHTML".equals(methodName)){
 			String filename = cmd.method.params.get("filename") + ".html";

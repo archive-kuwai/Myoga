@@ -18,16 +18,6 @@ $(function(){
 });
 
 //----------------------------
-$('#main_content, textarea, input').keydown(function(e){
-	if(e.keyCode==8){
-	  e.stopPropagation();
-	  return true;
-	}
-});
-$(window).keydown(function(e){
-	  if(e.keyCode==8){return false;}
-});
-//----------------------------
 function login(){
 	var user = $('#user_selector').val();
 	if(user == INPUT_USER_NAME_OPTION){

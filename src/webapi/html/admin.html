@@ -2,25 +2,25 @@
 <select id='login_users'></select>
 <table id='login_users_table' class='simple_table'></table>
 
-
 <script>
 $(function(){
 	ajaxToMyogaAPI(
 		{
 			name:"getLoginUsers",
-			params:{a:1,b:2}
+			params:null
 		},
 		function(result){
 			var sel = $('#login_users');
 			addOptions(sel, result, result);
 			sel.change(function(){
-				if(sel.val()=='-'){return;}
 				getUserActs(sel.val());
 			});
 		}
 	);
 });
+</script>
 
+<script>
 getUserActs = function(user){
 	ajaxToMyogaAPI(
 		{
@@ -40,46 +40,23 @@ showTable = function(tbl, data){
 		console.log(i);
 		tbl.append("<tr>" 
 				+ td_num_head(i) 
-				+ td(digA("",data[i]))
-				+ "</tr>");
-
-		tbl.append("<tr>" 
-				+ td_num_head(i) 
-				+ td(digB("",data[i]))
+				+ td(dig("",data[i]))
 				+ "</tr>");
 	}
 };
 
-function digA(s,o){
-	for(var key in o){
-		if(key=='resultInJSON'){
-			console.log("resultInJSON !!");
-			continue;
-		}
-		var item = o[key];
-		var na = 'primitive';
-		if(typeof(item) == 'object'){
-			na = 'object';
-		}
-		s += td(forKey(na) + forKey(key) + forItem(item));
-	}
-	return s;
-}
-
-function digB(s,o){
-	console.log("■digB");
+function dig(s,o){
+	console.log("■dig");
 	console.log(s);
 	console.log(o);
 	for(var key in o){
 		if(key=='resultInJSON'){console.log("resultInJSON !!");continue;}
-		var item = o[key];
-		var itemType = typeof(item);
-		var eachOne = "";
-		if(itemType == 'object'){
-			s = digB(s,item); /*Recursive call*/
+		var value = o[key];
+		var valueType = typeof(value);
+		if(valueType == 'object'){
+			s = dig(s,value); /*Recursive call*/
 		}else{
-			var eachOne = td(forKey("("+itemType+")") + forKey(key) + forItem(item));
-			s = s + eachOne;
+			s += td( forKey(key) + forValue(value) );
 		}
 	}
 	return s;
@@ -89,15 +66,15 @@ function forKey(k){
 	return "<span class='key'>" +k+ "<br/></span>";
 }
 
-function forItem(i){
-	return "<span class='item'>" +i+ "</span>";
+function forValue(i){
+	return "<span class='value'>" +i+ "</span>";
 }
 
-td = function(data){
+function td(data){
 	return "<td>" + data + "</td>";
 };
 
-td_num_head = function(i){
+function td_num_head(i){
 	return td("[" + (i+1) + "]");
 };
-</script>QQREDDdd
+</script>

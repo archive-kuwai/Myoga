@@ -1,4 +1,4 @@
-<h1>Admin Page UdX</h1>
+<h1>Admin Page UdXgg</h1>
 <select id='login_users'></select>
 <table id='login_users_table' class='simple_table'></table>
 
@@ -43,6 +43,49 @@ showTable = function(tbl, data){
 	}
 };
 
+
+function digSpec(s,o){
+	var s ="";
+	var specs = ["who","req","res","method.name","method.params"];
+	for(var i=0; i<specs.length; i++){
+		var spec = specs[i];
+		console.log("jjjj");
+		console.log(o[spec]);
+		console.log(spec);
+		s = digNew(s,o[spec],spec);
+	}
+	return s;
+}
+
+function digNew(s,o,parentkey){
+	if(typeof(o)!='object'){
+		return td( forKey(parentkey) + forValue(o)); 
+	}
+	for(var key in o){
+		var value = o[key];
+		var valueType = typeof(value);
+		if(valueType == 'object'){
+			var k;
+			if(parentkey==null){
+				k = key;
+			}else{
+				k = parentkey + "." + key;
+			}
+			s = dig(s,value,k); /*Recursive call*/
+		}else{
+			var keyForDisp;
+			if(parentkey==null){
+				keyForDisp = key;
+			}else{
+				keyForDisp = parentkey + "." + key;
+			}
+			s += td( forKey(keyForDisp) + forValue(value) );
+		}
+	}
+	return s;
+}
+
+
 function dig(s,o,parentkey){
 	for(var key in o){
 		if(key=='resultInJSON'){console.log("resultInJSON !!");continue;}
@@ -79,9 +122,9 @@ function forValue(i){
 
 function td(data){
 	return "<td>" + data + "</td>";
-};
+}
 
 function td_num_head(i){
 	return td("[" + (i+1) + "]");
-};
+}
 </script>

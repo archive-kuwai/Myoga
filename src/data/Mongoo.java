@@ -10,38 +10,15 @@ public class Mongoo {
 	//static String mongoURI = "ec2-54-248-34-183.ap-northeast-1.compute.amazonaws.com";
 	static String mongoURI = "localhost";
 	/* ********************************************* */
-	static String dbname = "test";
-	static Mongo mo = null;
-	static DB db = null;
+	protected static String dbname = "test";
+	protected static Mongo mo = null;
+	protected static DB db = null;
 
 	public List<String> distinctUniqueNames(){
 		String n = this.getClass().getName();
 		DBCollection coll = db.getCollection(n);
 		List<String> ls = coll.distinct("who.uid");
 		return ls;
-	}
-	
-	public List userActs(String uid){
-		String n = this.getClass().getName();
-		DBCollection coll = db.getCollection(n);
-		BasicDBObject query = new BasicDBObject();
-		query.put("who.uid", uid);
-		DBCursor cur = coll.find(query);
-		List<DBObject> ls = new ArrayList<DBObject>();
-		JSON json = new JSON();
-		json.setDateFormat("yyyy/MM/dd_HH:mm:ss.SSS");
-		List cmds = new ArrayList<webapi.command.Command>();
-		try{
-			while(cur.hasNext()){
-				DBObject o = cur.next();
-				String s = com.mongodb.util.JSON.serialize(o);
-				ls.add(o);
-				cmds.add(json.parse(s, this.getClass()));
-			}
-		}finally{
-			cur.close();
-		}
-		return cmds;
 	}
 	
 	public String uniqueName;

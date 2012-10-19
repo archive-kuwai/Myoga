@@ -18,22 +18,14 @@ $(function(){
 });
 
 //----------------------------
-$('textarea').keydown(function(e){
-	  if(e.keyCode==8){
-		  var me = $(this);
-		  var len = me.val().length;
-		  if(len <= 0){
-			  return false;
-		  }else{
-			  me.val(me.val().substring(0,len-1));
-		  }
-	  }
+$('#main_content, textarea, input').keydown(function(e){
+	if(e.keyCode==8){
+	  e.stopPropagation();
+	  return true;
+	}
 });
 $(window).keydown(function(e){
-	  $("#testarea").text(e.keyCode);
-	  if(e.keyCode==8){
-		  return false;
-	  }
+	  if(e.keyCode==8){return false;}
 });
 //----------------------------
 function login(){

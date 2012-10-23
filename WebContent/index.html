@@ -6,6 +6,9 @@
 		<title>myoga by Naohiro OHTA</title>
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1, user-scalable = no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!--[if lt IE 9]>
+		<script src="plugins/html5shiv.js"></script>
+		<![endif]-->
 		<link href="index.css" rel="stylesheet" >
 	</head>
                                         
@@ -28,7 +31,17 @@
 			<hr/>
 			&copy; 2012 Naohiro OHTA
 			<div id='testarea'></div>
-			<textarea class='direct_alphabet' style="ime-mode:active"></textarea>
+			<br/>
+			<textarea class='direct_alphabet'></textarea>
+			<br/>
+			<input type='text' class='ime-on' placeholder='IE,Firefoxで 日本語入力ONとなる'/>
+			<br/>
+			<input type='text' class='ime-off' placeholder='IE,Firefoxで 日本語入力OFFとなる'/>
+			<br/>
+			<textarea class='ime-on' placeholder='IE,Firefoxで 日本語入力ONとなる'></textarea>
+			<br/>
+			<textarea class='ime-off' placeholder='IE,Firefoxで 日本語入力OFFとなる'></textarea>
+			<br/>
 		</footer>
 
 		<!-- ================================================== -->
@@ -37,6 +50,7 @@
 		<script src="plugins/jquery.cookie.js"></script>
 		<script src="ajaxToMyogaAPI.js"></script>
 		<script src="keyboard.js"></script>
+		<script src="unload.js"></script>
 		<script src="index.js"></script>
 		<script src="addOptions.js"></script>
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>

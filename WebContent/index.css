@@ -1,4 +1,10 @@
 @CHARSET "UTF-8";
+.ime-off {
+  ime-mode: inactive; }
+
+.ime-on {
+  ime-mode: active; }
+
 /*star_white*/
 /*star_white*/
 .white_strong {

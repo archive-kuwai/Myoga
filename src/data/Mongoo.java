@@ -7,8 +7,8 @@ import net.arnx.jsonic.*;
 public class Mongoo {
 
 	/* ********************************************* */
-	//static String mongoURI = "ec2-54-248-34-183.ap-northeast-1.compute.amazonaws.com";
-	static String mongoURI = "localhost";
+	static String mongoURI = "ec2-54-248-153-75.ap-northeast-1.compute.amazonaws.com";
+	//static String mongoURI = "localhost";
 	/* ********************************************* */
 	protected static String dbname = "test";
 	protected static Mongo mo = null;

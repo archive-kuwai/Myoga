@@ -30,13 +30,13 @@ class Dispatcher {
 			ls.add("test1"); ls.add("test2"); ls.add("test3"); ls.add("test4");
 			return json.format(ls);
 		}else if("getLoginUsers".equals(methodName)){
-			List<String> ls = new webapi.command.Command().distinctUniqueNames();
-			return json.format(ls);
+			//List<String> ls = new webapi.command.Command().distinctUniqueNames();
+			return json.format("");
 		}else if("getUserActs".equals(methodName)){
 			String uid = cmd.method.params.get("uid");
 			//List<webapi.command.Command> ls = null;
-			List ls = new webapi.command.Command().userActs(uid);
-			return json.format(ls);
+			//List ls = new webapi.command.Command().userActs(uid);
+			return json.format("");
 		}else{
 			return null;
 		}

@@ -1,16 +1,15 @@
 package webapi.command;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONHint;
-
+import com.amazonaws.services.dynamodb.model.*;
 import com.mongodb.*;
 
-public class Command extends data.Mongoo{
+public class Command extends data.Dynamoo{
 	
-	public Command() {
-		super(null);
+	public Command() throws IOException {
+		super();
 	}
 	@JSONHint(ordinal=0) public Who who;
 	@JSONHint(ordinal=1) public Date req;
@@ -18,7 +17,19 @@ public class Command extends data.Mongoo{
 	@JSONHint(ordinal=3) public Method method;
 	@JSONHint(ordinal=4) public String ans;
 
+	public void save(){
+		Map<String,AttributeValue> item = new HashMap<String,AttributeValue>();
+		JSON json = new JSON();
+		json.setDateFormat("yyyy/MM/dd HH:mm(ss.sss)");
+		item.put("123", new AttributeValue().withS(json.format(this)));
+		String tableName ="cmd";
+		//PutItemRequest req = new PutItemRequest(tableName, item);
+		PutItemRequest req = new Pu
+		
+		client.putItem(req);
+	}
 	public List userActs(String uid){
+		/*
 		String n = this.getClass().getName();
 		DBCollection coll = db.getCollection(n);
 		BasicDBObject query = new BasicDBObject();
@@ -41,7 +52,8 @@ public class Command extends data.Mongoo{
 		}finally{
 			cur.close();
 		}
-		return cmds;
+		*/
+		return null;
 	}
 	
 }

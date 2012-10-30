@@ -33,12 +33,12 @@ class Dispatcher {
 			return json.format(ls);
 		}else if("getLoginUsers".equals(methodName)){
 			//List<String> ls = new webapi.command.Command().distinctUniqueNames();
-			return json.format("");
+			return json.format(Command.loginUsers());
 		}else if("getUserActs".equals(methodName)){
 			String uid = cmd.method.params.get("uid");
 			//List<webapi.command.Command> ls = null;
 			//List ls = new webapi.command.Command().userActs(uid);
-			return json.format("");
+			return json.format(Command.userActs(uid));
 		}else{
 			return null;
 		}

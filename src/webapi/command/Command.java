@@ -75,19 +75,42 @@ public class Command extends data.Dynamoo{
 
 
 	public static List<String> loginUsers(){
+		/*
 		List<String> ls = new ArrayList<String>();
 		ls.add("John");
 		ls.add("Paul");
 		ls.add("Richard");
 		ls.add("George");
 		return ls;
+		*/
+		DynamoDBScanExpression scan = new DynamoDBScanExpression();
+		scan.addFilterCondition("user_name", new Condition()
+				.withComparisonOperator(ComparisonOperator.EQ)
+				.withAttributeValueList(new AttributeValue().withS("太田直宏")));
+		DynamoDBMapper mapper = new DynamoDBMapper(client);
+		List<Command> cmds = mapper.scan(Command.class, scan);
+		if(cmds==null){
+			try {
+				cmds.add(new Command());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		List<String> uids = new ArrayList<String>();
+		for(Command c: cmds){
+			String uid = c.getUid();
+			if(!uids.contains(uid)){
+				uids.add(uid);
+			}
+		}
+		return uids;
 	}
 	
 	public static List<Command> userActs(String uid){
 		DynamoDBScanExpression scan = new DynamoDBScanExpression();
 		scan.addFilterCondition("user_name", new Condition()
 				.withComparisonOperator(ComparisonOperator.EQ)
-				.withAttributeValueList(new AttributeValue().withS("太田直宏")));
+				.withAttributeValueList(new AttributeValue().withS(uid)));
 		DynamoDBMapper mapper = new DynamoDBMapper(client);
 		List<Command> ls = mapper.scan(Command.class, scan);
 		if(ls==null){

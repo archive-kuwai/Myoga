@@ -18,7 +18,7 @@ public class Dynamoo {
 		if(client == null){
 			createClient();
 		}
-
 	}
+
 	
 }

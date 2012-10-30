@@ -17,12 +17,14 @@ class Dispatcher {
 			s.add("Order");
 			s.add("SayShipIt");
 			data.user.Role r = new data.user.Role("the1st_operator", s);
+			/*
 			r.save();
 			r.save();
 			r.save();
 			r.name = "the2ndOperator";
 			r.save();
 			r.save();
+			*/
 			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太棚田直一郎", r);
     		return json.format(u);
 		}else if("getListAsTest".equals(methodName)){

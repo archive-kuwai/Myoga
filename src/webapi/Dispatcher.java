@@ -10,6 +10,11 @@ class Dispatcher {
 	static public String dispatch(Command cmd, JSON json){
 		String methodName = cmd.method.name;
 		if("getHTML".equals(methodName)){
+			if(cmd.method.params.get("filename").equals("page3")){
+				System.out.println("page3 waiting...");
+				try{Thread.sleep(5000);}catch(Exception e){}
+				System.out.println("page3 waiting... Finished.");
+			}
 			String filename = cmd.method.params.get("filename") + ".html";
 			return json.format(HTMLCacher.getHTML(filename));
 		}else if("getPerson".equals(methodName)){

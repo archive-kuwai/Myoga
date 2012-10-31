@@ -14,8 +14,11 @@ public class HTMLCacher {
 
 		// TODO 一時的にこうします。（太田）
 		
-		initFORCE(filePathAsServletContext);
-		//if(null == rootPath){initFORCE(filePathAsServletContext);}
+		// (A)
+		//initFORCE(filePathAsServletContext); // TODO // TODO // TODO
+		
+		// (B)
+		if(null == rootPath){initFORCE(filePathAsServletContext);}
 	}
 
 	/*　このメソッドはPublicである必要がある。と思う。キャッシュをクリアしたい時もあるでしょう。　*/

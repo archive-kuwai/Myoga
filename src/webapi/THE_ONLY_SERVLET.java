@@ -20,7 +20,7 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		
 		// TODO ajaxToMyogaAPI_with_NO_CACHEファンクションをクライアント側で使用することにより、この処理はなくす事。iOS6でキャッシュさせたい。
 		//HTTPレスポンスのヘッダにキャッシュコントロールを設定する
-		httpRes.setHeader("cache-control","no-cache");
+		//httpRes.setHeader("cache-control","no-cache"); // TODO  // TODO // TODO
 
 		//HTTPリクエストからcommandパラメータの内容を取り出す。
 		String commandInJSON = httpReq.getParameter("command");

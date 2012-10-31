@@ -84,6 +84,22 @@ table{
 	color: $natural_gray;
 }
 
+.ajax_history_not_received{
+	margin: 1px;
+	background-color: $natural_gray;
+	color: $black_ink;
+}
+
+.ajax_history_received{
+	margin: 1px;
+	@include white_color_set_weak;
+}
+.success_but_not_use_ajax_history{
+	margin: 1px;
+	background-color:$star_white;
+	color: $black_ink;
+}
+
 // not in use, now.
 .stripe_table{
 	border-collapse: collapse;

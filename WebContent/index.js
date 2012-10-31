@@ -37,14 +37,32 @@ function jump_with_page_selector(){
 	jump($('#page_selector').val());
 }
 
+latest_request_page = "";
+latest_received_page = "";
 function jump(filename_without_extension){
+	latest_request_page = filename_without_extension;
 	ajaxToMyogaAPI(
 			{name:"getHTML", params:{"filename":filename_without_extension} },  
-			function(result){
-				console.log("result");
-				console.log(result);
-				console.log("result.string");
-				console.log(result.string);
+			function(result,ajax_id){
+				if(latest_request_page != filename_without_extension){
+					console.log("★this page data comes just now as Ajax;");
+					console.log(filename_without_extension);
+					console.log("☆but latest_request_page is this one;");
+					console.log(latest_request_page);
+					console.log("★So we ignore page data that we receive just now.");
+					success_but_not_use_ajax_history(ajax_id);
+					return;
+				}
+				if(latest_received_page == filename_without_extension){
+					console.log("★this page data comes just now as Ajax;");
+					console.log(filename_without_extension);
+					console.log("☆but latest_received_page is this one;");
+					console.log(latest_received_page);
+					console.log("★Both same one. So we ignore page data that we receive just now.");
+					success_but_not_use_ajax_history(ajax_id);
+					return;
+				}
+				latest_received_page = filename_without_extension;
 				$("#main_content").html(result.string);
 				hideURLBar();
 			}

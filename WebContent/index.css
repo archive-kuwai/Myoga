@@ -58,6 +58,21 @@ table {
 .key {
   color: #8e918f; }
 
+.ajax_history_not_received {
+  margin: 1px;
+  background-color: #8e918f;
+  color: #44413c; }
+
+.ajax_history_received {
+  margin: 1px;
+  background-color: #efefe8;
+  color: #8e918f; }
+
+.success_but_not_use_ajax_history {
+  margin: 1px;
+  background-color: #efefe8;
+  color: #44413c; }
+
 .stripe_table {
   border-collapse: collapse; }
   .stripe_table tr:nth-child(even) {

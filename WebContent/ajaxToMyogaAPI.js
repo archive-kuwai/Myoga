@@ -13,8 +13,9 @@ function ajaxToMyogaAPI_with_NO_CACHE(method_obj, success_funciton){
 }
 
 function write_response_time(ajax_id){
-	$('#ajax_history_'+ajax_id+' .response_time').text(shortTime(new Date()));
-	$('#ajax_history_'+ajax_id+' .response_interval').text(shortTime(new Date()));
+	var now = new Date();
+	$('#ajax_history_'+ajax_id+' .response_time').text(shortTime(now));
+	$('#ajax_history_'+ajax_id+' .response_interval').text((now - AJAX_REQUEST_TIME[ajax_id]) +"ms" );
 }
 
 function success_ajax_history(ajax_id){
@@ -43,16 +44,23 @@ function shortTime(d){
 	if(m<10){m="0"+m;}
 	return h + ":" + m + " ." +d.getSeconds();
 }
+
 AJAX_ID = -1;
+AJAX_REQUEST_TIME = [];
 function ajaxToMyogaAPI(method_obj, success_funciton){
 	if(GlobalScopeVariable_WHO_AM_I == ""){
 		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call.");
 		return false;
 	}
+
+	/* ==================== */
 	AJAX_ID++;
 	var ajax_id = AJAX_ID;
+	AJAX_REQUEST_TIME[ajax_id] = new Date();
+	/* ==================== */
+	
 	var ajax_history_html = "<ul style='float:left' class='ajax_history_not_received' id='ajax_history_" +ajax_id+ "'>" 
-		+ li_with_class(shortTime(new Date()),'request_time')
+		+ li_with_class(shortTime(AJAX_REQUEST_TIME[ajax_id]),'request_time')
 		+ li(method_obj.name)
 		+ li(JSON.stringify(method_obj.params))
 		+ li_with_class('---','response_time')

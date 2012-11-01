@@ -50,11 +50,17 @@ class Dispatcher {
 			//List ls = new webapi.command.Command().userActs(uid);
 			//
 			//return json.format(Command.userActs(uid));
-			List<String> ls = new ArrayList<String>();
-			ls.add("yahoooo");
-			ls.add("mm...");
-			ls.add("wooowwowww");
-			ls.add("こんにちはー");
+			
+			List<String> ls;
+			if(uid.equals("User2")){
+				ls = new ArrayList<String>();
+				ls.add("yahoooo");
+				ls.add("mm...");
+				ls.add("wooowwowww");
+				ls.add("こんにちはー");
+			}else{
+				ls = Command.list;
+			}
 			return json.format(ls);
 		}else{
 			return null;

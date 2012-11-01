@@ -1,18 +1,20 @@
 package data;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+import java.util.logging.*;
 import net.arnx.jsonic.*;
-import com.amazonaws.*;
-import com.amazonaws.auth.*;
-import com.amazonaws.services.dynamodb.*;
 
 public class JVMoo {
-	
 	protected static SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm (ss.SSS)");
-    protected static List history = new LinkedList();
-
-    public void save
+    public static List list = new LinkedList();
+    protected static JSON json = new JSON();
+    
+    public JVMoo(){
+    	json.setDateFormat("yyyy-MM-dd HH:mm (ss.SSS)");
+    }
+    public void save(){
+    	list.add(this);
+    	Logger.getLogger("").info(json.format(this));
+    }
     
 }

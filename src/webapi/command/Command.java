@@ -3,10 +3,12 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import data.JVMoo;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONHint;
 
-public class Command {
+public class Command extends JVMoo{
 	
 	public Command() throws IOException {}
 	@JSONHint(ordinal=0) public Who who;
@@ -57,60 +59,5 @@ public class Command {
 		}
 	}
 	
-	public void save(){
-		DynamoDBMapper mapper = new DynamoDBMapper(client);
-		mapper.save(this);
-	}
-
-
-	public static List<String> loginUsers(){
-		/*
-		List<String> ls = new ArrayList<String>();
-		ls.add("John");
-		ls.add("Paul");
-		ls.add("Richard");
-		ls.add("George");
-		return ls;
-		*/
-		DynamoDBScanExpression scan = new DynamoDBScanExpression();
-		scan.addFilterCondition("user_name", new Condition()
-				.withComparisonOperator(ComparisonOperator.EQ)
-				.withAttributeValueList(new AttributeValue().withS("太田直宏")));
-		DynamoDBMapper mapper = new DynamoDBMapper(client);
-		List<Command> cmds = mapper.scan(Command.class, scan);
-		if(cmds==null){
-			try {
-				cmds.add(new Command());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		List<String> uids = new ArrayList<String>();
-		for(Command c: cmds){
-			String uid = c.getUid();
-			if(!uids.contains(uid)){
-				uids.add(uid);
-			}
-		}
-		return uids;
-	}
-	
-	public static List<Command> userActs(String uid){
-		DynamoDBScanExpression scan = new DynamoDBScanExpression();
-		scan.addFilterCondition("user_name", new Condition()
-				.withComparisonOperator(ComparisonOperator.EQ)
-				.withAttributeValueList(new AttributeValue().withS(uid)));
-		DynamoDBMapper mapper = new DynamoDBMapper(client);
-		List<Command> ls = mapper.scan(Command.class, scan);
-		if(ls==null){
-			try {
-				ls.add(new Command());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return ls;
-	}
 	
 }

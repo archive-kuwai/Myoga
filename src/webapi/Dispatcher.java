@@ -38,12 +38,24 @@ class Dispatcher {
 			return json.format(ls);
 		}else if("getLoginUsers".equals(methodName)){
 			//List<String> ls = new webapi.command.Command().distinctUniqueNames();
-			return json.format(Command.loginUsers());
+			//return json.format(Command.loginUsers());
+			List<String> ls = new ArrayList<String>();
+			ls.add("User1");
+			ls.add("User2");
+			ls.add("User3");
+			return json.format(ls);
 		}else if("getUserActs".equals(methodName)){
 			String uid = cmd.method.params.get("uid");
 			//List<webapi.command.Command> ls = null;
 			//List ls = new webapi.command.Command().userActs(uid);
-			return json.format(Command.userActs(uid));
+			//
+			//return json.format(Command.userActs(uid));
+			List<String> ls = new ArrayList<String>();
+			ls.add("yahoooo");
+			ls.add("mm...");
+			ls.add("wooowwowww");
+			ls.add("こんにちはー");
+			return json.format(ls);
 		}else{
 			return null;
 		}

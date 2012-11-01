@@ -1,3 +1,5 @@
+*.swp
+.gitignore.swp
 AwsCredentials.properties
 WebContent/.sass-cache/
 build/

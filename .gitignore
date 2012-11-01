@@ -1,11 +1,10 @@
 *.swp
 .gitignore.swp
 AwsCredentials.properties
-WebContent/.sass-cache/
 build/
 *.class
+WebContent/.sass-cache/
 
 # Package Files #
-*.jar
 *.war
 *.ear

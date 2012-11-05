@@ -1,12 +1,15 @@
 /*
  * Allow backspace key 
  */
-$('.backspace').keydown(function(e){ /*donot include #main_content*/
+$(':password, :text, textarea').keydown(function(e){
 	if(e.keyCode==8){
 	  e.stopPropagation();
 	  return true;
 	}
 });
+
+
+
 
 
 /*

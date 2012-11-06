@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>back_space</title>
+		<style>
+			.ime-off {ime-mode: inactive; }
+			.ime-on {ime-mode: active; }
+		</style>
+		<!--[if lt IE 9]>
+		<script src="html5shiv.js"></script>
+		<![endif]-->
+	</head>
+                                        
+	<body onhelp='return false;'>
+		<header>
+			<h1>Backspaceキー制御、およびIME-ON/OFF制御の サンプルページ</h1>
+			<ul>
+				<li>テキストボックス、テキストエリアにフォーカスが有る場合、Backspaceキーが有効</li>
+				<li>その他にフォーカスが有る場合、Backspaceキーは無効</li>
+				<li>F1～F12キーは常に無効</li>
+			</ul>
+			<hr/>
+			<div id='msg_area' style='background-color:green'></div>
+			<hr/>
+		</header>
+
+		<section id='main_content'>
+			<form>
+				<div style='margin-bottom:50px'>
+				<h2>テキストボックスの例</h2>o
+					<div style='margin:15px; margin-left:50px'>
+						IE,Firefoxでは自動的に IME-ONとなる。<br/>
+						<input type='text' class='ime-on' size=30 placeholder='商品名（日本語）'/>
+					</div>
+					<div style='margin:15px; margin-left:50px'>
+						IE,Firefoxでは自動的にIME-OFFとなる。<br/>
+						<input type='text' class='ime-off' size=30 placeholder='商品コード（英数）'/><br/>
+					</div>
+				</div>
+				
+				<h2>テキストエリアの例</h2>
+				<div style='margin:15px; margin-left:50px'>
+					IE,Firefoxでは自動的に IME-ONとなる。<br/>
+					<textarea class='ime-on' cols=20 rows=2 placeholder='軽く、耐久性に優れた素材を使用しています。'></textarea><br/>
+				</div>
+				<div style='margin:15px; margin-left:50px'>
+					IE,Firefoxでは自動的にIME-OFFとなる。<br/>
+					<textarea class='ime-off' cols=20 rows=2 placeholder='Lightweight and Durable material.'></textarea><br/>
+				</div>
+			</form>
+		</section>
+
+		<footer>
+			<hr/>
+			&copy; 2012 Naohiro OHTA
+		</footer>
+
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+		<!--  http://d.hatena.ne.jp/Hidepyon/20110220/1298217228 -->
+		<script src="../plugins/jqKey_ohta_mod.js"></script>
+		<script>
+			$(document).jqKey({
+				Enter:true
+				,Tab:true
+				,F1:function(){alert("F1 Key");}
+				,ESC:function(){alert("ESC Key");}
+			});
+		</script>
+	</body>
+
+</html>

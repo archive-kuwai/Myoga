@@ -13,15 +13,15 @@ $(':password, :text, textarea').keydown(function(e){
  * Prevent backspace key & function keys (F1-F12)
  */
 $(window).keydown(function(e){
-
-	/* Log all key-input */
-	console.log("keyCode[" + e.keyCode + "] detected by $(window).");
-	
 	if(		
 			e.keyCode == 8 /*backspace*/
 			|| (112<=e.keyCode && e.keyCode<=123) /*F1-F12*/ 
 	){
-		console.log("keyCode[" + e.keyCode + "] is prevented.");
+		$('#msg_area').text("keyCode[" + e.keyCode + "] は無効化されました。");
+		/*
+		event.keyCode = null;
+		event.returnValue = false;
+		*/
 		return false;
 	}
 });

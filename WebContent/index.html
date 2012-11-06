@@ -30,48 +30,29 @@
 		<footer>
 			<hr/>
 			&copy; 2012 Naohiro OHTA
+			<hr/>
+			<h6>
+				テキストボックスの例。backspaceキーが動作する。IE,Firefoxでは自動的に 日本語入力ONとなる。<br/>
+				<input type='text' class='ime-on' size=20 placeholder='商品名（日本語）を入力'/><br/><br/>
+				テキストボックスの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。<br/>
+				<input type='text' class='ime-off' size=20 placeholder='商品コード（英数）を入力'/><br/>
+			</h6>
+			<textarea class='ime-on' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力ONとなる。'></textarea>
+			<textarea class='ime-off' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。'></textarea>
+			<br/>
+			<hr/>
 			<div id='ajax_history_box'></div>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<div id='testarea'></div>
-			<br/>
-			<textarea class='direct_alphabet'></textarea>
-			<br/>
-			<input type='text' class='ime-on' placeholder='IE,Firefoxで 日本語入力ONとなる'/>
-			<br/>
-			<input type='text' class='ime-off' placeholder='IE,Firefoxで 日本語入力OFFとなる'/>
-			<br/>
-			<textarea class='ime-on' placeholder='IE,Firefoxで 日本語入力ONとなる'></textarea>
-			<br/>
-			<textarea class='ime-off' placeholder='IE,Firefoxで 日本語入力OFFとなる'></textarea>
-			<br/>
 		</footer>
 
-		<!-- ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 		<script src="plugins/jquery.cookie.js"></script>
 		<script src="ajaxToMyogaAPI.js"></script>
 		<script src="keyboard.js"></script>
 		<script src="unload.js"></script>
 		<script src="index.js"></script>
 		<script src="addOptions.js"></script>
-		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	</body>
 

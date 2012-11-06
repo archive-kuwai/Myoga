@@ -14,7 +14,7 @@
                                         
 	<body onhelp='return false;'>
 		<header>
-			<h1>Backspaceキー制御、およびIME-ON/OFF制御の サンプルページ</h1>
+			<h1>キー制御に関するサンプルページ</h1>
 			<ul>
 				<li>テキストボックス、テキストエリアにフォーカスが有る場合、Backspaceキーが有効</li>
 				<li>その他にフォーカスが有る場合、Backspaceキーは無効</li>
@@ -28,7 +28,7 @@
 		<section id='main_content'>
 			<form>
 				<div style='margin-bottom:50px'>
-				<h2>テキストボックスの例</h2>o
+				<h2>テキストボックスの例</h2>
 					<div style='margin:15px; margin-left:50px'>
 						IE,Firefoxでは自動的に IME-ONとなる。<br/>
 						<input type='text' class='ime-on' size=30 placeholder='商品名（日本語）'/>
@@ -59,16 +59,16 @@
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-		<!--  http://d.hatena.ne.jp/Hidepyon/20110220/1298217228 -->
+		<script src="keyboard.js"></script>
+		<!-- 
 		<script src="../plugins/jqKey_ohta_mod.js"></script>
 		<script>
 			$(document).jqKey({
 				Enter:true
 				,Tab:true
-				,F1:function(){alert("F1 Key");}
-				,ESC:function(){alert("ESC Key");}
 			});
 		</script>
+		-->
 	</body>
 
 </html>

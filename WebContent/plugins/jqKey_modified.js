@@ -1,3 +1,4 @@
+/* Modified by Ohta */
 /* Wriiten by Hidepyon */
 /* http://d.hatena.ne.jp/Hidepyon/20110220/1298217228 */
 /* 【使い方】
@@ -70,6 +71,7 @@ $(document).jqKey(
 			var blKey	=	true;
 			if (!setting.Enter&&k==13) return true;
 			if (!setting.Tab&&k==9) return true;
+			var second_tab_key = 106; // TenkeyPad-Plus(107),TenkeyPad-Minus(109), TenkeyPad-Star(106), TenkeyPad-Slash(111) 
 			switch(k){
 				case 13:
 					switch(obj.type){
@@ -95,6 +97,7 @@ $(document).jqKey(
 					}
 				break;
 				case 9:		//tab
+				case second_tab_key:
 					switch(obj.type){
 					case"file":
 						blKey = true;
@@ -113,11 +116,7 @@ $(document).jqKey(
 						blKey = true;
 						break;
 					default:
-						if(confirm("backspaceが押されました。\n前ページへ移動しますか？")){
-							blKey = true;
-						}else{
-							blKey = false;
-						}
+						blKey = false;
 						break;
 					}
 

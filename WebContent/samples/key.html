@@ -15,13 +15,39 @@
 	<body onhelp='return false;'>
 		<header>
 			<h1>キー制御に関するサンプルページ</h1>
+			<hr/>
+		</header>
+
+		<section id='main_content'>
+			<h2>テキストボックスを使用したサンプル</h2>
+			<form>
+				<ul style='margin-left:50px; list-style-type:none'>
+					<li>企業
+						<input type='text' class='ime-off' size=15 placeholder='企業コード（英数）'/>
+						<input type='text' class='ime-on' size=30 placeholder='企業名（日本語）'/>
+					</li>
+					<li>店舗
+						<input type='text' class='ime-off' size=15 placeholder='店舗コード（英数）'/>
+						<input type='text' class='ime-on' size=30 placeholder='店舗名（日本語）'/>
+					</li>
+					<li>商品
+						<input type='text' class='ime-off' size=15 placeholder='商品コード（英数）'/>
+						<input type='text' class='ime-on' size=30 placeholder='商品名（日本語）'/>
+					</li>
+				</ul>
+			</form>
+		</section>
+		
+		<section>
+			<hr/>
+			<h2>説明</h2>
 			<style>
-				header>ol>li{margin:1em; font-size:1.5em;}
-				header>ol>li>ul{font-size:0.8em;}
-				header li div{margin:1em;}
+				section>ol>li{margin:1em; font-size:1.5em;}
+				section>ol>li>ul{font-size:0.8em;}
+				section li div{margin:1em;}
 			</style>
 			<ol>
-				<li>試したブラウザ
+				<li class='slidable'>試したブラウザ
 					<ul>
 						<li>IE8</li>
 						<li>Firefox16</li>
@@ -29,13 +55,13 @@
 					</ul>
 				
 				</li>
-				<li>Backspaceキーの制御
+				<li class='slidable'>Backspaceキーの制御
 					<ul>
 						<li>テキストボックス、テキストエリアにフォーカスが有る場合、Backspaceキーが有効。</li>
 						<li>その他にフォーカスが有る場合、Backspaceキーは無効。<mark>キー押下時に前画面に移動してしまう事はない。</mark></li>
 					</ul>
 				</li>
-				<li>Functionキーの制御
+				<li class='slidable'>Functionキーの制御
 					<ul>
 						<li>F9キー押下時に、押下検出の旨をポップアップする。</li>
 						<li>ESCキー押下時に、押下検出の旨をポップアップする。</li>
@@ -56,39 +82,18 @@
 						</li>
 					</ul>
 				</li>
-				<li>ESCキーの制御
+				<li class='slidable'>ESCキーの制御
 					<ul>
 						<li>ESCキー押下時に、押下検出の旨をポップアップする。</li>
 					</ul>
 				</li>
-				<li>Tabキーの制御
+				<li class='slidable'>Tabキーの制御
 				</li>		
-				<li>Enterキーの制御
+				<li class='slidable'>Enterキーの制御
 				</li>		
 			</ol>
 			<hr/>
 			<div id='msg_area' style='background-color:green'></div>
-			<hr/>
-		</header>
-
-		<section id='main_content'>
-			<form>
-				<h2>テキストボックスによるサンプル</h2>
-				<ul style='margin-left:50px; list-style-type:none'>
-					<li>商品
-						<input type='text' class='ime-off' size=15 placeholder='商品コード（英数）'/>
-						<input type='text' class='ime-on' size=30 placeholder='商品名（日本語）'/>
-					</li>
-					<li>企業
-						<input type='text' class='ime-off' size=15 placeholder='企業コード（英数）'/>
-						<input type='text' class='ime-on' size=30 placeholder='企業名（日本語）'/>
-					</li>
-					<li>店舗
-						<input type='text' class='ime-off' size=15 placeholder='店舗コード（英数）'/>
-						<input type='text' class='ime-on' size=30 placeholder='店舗名（日本語）'/>
-					</li>
-				</ul>
-			</form>
 		</section>
 
 		<footer>
@@ -121,6 +126,13 @@
 			input, textarea{color:#000;}
 			.placeholder{color:#aaa;}		
 		</style>
+		<script>
+			$(function(){
+				$('.slidable').click(function(){
+					$(this).children().slideToggle();
+				});
+			});
+		</script>
 	</body>
 
 </html>

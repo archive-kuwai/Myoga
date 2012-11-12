@@ -119,11 +119,20 @@ body{
 	font: 14pt "Helvetica Neue", Helvetica, Arial, sans-serif;
 	@include white_color_set_weak;
 }
+
 header *{
 	margin: 2;
 	padding: 0;
 	font-size: 14pt;
 }
+
+article {
+	border-top: 1px solid $natural_gray;
+	border-bottom: 1px solid $natural_gray;
+	border-left: none;
+	border-right: none;
+}
+
 nav * {
 	@include blue_color_set;
 }

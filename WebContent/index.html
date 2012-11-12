@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<title>myoga by Naohiro OHTA</title>
@@ -9,45 +8,35 @@
 		<!--[if lt IE 9]><script src="plugins/ie/html5shiv.js"></script><![endif]-->
 		<link href="index.css" rel="stylesheet" >
 	</head>
-                                        
 	<body>
-		<div id='root'>
-			<header>
-					<nav class='left'></nav>
-					<section id='login' class='right'>
-						<button id='login_user' onClick='jump("login")' class='round_rect pink'>ログイン</button>
-					</section>
-			</header>
-
-			<div id='main_content'>
-				<h2>myoga web application</h2>
-				<section id='sample_of_backspace_key'>
-					<h1>Backspaceキーの制御サンプル</h1>
-					<h6>
-						テキストボックスの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。<br/>
-						<input type='text' class='ime-off' size=20 placeholder='商品コード（英数）を入力'/><br/><br/>
-						テキストボックスの例。backspaceキーが動作する。IE,Firefoxでは自動的に 日本語入力ONとなる。<br/>
-						<input type='text' class='ime-on' size=20 placeholder='商品名（日本語）を入力'/><br/>
-					</h6>
-					<textarea class='ime-on' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力ONとなる。'></textarea>
-					<textarea class='ime-off' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。'></textarea>
-				</section>
-			</div>
-
-			<footer>
-				&copy; 2012 Naohiro OHTA
-				<div id='ajax_history_box'></div>
-			</footer>
+		<header>
+				<nav class='left'></nav>
+				<div id='login' class='right'>
+					<button id='login_user' onClick='jump("login")' class='round_rect pink'>ログイン</button>
+				</div>
+				<hr/>
+		</header>
+		<div id='main_content'>
+			<h1>myoga web application</h1>
 		</div>
+		<footer>
+			<hr/>
+			&copy; 2012 Naohiro OHTA
+			<div id='ajax_history_box'></div>
+		</footer>
+
 		
-		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 		<script src="plugins/jquery.cookie.js"></script>
 		<script src="ajaxToMyogaAPI.js"></script>
+		<script src="index.js"></script>
+		<script src="addOptions.js"></script>
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 
-		<!-- <script src="keyboard.js"></script> -->
+		<!-- ---------------------------------------- -->
+		<!-- key handling -->
 		<script src="plugins/jqKey_modified.js"></script>
 		<script>
 			$(document).jqKey({
@@ -57,22 +46,26 @@
 				,ESC:function(){alert("ESCキーが押されました。");}
 			});
 		</script>
-		
-		<script src="unload.js"></script>
-		<script src="index.js"></script>
-		<script src="addOptions.js"></script>
-		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<!-- ---------------------------------------- -->
 
+		
+		<!-- ---------------------------------------- -->
+		<!-- Placeholder for IE -->
+		<style>.placeholder{color:#aaa;}</style>
 		<script src="plugins/ie/jquery.placeholder.js"></script>
 		<script>
 			$(function(){
 				$('input,textarea').placeholder();
 			});
 		</script>
+		<!-- ---------------------------------------- -->
+
+
+		<!-- ---------------------------------------- -->
+		<!-- Dumy console for IE -->
 		<script>
 			$(function(){
 				if(typeof console == "undefined"){
-					alert("Console is undefined.");
 					console = {
 						log: function(){},
 						debug: function(){},
@@ -86,10 +79,8 @@
 				}
 			});
 		</script>
+		<!-- ---------------------------------------- -->
 		
-		<style>
-			.placeholder{color:#aaa;}		
-		</style>
 	</body>
 
 </html>

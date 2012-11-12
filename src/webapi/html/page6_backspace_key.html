@@ -1,0 +1,113 @@
+<h1>ページ６</h1>
+	<style>
+		.ime-off {ime-mode:inactive;}
+		.ime-on {ime-mode:active;}
+		table{border:solid thin; border-collapse:collapse;}
+		table td,th{border:solid thin;}
+	</style>
+	<header>
+		<h1>キー制御に関するサンプルページ</h1>
+		<hr/>
+	</header>
+
+	<section id='main_content'>
+		<h2>テキストボックスを使用したサンプル</h2>
+		<form>
+			<ul style='margin-left:50px; list-style-type:none'>
+				<li>企業
+					<input type='text' class='ime-off' size=15 placeholder='企業コード（英数）'/>
+					<input type='text' class='ime-on' size=30 placeholder='企業名（日本語）'/>
+				</li>
+				<li>店舗
+					<input type='text' class='ime-off' size=15 placeholder='店舗コード（英数）'/>
+					<input type='text' class='ime-on' size=30 placeholder='店舗名（日本語）'/>
+				</li>
+				<li>商品
+					<input type='text' class='ime-off' size=15 placeholder='商品コード（英数）'/>
+					<input type='text' class='ime-on' size=30 placeholder='商品名（日本語）'/>
+				</li>
+			</ul>
+		</form>
+	</section>
+	
+	<section>
+		<hr/>
+		<h2>説明</h2>
+		<!-- 
+		<style>
+			section>ol>li{margin:1em; font-size:1.5em;}
+			section>ol>li>ul{font-size:0.7em;}
+			section li div{margin:1em;}
+			section li{margin:0.3em;}
+		</style>
+		 -->
+		<ol>
+			<li class='slidable'>試したブラウザ
+				<ul>
+					<li>Chrome22</li>
+					<li>Firefox16</li>
+					<li>IE8</li>
+					<li>iPhone (iOS6)</li>
+				</ul>
+			</li>
+			<li class='slidable'>Backspaceキーの制御
+				<table>
+					<tr><th>フォーカスがどこにあるか？</th><th>テキストボックス</th><th>それ以外</th></tr>
+					<tr><th></th><td>Backspaceキー有効（テキストの削除が出来る）</td><td>Backspaceキー無効（キー押下時に前画面に移動してしまう事はない）</td></tr>
+				</table>
+				<!-- 
+				<ul>
+					<li>フォーカスがテキストボックスにある場合
+						<ul><li>Backspaceキーが有効</li></ul>
+					</li>
+					<li>フォーカスがテキストボックスにない場合
+						<ul>
+							<li>Backspaceキーは無効</li>
+							<li>キー押下時に前画面に移動してしまう事はない</li>
+						</ul>
+					</li>
+				</ul>
+				 -->
+			</li>
+			<li class='slidable'>Functionキーの制御
+				<ul>
+					<li>F9キー押下時に、押下検出の旨をポップアップする。</li>
+					<li>ESCキー押下時に、押下検出の旨をポップアップする。</li>
+					<li>その他のFunctionキー押下は、無効とする。
+					  	<div>行いたい事
+							<ol>
+								<li>IEにおいて、F1キー押下でヘルプが表示されないこと</li>
+								<li>IEにおいて、F12キー押下で、「開発ツール」が出現しないこと</li>
+								<li>各ブラウザで、F5キー押下でリロードされないこと</li>
+							</ol>
+						</div>
+					  	<div>問題
+							<ol>
+								<li>Firefox/Chromeにおいて。ブラウザのURLテキストボックスにフォーカスがある状態でF5キー（リロード）が有効になる。</li>
+								<li>IEにおいて。ブラウザのURLテキストボックス（およびタブ）にフォーカスがある状態では、F1（ヘルプ）/F5（リロード）/F12（開発ツール）などが有効になる。</li>
+							</ol>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li class='slidable'>ESCキーの制御
+				<ul>
+					<li>ESCキー押下時に、押下検出の旨をポップアップする。</li>
+				</ul>
+			</li>
+			<li class='slidable'>Tabキーの制御
+			</li>		
+			<li class='slidable'>Enterキーの制御
+			</li>		
+		</ol>
+		<hr/>
+		<div id='msg_area' style='background-color:green'></div>
+	</section>
+
+	<script>
+		$(function(){
+			$('.slidable').click(function(){
+				$(this).children().slideToggle();
+			}).children().hide();
+		});
+	</script>

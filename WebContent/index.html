@@ -7,7 +7,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1, user-scalable = no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<!--[if lt IE 9]>
-		<script src="plugins/html5shiv.js"></script>
+		<script src="plugins/ie/html5shiv.js"></script>
 		<![endif]-->
 		<link href="index.css" rel="stylesheet" >
 	</head>
@@ -24,13 +24,6 @@
 
 		<section id='main_content'>
 			<h2>myoga web application</h2>
-			<textarea></textarea>
-		</section>
-
-		<footer>
-			<hr/>
-			&copy; 2012 Naohiro OHTA
-			<hr/>
 			<h6>
 				テキストボックスの例。backspaceキーが動作する。IE,Firefoxでは自動的に 日本語入力ONとなる。<br/>
 				<input type='text' class='ime-on' size=20 placeholder='商品名（日本語）を入力'/><br/><br/>
@@ -39,7 +32,11 @@
 			</h6>
 			<textarea class='ime-on' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力ONとなる。'></textarea>
 			<textarea class='ime-off' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。'></textarea>
-			<br/>
+		</section>
+
+		<footer>
+			<hr/>
+			&copy; 2012 Naohiro OHTA
 			<hr/>
 			<div id='ajax_history_box'></div>
 		</footer>
@@ -49,11 +46,51 @@
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 		<script src="plugins/jquery.cookie.js"></script>
 		<script src="ajaxToMyogaAPI.js"></script>
-		<script src="keyboard.js"></script>
+
+
+		<!-- <script src="keyboard.js"></script> -->
+		<script src="plugins/jqKey_modified.js"></script>
+		<script>
+			$(document).jqKey({
+				Enter:true
+				,Tab:true
+				,F9:function(){alert("F9キーが押されました。");}
+				,ESC:function(){alert("ESCキーが押されました。");}
+			});
+		</script>
+		
 		<script src="unload.js"></script>
 		<script src="index.js"></script>
 		<script src="addOptions.js"></script>
 		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+		<script src="plugins/ie/jquery.placeholder.js"></script>
+		<script>
+			$(function(){
+				$('input,textarea').placeholder();
+			});
+		</script>
+		<script>
+			$(function(){
+				if(typeof console == "undefined"){
+					alert("Console is undefined.");
+					console = {
+						log: function(){},
+						debug: function(){},
+						info: function(){},
+						warn: function(){},
+						error: function(){},
+						assert: function(){}
+					};
+				}else{
+					console.log("OK. There is console.");
+				}
+			});
+		</script>
+		
+		<style>
+			.placeholder{color:#aaa;}		
+		</style>
 	</body>
 
 </html>

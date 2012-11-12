@@ -15,6 +15,7 @@ $(function(){
 	
 	// Hide URL bar
 	hideURLBar();
+	
 });
 
 //----------------------------
@@ -53,7 +54,7 @@ function jump(filename_without_extension){
 					success_but_not_use_ajax_history(ajax_id);
 					return;
 				}
-				if(latest_received_page == filename_without_extension){
+				if(latest_received_page == filename_without_extension && filename_without_extension != 'login'){
 					console.log("★this page data comes just now as Ajax;");
 					console.log(filename_without_extension);
 					console.log("☆but latest_received_page is this one;");

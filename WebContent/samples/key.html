@@ -4,8 +4,10 @@
 		<meta charset="utf-8">
 		<title>back_space</title>
 		<style>
-			.ime-off {ime-mode: inactive; }
-			.ime-on {ime-mode: active; }
+			.ime-off {ime-mode:inactive;}
+			.ime-on {ime-mode:active;}
+			table{border:solid thin; border-collapse:collapse;}
+			table td,th{border:solid thin;}
 		</style>
 		<!--[if lt IE 9]>
 		<script src="../plugins/ie/html5shiv.js"></script>
@@ -41,12 +43,14 @@
 		<section>
 			<hr/>
 			<h2>説明</h2>
+			<!-- 
 			<style>
 				section>ol>li{margin:1em; font-size:1.5em;}
 				section>ol>li>ul{font-size:0.7em;}
 				section li div{margin:1em;}
 				section li{margin:0.3em;}
 			</style>
+			 -->
 			<ol>
 				<li class='slidable'>試したブラウザ
 					<ul>
@@ -58,13 +62,10 @@
 				</li>
 				<li class='slidable'>Backspaceキーの制御
 					<table>
-						<thead>
-							<tr><th>フォーカスがどこにあるか？</th><td>テキストボックス</td><td>それ以外</td></tr>
-							<tr><th>Backspaceキーは有効か？</th><td>有効（テキストの削除が出来る）</td><td>無効（キー押下時に前画面に移動してしまう事はない）</td></tr>
-						</thead>
+						<tr><th>フォーカスがどこにあるか？</th><th>テキストボックス</th><th>それ以外</th></tr>
+						<tr><th></th><td>Backspaceキー有効（テキストの削除が出来る）</td><td>Backspaceキー無効（キー押下時に前画面に移動してしまう事はない）</td></tr>
 					</table>
-
-
+					<!-- 
 					<ul>
 						<li>フォーカスがテキストボックスにある場合
 							<ul><li>Backspaceキーが有効</li></ul>
@@ -76,6 +77,7 @@
 							</ul>
 						</li>
 					</ul>
+					 -->
 				</li>
 				<li class='slidable'>Functionキーの制御
 					<ul>

@@ -43,22 +43,38 @@
 			<h2>説明</h2>
 			<style>
 				section>ol>li{margin:1em; font-size:1.5em;}
-				section>ol>li>ul{font-size:0.8em;}
+				section>ol>li>ul{font-size:0.7em;}
 				section li div{margin:1em;}
+				section li{margin:0.3em;}
 			</style>
 			<ol>
 				<li class='slidable'>試したブラウザ
 					<ul>
-						<li>IE8</li>
-						<li>Firefox16</li>
 						<li>Chrome22</li>
+						<li>Firefox16</li>
+						<li>IE8</li>
+						<li>iPhone (iOS6)</li>
 					</ul>
-				
 				</li>
 				<li class='slidable'>Backspaceキーの制御
+					<table>
+						<thead>
+							<tr><th>フォーカスがどこにあるか？</th><td>テキストボックス</td><td>それ以外</td></tr>
+							<tr><th>Backspaceキーは有効か？</th><td>有効（テキストの削除が出来る）</td><td>無効（キー押下時に前画面に移動してしまう事はない）</td></tr>
+						</thead>
+					</table>
+
+
 					<ul>
-						<li>テキストボックス、テキストエリアにフォーカスが有る場合、Backspaceキーが有効。</li>
-						<li>その他にフォーカスが有る場合、Backspaceキーは無効。<mark>キー押下時に前画面に移動してしまう事はない。</mark></li>
+						<li>フォーカスがテキストボックスにある場合
+							<ul><li>Backspaceキーが有効</li></ul>
+						</li>
+						<li>フォーカスがテキストボックスにない場合
+							<ul>
+								<li>Backspaceキーは無効</li>
+								<li>キー押下時に前画面に移動してしまう事はない</li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 				<li class='slidable'>Functionキーの制御
@@ -123,14 +139,13 @@
 			});
 		</script>
 		<style>
-			input, textarea{color:#000;}
 			.placeholder{color:#aaa;}		
 		</style>
 		<script>
 			$(function(){
 				$('.slidable').click(function(){
 					$(this).children().slideToggle();
-				});
+				}).children().hide();
 			});
 		</script>
 	</body>

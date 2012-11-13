@@ -1,15 +1,21 @@
-var GlobalScopeVariable_WHO_AM_I = "";
+/*
+ * NEED 
+ * 	- Div element id='who_am_i'
+ *  - Div element id='ajax_history'
+ */
 
-function setGlobalScopeVariable_WHO_AM_I(uid,pw){
-	GlobalScopeVariable_WHO_AM_I = {"uid":uid,"key":sHA256WithHEXEncoding(pw)};
+WHO = ""; // Global variable
+
+function setWHO(uid,pw){
+	WHO = {"uid":uid,"key":generateSHA256Hash_withHEXEncoding(pw)};
 	$("#who_am_i").text(uid);
 }
 
-function sHA256WithHEXEncoding(s){
+function generateSHA256Hash_withHEXEncoding(s){
     return CryptoJS.SHA256(s).toString(CryptoJS.enc.HEX);
 }
 
-function ajaxToMyogaAPI_with_NO_CACHE(method_obj, success_funciton){
+function ajaxToMyogaAPI_with_NO_CACHE(method_obj, success_funciton){ // TODO
 }
 
 function write_response_time(ajax_id){
@@ -45,11 +51,11 @@ function shortTime(d){
 	return h + ":" + m + " ." +d.getSeconds();
 }
 
-AJAX_ID = -1;
-AJAX_REQUEST_TIME = [];
+AJAX_ID = -1; // Global variable
+AJAX_REQUEST_TIME = [];  // Global variable
 function ajaxToMyogaAPI(method_obj, success_funciton){
-	if(GlobalScopeVariable_WHO_AM_I == ""){
-		console.log("GlobalScopeVariable_WHO_AM_I is zero length string. so I didnt do ajax call.");
+	if(WHO == ""){
+		console.log("WHO is zero length string. so I didnt do ajax call.");
 		return false;
 	}
 
@@ -72,10 +78,10 @@ function ajaxToMyogaAPI(method_obj, success_funciton){
 	
 	console.log("/--- Ajax Request");
 	console.log(method_obj);
-	console.log(GlobalScopeVariable_WHO_AM_I);
+	console.log(WHO);
 	console.log("---/");
 
-	var commandInJSON = {command: JSON.stringify({method:method_obj, who:GlobalScopeVariable_WHO_AM_I})};
+	var commandInJSON = {command: JSON.stringify({method:method_obj, who:WHO})};
 	$.ajax({
 		type:"POST",
 		url:"./API",

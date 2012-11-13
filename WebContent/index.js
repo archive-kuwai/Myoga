@@ -1,7 +1,7 @@
 //----------------------------
 $(function(){
 
-	setGlobalScopeVariable_WHO_AM_I("dummy","dummy_PW");
+	setWHO("dummy","dummy_PW");
 	
 	// Initialize cookie
 	$.cookie.json = true;
@@ -27,7 +27,7 @@ function login(){
 		return;
 	}
 	var password = prompt('myoga パスワード ','myoga');
-	setGlobalScopeVariable_WHO_AM_I(user, password);
+	setWHO(user, password);
 	ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, function(result){console.log(result);});
 
 	reset_page_selector();

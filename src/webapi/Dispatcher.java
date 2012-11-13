@@ -30,7 +30,7 @@ class Dispatcher {
 			r.save();
 			r.save();
 			*/
-			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太棚田直一郎", r);
+			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太田直一郎", r);
     		return json.format(u);
 		}else if("getListAsTest".equals(methodName)){
 			List<String> ls = new ArrayList<String>();

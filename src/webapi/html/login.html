@@ -4,9 +4,8 @@
 		setGlobalScopeVariable_WHO_AM_I("太田直宏","Dummy_Password");
 		reset_page_selector();
 		var when_succeed = function(result){
-
-			var too_long_letters_to_disp = 6;
-			$('#login_user').text(cutStringByLength(result.realname,too_long_letters_to_disp));
+			var maxLength = 5;
+			$('#login_user').text(cutStringByLength(result.realname, maxLength));
 			$('#login_user').removeClass("pink");
 			$('#login_user').addClass("white_weak");
 		};

@@ -5,11 +5,8 @@
 		reset_page_selector();
 		var when_succeed = function(result){
 
-			var n = result.realname;
 			var too_long_letters_to_disp = 6;
-			if (n.length >= too_long_letters_to_disp) n = n.substring(0, too_long_letters_to_disp - 2) + "…";
-			$('#login_user').text(n);
-
+			$('#login_user').text(cutStringByLength(result.realname,too_long_letters_to_disp));
 			$('#login_user').removeClass("pink");
 			$('#login_user').addClass("white_weak");
 		};

@@ -2,7 +2,7 @@
 	$(function(){
 		$('#login_user').text("…");
 		setWHO("太田直宏","Dummy_Password");
-		reset_page_selector();
+		build_page_selector();
 		var when_succeed = function(result){
 			var maxLength = 5;
 			$('#login_user').text(cutStringByLength(result.realname, maxLength));

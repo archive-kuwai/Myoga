@@ -11,7 +11,7 @@ $(function(){
 		},
 		function(result){
 			var sel = $('#login_users');
-			addOptions(sel, result, result);
+			setOptionsToSelect(sel, result, result);
 			sel.change(function(){
 				getUserActs(sel.val());
 			});

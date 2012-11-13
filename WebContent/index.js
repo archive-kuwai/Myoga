@@ -15,7 +15,7 @@ $(function(){
 	
 	// Hide URL bar
 	hideURLBar();
-	
+		
 });
 
 //----------------------------

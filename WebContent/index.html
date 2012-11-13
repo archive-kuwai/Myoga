@@ -7,7 +7,39 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<!--[if lt IE 9]><script src="plugins/ie/html5shiv.js"></script><![endif]-->
 		<link href="index.css" rel="stylesheet" >
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
+		<script src="plugins/jquery.cookie.js"></script>
+		<script src="plugins/ajaxToMyogaAPI.js"></script>
+		<script src="plugins/setOptionsToSelect.js"></script>
+		<script src="index.js"></script>
+		<!-- 
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		 -->
+
+		<!-- key handling --------------------------- -->
+		<script src="plugins/jqKey_modified.js"></script>
+		<script>$(function(){$(document).jqKey({Enter:true,Tab:true});});</script>
+		<!-- ---------------------------------------- -->
+		
+		<!-- Placeholder for IE --------------------- -->
+		<script src="plugins/ie/jquery.placeholder.js"></script>
+		<script>$(function(){$('input,textarea').placeholder();});</script>
+		<style>.placeholder{color:#aaa;}</style>
+		<!-- ---------------------------------------- -->
+
+		<!-- Dumy console for IE -------------------- -->
+		<script>
+			$(function(){
+				if(typeof console == "undefined"){
+					console = {log:function(){}, debug:function(){}, info:function(){}, warn:function(){}, error:function(){}, assert: function(){}};
+				}else{console.log("OK. There is console.");}
+			});
+		</script>
+		<!-- ---------------------------------------- -->
 	</head>
+
 	<body>
 		<header>
 				<nav class='left'></nav>
@@ -25,62 +57,5 @@
 			<div id='ajax_history_box'></div>
 		</footer>
 
-		
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
-		<script src="plugins/jquery.cookie.js"></script>
-		<script src="plugins/ajaxToMyogaAPI.js"></script>
-		<script src="index.js"></script>
-		<script src="plugins/setOptionsToSelect.js"></script>
-		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-
-		<!-- ---------------------------------------- -->
-		<!-- key handling -->
-		<script src="plugins/jqKey_modified.js"></script>
-		<script>
-			$(document).jqKey({
-				Enter:true
-				,Tab:true
-				,F9:function(){alert("F9キーが押されました。");}
-				,ESC:function(){alert("ESCキーが押されました。");}
-			});
-		</script>
-		<!-- ---------------------------------------- -->
-
-		
-		<!-- ---------------------------------------- -->
-		<!-- Placeholder for IE -->
-		<style>.placeholder{color:#aaa;}</style>
-		<script src="plugins/ie/jquery.placeholder.js"></script>
-		<script>
-			$(function(){
-				$('input,textarea').placeholder();
-			});
-		</script>
-		<!-- ---------------------------------------- -->
-
-
-		<!-- ---------------------------------------- -->
-		<!-- Dumy console for IE -->
-		<script>
-			$(function(){
-				if(typeof console == "undefined"){
-					console = {
-						log: function(){},
-						debug: function(){},
-						info: function(){},
-						warn: function(){},
-						error: function(){},
-						assert: function(){}
-					};
-				}else{
-					console.log("OK. There is console.");
-				}
-			});
-		</script>
-		<!-- ---------------------------------------- -->
-		
 	</body>
-
 </html>

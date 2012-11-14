@@ -8,6 +8,9 @@
 		<!--[if lt IE 9]><script src="plugins/ie/html5shiv.js"></script><![endif]-->
 		<link href="index.css" rel="stylesheet" >
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/redmond/jquery-ui.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery-ui-i18n.min.js"></script>
 		<script src="plugins/ajaxToMyogaAPI.js"></script>
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
 		<script src="plugins/setOptionsToSelect.js"></script>
@@ -15,6 +18,11 @@
 		<script src="plugins/hideURLBar.js"></script>
 		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<!-- <script src="index.js"></script> -->
+
+
+
+
+
 
 		<!-- key handling --------------------------- -->
 		<script src="plugins/jqKey_modified.js"></script>
@@ -53,7 +61,6 @@
 		</script>
 		<!-- ---------------------------------------- -->
 		
-		<!-- Functions ------------------------------ -->
 		<script>
 			latest_request_page = ""; // Global variable
 			latest_received_page = ""; // Global variable
@@ -94,15 +101,58 @@
 			function jump_with_page_selector(){
 				jump($('#page_selector').val());
 			}
+			
+			function login(){
+				$('#login_user').text("…");
+				setWHO("太田直宏です","Dummy_Password");
+				var when_succeed = function(result){
+					var maxLength = 5;
+					$('#login_user').text(cutStringByLength(result.realname, maxLength));
+					$('#login_user').removeClass("pink");
+					$('#login_user').addClass("white_weak");
+					build_page_selector();
+					hideURLBar();
+				};
+				ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);
+			}
 		</script>
-		<!-- ---------------------------------------- -->
+		<script>
+			$(function(){
+				$('#login_dialog').dialog({
+					  autoOpen: false,
+					  title: 'jQuery Dialog Demo',
+					  closeOnEscape: true,
+					  modal: true,
+					  buttons: {
+					    "OK": function(){
+							$('#login_user').text("…");
+							setWHO("太田直宏です","Dummy_Password");
+							var when_succeed = function(result){
+								var maxLength = 5;
+								$('#login_user').text(cutStringByLength(result.realname, maxLength));
+								$('#login_user').removeClass("pink");
+								$('#login_user').addClass("white_weak");
+								build_page_selector();
+								hideURLBar();
+							};
+							ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);					    	
+					      $(this).dialog('close');
+					    }
+					  }
+					});		
+			});
+		</script>
 	</head>
 
 	<body>
+		<div id="login_dialog">
+			<input type="text" placeholder="ユーザーネーム"></input>
+			<input type="password" placeholder="パスワード"></input>
+		</div>
 		<header>
 				<nav class='left'></nav>
 				<div id='login' class='right'>
-					<button id='login_user' onClick='jump("login")' class='round_rect pink'>ログイン</button>
+					<button id='login_user' onClick="$('#login_dialog').dialog('open')" class='round_rect pink'>ログイン</button>
 				</div>
 				<hr/>
 		</header>
@@ -114,6 +164,5 @@
 			&copy; 2012 Naohiro OHTA
 			<div id='ajax_history_box'></div>
 		</footer>
-
 	</body>
 </html>

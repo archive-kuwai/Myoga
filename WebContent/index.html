@@ -102,31 +102,19 @@
 				jump($('#page_selector').val());
 			}
 			
-			function login(){
-				$('#login_user').text("…");
-				setWHO("太田直宏です","Dummy_Password");
-				var when_succeed = function(result){
-					var maxLength = 5;
-					$('#login_user').text(cutStringByLength(result.realname, maxLength));
-					$('#login_user').removeClass("pink");
-					$('#login_user').addClass("white_weak");
-					build_page_selector();
-					hideURLBar();
-				};
-				ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);
-			}
 		</script>
 		<script>
 			$(function(){
 				$('#login_dialog').dialog({
 					  autoOpen: false,
-					  title: 'jQuery Dialog Demo',
+					  title: 'Login',
 					  closeOnEscape: true,
 					  modal: true,
 					  buttons: {
 					    "OK": function(){
 							$('#login_user').text("…");
-							setWHO("太田直宏です","Dummy_Password");
+							//setWHO("太田直宏です","Dummy_Password");
+							setWHO($("#login_input_uid").val(), $("#login_input_pw").val());
 							var when_succeed = function(result){
 								var maxLength = 5;
 								$('#login_user').text(cutStringByLength(result.realname, maxLength));
@@ -146,8 +134,8 @@
 
 	<body>
 		<div id="login_dialog">
-			<input type="text" placeholder="ユーザーネーム"></input>
-			<input type="password" placeholder="パスワード"></input>
+			<input id="login_input_uid" type="text" placeholder="ユーザーネーム"></input>
+			<input id="login_input_pw" type="password" placeholder="パスワード"></input>
 		</div>
 		<header>
 				<nav class='left'></nav>

@@ -20,13 +20,16 @@ function setOptionsToSelect(sel, vals, texts){
 		sel.append(htmlOfOption(vals[i],texts[i]));
 	}
 	
+	// TODO bug? on iPhone. 'Caz "Selection" drumroll will be not refresh.
 	// When you select any option,
 	// and if there is initial 1st option, then, delete that option.
+	/*
 	sel.change(function(){
 		var opt1st = sel.find('option:first');
 		if(opt1st.val() == Initial_1stOptionText){
 			opt1st.remove();
 		}
 	});
+	*/
 }
 

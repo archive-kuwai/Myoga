@@ -7,13 +7,18 @@
 WHO = ""; // Global variable
 
 function setWHO(uid,pw){
-	WHO = {"uid":uid,"key":generateSHA256Hash_withHEXEncoding(pw)};
+	WHO = {"uid":uid,"key":generateHashKey(uid,pw)};
 	$("#who_am_i").text(uid);
 }
 
 function generateSHA256Hash_withHEXEncoding(s){
     return CryptoJS.SHA256(s).toString(CryptoJS.enc.HEX);
 }
+
+function generateHashKey(uid,pw){
+    return CryptoJS.SHA256(uid+"MyogaWebAppYay!!Woo!!Bow!!"+pw).toString(CryptoJS.enc.HEX);
+}
+
 
 function ajaxToMyogaAPI_with_NO_CACHE(method_obj, success_funciton){ // TODO
 }

@@ -33,3 +33,8 @@ function setOptionsToSelect(sel, vals, texts){
 	*/
 }
 
+
+function addOptionToSelect(sel,val){
+	sel.append(htmlOfOption(val,val));
+}
+

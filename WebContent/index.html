@@ -89,10 +89,8 @@
 				for(var i=0; i<pages.length; i++){
 					$('#page_selector').append("<option value='" +pages[i]+ "' id='" +pages[i]+ "'>" + alias[i] + "</option>");
 				}
-				/*
-				var ajaxBtn = "<button id='ajax_status' onClick='$(\"#ajax_status_dialog\").dialog(\"open\")'>AjaxSts</button>";
-				$('nav').append(ajaxBtn);
-				*/
+				var a = "<button id='ajax_status' onClick='$(\"#ajax_status_dialog\").dialog(\"open\")'><img id='ajax_status_img' src='pict/loading(ShigenoriTanaka).gif' style='visibility:hidden'></img></button>";
+				$('nav').append(a);
 			}
 			
 			function empty_main_content(){
@@ -128,7 +126,7 @@
 						}
 					});		
 				$('#ajax_status_dialog').dialog({
-					autoOpen:false, title:'Ajax Status', closeOnEscape:true, modal:true,
+					autoOpen:false, title:'Ajax Status', closeOnEscape:true, modal:false,
 					buttons:{
 						"OK":function(){
 							$(this).dialog('close');
@@ -146,7 +144,7 @@
 			<input id="login_input_pw" type="password" placeholder="パスワード"></input>
 		</div>
 		<div id="ajax_status_dialog">
-			Ajax Status
+			<select id="ajax_list" size="16"></select>
 		</div>
 		<header>
 				<nav class='left'>
@@ -163,7 +161,6 @@
 			<hr/>
 			&copy; 2012 Naohiro OHTA
 			<div id='ajax_history_box'></div>
-			<select id="ajax_list" size="8"></select>
 		</footer>
 	</body>
 </html>

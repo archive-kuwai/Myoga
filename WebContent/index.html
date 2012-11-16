@@ -22,12 +22,9 @@
 		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 		<!-- key handling --------------------------- -->
-		<!-- 
 		<script src="js1/jqKey__mod__.js"></script>
 		<script>$(function(){$(document).jqKey({Enter:true,Tab:true});});</script>
-		-->
-		<script src="js2/key.js"></script>
-		<!-- ---------------------------------------- -->
+ 		<!-- ---------------------------------------- -->
 
 		<!-- Cookie util ---------------------------- -->
 		<script src="js1/jquery.cookie.js"></script>
@@ -36,8 +33,13 @@
 
 		<!-- Placeholder for IE --------------------- -->
 		<script src="js0/jquery.placeholder.js"></script>
-		<script>$(function(){$('input,textarea').placeholder();});</script>
 		<style>.placeholder{color:#aaa;}</style>
+		<script>
+			function whenIE_placeholderize(){ /*Call me when every page load.*/
+				if(document.all){$('input,textarea').placeholder();}
+			}
+			$(function(){whenIE_placeholderize();});
+		</script>
 		<!-- ---------------------------------------- -->
 
 		<!-- Dummy console for IE -------------------- -->
@@ -79,6 +81,7 @@
 							}
 							latest_received_page = filename_without_extension;
 							$("#main_content").html(result.string);
+							whenIE_placeholderize();
 							hideURLBar();
 						}
 				);

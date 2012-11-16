@@ -1,4 +1,7 @@
 /* Modified by Ohta */
+/*  - Now backspace prevent anyway */
+/*  - password type input element can use backspace key */
+/* */
 /* Wriiten by Hidepyon */
 /* http://d.hatena.ne.jp/Hidepyon/20110220/1298217228 */
 /* 【使い方】
@@ -112,7 +115,7 @@ $(document).jqKey(
 				break;
 				case 8:		//backspace
 					switch(obj.type){
-					case"text":case"textarea":
+					case"text": case"textarea": case"password":
 						blKey = true;
 						break;
 					default:

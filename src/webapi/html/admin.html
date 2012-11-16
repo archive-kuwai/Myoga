@@ -26,7 +26,7 @@ function getUserActs(user){
 			params:{"uid":user}
 		},
 		function(result){
-			buildTable($('#login_users_table'), result);
+			buildVerticalTable($('#login_users_table'), result);
 		}
 	);
 };

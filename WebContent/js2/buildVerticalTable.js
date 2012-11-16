@@ -1,25 +1,29 @@
-function buildTable(tbl, rows){
+function buildVerticalTable(tbl, rows){
 	tbl.empty();
 	for(var i=0; i<rows.length; i++){
-		tbl.append("<tr>" + td_head(i) + td(dig("",rows[i])) + "</tr>");
+		tbl.append("<tr>" + td_head(i+1) + td(dig("",rows[i])) + "</tr>");
 	}
 };
 
 /* ------------------------------------ */
-function td(data){
+function li(data){
+	return "<li style='list-style-type:none'>" + data + "</li>";
+}
+
+function td_head(data){
 	return "<td>" + data + "</td>";
 }
 
-function td_head(i){
-	return td("[" + (i+1) + "]");
+function td(data){
+	return "<td align='left' style='width:100%;word-break:break-all;'>" + data + "</td>";
 }
 
 function spanForKey(k){
-	return "<span class='key'>" +k+ "<br/></span>";
+	return "<span class='key'>" +k+ "</span>";
 }
 
 function spanForValue(i){
-	return "<span class='value'>" +i+ "</span>";
+	return "<span class='value'> " +i+ "</span>";
 }
 
 function dig(s/*string*/,o/*object*/,parentkey){
@@ -42,7 +46,7 @@ function dig(s/*string*/,o/*object*/,parentkey){
 			}else{
 				keyForDisp = parentkey + "." + key;
 			}
-			s += td( spanForKey(keyForDisp) + spanForValue(value) );
+			s += li( spanForKey(keyForDisp) + spanForValue(value) );
 		}
 	}
 	return s;

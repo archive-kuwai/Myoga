@@ -18,113 +18,16 @@ $(function(){
 		}
 	);
 });
-</script>
 
-<script>
-getUserActs = function(user){
+function getUserActs(user){
 	ajaxToMyogaAPI(
 		{
 			name:"getUserActs",
 			params:{"uid":user}
 		},
 		function(result){
-			showTable($('#login_users_table'), result);
+			buildTable($('#login_users_table'), result);
 		}
 	);
 };
-  
-showTable = function(tbl, data){
-	tbl.empty();
-	for(var i=0; i<data.length; i++){
-		tbl.append("<tr>" 
-				+ td_num_head(i) 
-				+ td(dig("",data[i]))
-				+ "</tr>");
-	}
-};
-
-
-function digSpec(s,o){
-	var s ="";
-	var specs = ["who","req","res","method.name","method.params"];
-	for(var i=0; i<specs.length; i++){
-		var spec = specs[i];
-		console.log("jjjj");
-		console.log(o[spec]);
-		console.log(spec);
-		s = digNew(s,o[spec],spec);
-	}
-	return s;
-}
-
-function digNew(s,o,parentkey){
-	if(typeof(o)!='object'){
-		return td( forKey(parentkey) + forValue(o)); 
-	}
-	for(var key in o){
-		var value = o[key];
-		var valueType = typeof(value);
-		if(valueType == 'object'){
-			var k;
-			if(parentkey==null){
-				k = key;
-			}else{
-				k = parentkey + "." + key;
-			}
-			s = dig(s,value,k); /*Recursive call*/
-		}else{
-			var keyForDisp;
-			if(parentkey==null){
-				keyForDisp = key;
-			}else{
-				keyForDisp = parentkey + "." + key;
-			}
-			s += td( forKey(keyForDisp) + forValue(value) );
-		}
-	}
-	return s;
-}
-
-
-function dig(s,o,parentkey){
-	for(var key in o){
-		if(key=='resultInJSON'){console.log("resultInJSON !!");continue;}
-		var value = o[key];
-		var valueType = typeof(value);
-		if(valueType == 'object'){
-			var k;
-			if(parentkey==null){
-				k = key;
-			}else{
-				k = parentkey + "." + key;
-			}
-			s = dig(s,value,k); /*Recursive call*/
-		}else{
-			var keyForDisp;
-			if(parentkey==null){
-				keyForDisp = key;
-			}else{
-				keyForDisp = parentkey + "." + key;
-			}
-			s += td( forKey(keyForDisp) + forValue(value) );
-		}
-	}
-	return s;
-}
-
-function forKey(k){
-	return "<span class='key'>" +k+ "<br/></span>";
-}
-
-function forValue(i){
-	return "<span class='value'>" +i+ "</span>";
-}
-
-function td(data){
-	return "<td>" + data + "</td>";
-}
-
-function td_num_head(i){
-	return td("[" + (i+1) + "]");
-}
 </script>

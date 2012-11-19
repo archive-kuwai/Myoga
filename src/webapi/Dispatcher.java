@@ -51,17 +51,17 @@ class Dispatcher {
 			//
 			//return json.format(Command.userActs(uid));
 			
-			List<String> ls;
+			Collection coll;
 			if(uid.equals("User2")){
-				ls = new ArrayList<String>();
-				ls.add("yahoooo");
-				ls.add("mm...");
-				ls.add("wooowwowww");
-				ls.add("こんにちはー");
+				coll = new ArrayList<String>();
+				coll.add("yahoooo");
+				coll.add("mm...");
+				coll.add("wooowwowww");
+				coll.add("こんにちはー");
 			}else{
-				ls = Command.list;
+				coll = (Collection)cmd.map.values();
 			}
-			return json.format(ls);
+			return json.format(coll);
 		}else{
 			return null;
 		}

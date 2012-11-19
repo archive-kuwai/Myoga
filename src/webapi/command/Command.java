@@ -6,11 +6,11 @@ import java.util.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import data.JVMoo;
+import data.JVMStore;
 import net.arnx.jsonic.JSON;
 import net.arnx.jsonic.JSONHint;
 
-public class Command extends JVMoo{
+public class Command extends JVMStore{
 	
 	public Command() throws IOException {}
 	@JSONHint(ordinal=1) public Date when_receive;

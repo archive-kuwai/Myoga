@@ -2,5 +2,7 @@ package webapi.command;
 
 public class Who {
 	public String uid;
-	public String key;
+	private String key;
+	public void setKey(String k){this.key = k;}
+	public String tab;
 }

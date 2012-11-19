@@ -33,6 +33,15 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		}
 		Logger.getLogger("").info("httpリクエストのcommandパラメータ(JSON文字列) ->" + commandInJSON);
 		
+		// 調査
+		Cookie[] cookies = httpReq.getCookies();
+		String s1 = httpReq.getLocalAddr();
+		//java.util.Locale locale = httpReq.getLocale();
+		String s2 = httpReq.getLocalName();
+		String s3 = httpReq.getRemoteAddr();
+		String s4 = httpReq.getRemoteHost();
+		String s5 = httpReq.getRemoteUser();
+		String s6 = httpReq.getServerName();
 		
 		//commandパラメータの内容（JSON文字列が期待されている）をCommand Javaオブジェクトにデコードする。
 		Command cmd = JSON.decode(commandInJSON, Command.class);

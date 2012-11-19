@@ -5,9 +5,13 @@
  */
 
 WHO = ""; // Global variable
+TAB = ""; // Means client side web browser's tab id. 
+$(function(){
+	TAB = uuid.v4();
+});
 
 function setWHO(uid,pw){
-	WHO = {"uid":uid,"key":generateHashKey(uid,pw)};
+	WHO = {"uid":uid,"key":generateHashKey(uid,pw),"tab":TAB};
 	$("#who_am_i").text(uid);
 }
 

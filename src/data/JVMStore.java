@@ -9,7 +9,7 @@ public class JVMStore {
     public static Map map = new LinkedHashMap();
     protected static JSON json = new JSON();
     
-	@JSONHint(ordinal=0) public String uuid;
+    @JSONHint(ignore=true) public String uuid;
 
     
     public JVMStore(){

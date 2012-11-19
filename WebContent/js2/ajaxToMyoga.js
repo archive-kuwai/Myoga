@@ -5,7 +5,7 @@
  */
 
 WHO = ""; // Global variable
-TAB = ""; // Means client side web browser's tab id. 
+TAB = ""; // Global variable. Means client side web browser's tab id. 
 $(function(){
 	TAB = uuid.v4();
 });

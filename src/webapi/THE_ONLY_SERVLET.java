@@ -45,7 +45,7 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		
 		//commandパラメータの内容（JSON文字列が期待されている）をCommand Javaオブジェクトにデコードする。
 		Command cmd = JSON.decode(commandInJSON, Command.class);
-		cmd.whenInput = new Date();
+		cmd.srvIn = new Date();
 		cmd.save();
 		Logger.getLogger("").info("Command(Javaオブジェクト) ->" + cmd.toString());
 
@@ -80,7 +80,7 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 			cmd.resultInJSON = resultInJSONString;
 		}
 		*/
-		cmd.whenOutput = new Date();
+		cmd.srvOut = new Date();
 		cmd.save();
 	}
 }

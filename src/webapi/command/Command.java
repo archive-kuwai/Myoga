@@ -15,8 +15,8 @@ public class Command extends JVMStore{
 	public Command() throws IOException {
 	}
 	@JSONHint(ordinal=0) public Who who;
-	@JSONHint(ordinal=1) public Date whenInput;
-	@JSONHint(ordinal=2) public Date whenOutput;
+	@JSONHint(ordinal=1) public Date srvIn;
+	@JSONHint(ordinal=2) public Date srvOut;
 	@JSONHint(ordinal=3) public Method method;
 
 	

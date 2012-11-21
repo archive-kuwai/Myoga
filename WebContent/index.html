@@ -71,11 +71,16 @@
 
 		<!-- Init ----------------------------------- -->
 		<script>
-			// Temp patch.
-			setWHO("dummy","dummy_PW");
-			
-			// Hide URL bar (for iPhone)
-			hideURLBar();
+			$(function(){
+				// Temp patch.
+				setWHO("dummy","dummy_PW");
+				
+				// Focus
+				$("#login_user").focus();
+				
+				// Hide URL bar (for iPhone)
+				hideURLBar();
+			});
 		</script>
 		<!-- ---------------------------------------- -->
 		
@@ -115,6 +120,7 @@
 				}
 				var a = "<button id='ajax_status' onClick='$(\"#ajax_status_dialog\").dialog(\"open\")'><img id='ajax_status_img' src='pict/loading(ShigenoriTanaka).gif' style='visibility:hidden'></img></button>";
 				$('nav').append(a);
+				$("#page_selector").focus();
 			}
 			
 			function empty_main_content(){

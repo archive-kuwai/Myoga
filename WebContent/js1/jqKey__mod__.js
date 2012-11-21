@@ -41,7 +41,11 @@ $(document).jqKey(
 				var ln = df.length;
 				var i;
 				for (i=0;i<ln;i++){
-					if (df[i]==obj) break;
+					if (df[i]==obj){
+						break;
+					}else{
+						if(i==ln-1){return df[0];}
+					}
 				}
 				//フォーカスを取得できないものは飛ばします
 				var mv = (shift?-1:1);
@@ -75,6 +79,7 @@ $(document).jqKey(
 			if (!setting.Enter&&k==13) return true;
 			if (!setting.Tab&&k==9) return true;
 			var second_tab_key = 106; // TenkeyPad-Plus(107),TenkeyPad-Minus(109), TenkeyPad-Star(106), TenkeyPad-Slash(111) 
+			var donotFocus = false;
 			switch(k){
 				case 13:
 					switch(obj.type){
@@ -128,6 +133,7 @@ $(document).jqKey(
 					if(setting.ESC){
 						setting.ESC();
 						blKey = false;
+						donotFocus = true;
 					}
 				break;
 				default:
@@ -145,8 +151,12 @@ $(document).jqKey(
 				//イベントを伝播しない
 				//IE規定の動作キャンセル
 				if(document.all) window.event.keyCode = 0;
-				obj.focus();
-				if(obj.select&&obj.type!="button") obj.select();
+				if(donotFocus){
+					// nothing to do.
+				}else{
+					obj.focus();
+					if(obj.select&&obj.type!="button") obj.select();
+				}
 			}
 			return blKey;
 		};

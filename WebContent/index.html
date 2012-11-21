@@ -30,7 +30,16 @@
 
 		<!-- key handling --------------------------- -->
 		<script src="js1/jqKey__mod__.js"></script>
-		<script>$(function(){$(document).jqKey({Enter:true,Tab:true});});</script>
+		<script>
+			function setKeys(){
+				$(document).jqKey({
+					Enter:true,
+					Tab:true,
+					ESC:function(){$('#page_selector').focus();}
+				});
+			}
+			$(function(){setKeys();});
+		</script>
  		<!-- ---------------------------------------- -->
 
 		<!-- Cookie util ---------------------------- -->
@@ -88,8 +97,10 @@
 							}
 							latest_received_page = filename_without_extension;
 							$("#main_content").html(result.string);
-							whenIE_placeholderize();
-							hideURLBar();
+							$(function(){
+								whenIE_placeholderize();
+								hideURLBar();
+							});
 						}
 				);
 			}
@@ -151,7 +162,29 @@
 		</script>
 	</head>
 
+	<!--=====================================-->
+	<!--                                     -->
+	<!--                BODY                 -->
+	<!--                                     -->
+	<!--=====================================-->
 	<body>
+		<header>
+			<nav class='left'>
+			</nav>
+			<div id='login' class='right'>
+				<button id='login_user' onClick="$('#login_dialog').dialog('open')" class='round_rect pink'>ログイン</button>
+			</div>
+			<hr/>
+		</header>
+		<form id='main_content'> <!-- Use form tag for jqKey.js tab/enter key handling -->
+			<h1>myoga web application</h1>
+		</form>
+		<footer>
+			<hr/>
+			&copy; 2012 Naohiro OHTA
+		</footer>
+
+		<!-- Dialogs -->
 		<div id="login_dialog">
 			<input id="login_input_uid" type="text" placeholder="ユーザーネーム"></input>
 			<input id="login_input_pw" type="password" placeholder="パスワード"></input>
@@ -160,20 +193,5 @@
 			<div id='ajax_history_box'></div>
 			<!-- <select id="ajax_list" size="16"></select> -->
 		</div>
-		<header>
-				<nav class='left'>
-				</nav>
-				<div id='login' class='right'>
-					<button id='login_user' onClick="$('#login_dialog').dialog('open')" class='round_rect pink'>ログイン</button>
-				</div>
-				<hr/>
-		</header>
-		<div id='main_content'>
-			<h1>myoga web application</h1>
-		</div>
-		<footer>
-			<hr/>
-			&copy; 2012 Naohiro OHTA
-		</footer>
 	</body>
 </html>

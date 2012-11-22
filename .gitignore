@@ -8,3 +8,7 @@ WebContent/.sass-cache/
 # Package Files #
 *.war
 *.ear
+
+# mm.. Dont know.
+.settings/org.eclipse.jst.j2ee.ejb.annotations.xdoclet.prefs
+

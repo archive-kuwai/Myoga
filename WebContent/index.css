@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+.hidden {
+  visibility: hidden; }
+
 .ime-off {
   ime-mode: inactive; }
 
@@ -95,6 +98,9 @@ header * {
 nav * {
   background-color: #e2eaeb;
   color: #44413c; }
+  nav * img {
+    background-color: #e2eaeb;
+    color: #44413c; }
 
 #main_content {
   margin: 0;

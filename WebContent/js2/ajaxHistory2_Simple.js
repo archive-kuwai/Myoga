@@ -8,7 +8,8 @@ function IMPL_ajaxHistory_Req(ajax_id, method_obj){
 		+ li_with_class('---','response_interval');
 		+ "</ul>";
 	$('#ajax_history_box').append(ajax_history_html);
-
+	$("#ajax_status_img").removeClass("hidden");
+	
 	/*
 	addOptionToSelect($('#ajax_list'),method_obj.name+","+JSON.stringify(method_obj.params));
 	$('#ajax_status_img').attr('style','visibility:visible');
@@ -21,6 +22,7 @@ function IMPL_ajaxHistory_OK(ajax_id){
 	/*
 	$('#ajax_status_img').attr('style','visibility:hidden');
 	*/
+	$("#ajax_status_img").addClass("hidden");
 }
 function IMPL_ajaxHistory_NoUse(ajax_id){
 	writeTime(ajax_id);
@@ -30,6 +32,7 @@ function IMPL_ajaxHistory_NoUse(ajax_id){
 	/*
 	$('#ajax_status_img').attr('style','visibility:hidden');
 	*/
+	$("#ajax_status_img").addClass("hidden");
 }
 function writeTime(ajax_id){
 	var now = new Date();

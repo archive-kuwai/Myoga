@@ -66,6 +66,11 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 			return;
 		}
 		
+		//このCommandのみ、Dispatcherではなく、このサーブレットが直接Dispatchする。 // TODO クライアントブラウザへの戻り値がおかしい
+		if(cmd.method.name.equals("clearHTMLCache")){
+			HTMLCacher.initFORCE(getServletContext().getRealPath("/"));
+		}
+		
 		//Command Javaオブジェクトの内容によってDispatchして、Executeする。
 		HTMLCacher.initNORMAL(getServletContext().getRealPath("/"));
 		JSON json = new JSON(); // TODO 毎回インスタンス化する？

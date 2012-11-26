@@ -13,7 +13,11 @@ import java.util.logging.*;
 public class THE_ONLY_SERVLET extends HttpServlet {
 
 	private static final long serialVersionUID = 3383077259036476263L;
-
+	
+	protected void doGet(HttpServletRequest httpReq, HttpServletResponse httpRes) throws ServletException, IOException {
+		doPost(httpReq, httpRes);
+	}
+	
 	protected void doPost(HttpServletRequest httpReq, HttpServletResponse httpRes) throws ServletException, IOException {
 		//HTTPレスポンスにコンテントタイプを設定する
 		httpRes.setContentType("application/json;charset=utf-8");

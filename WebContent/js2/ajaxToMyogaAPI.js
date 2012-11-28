@@ -6,6 +6,7 @@
 
 WHO = ""; // Global variable
 TAB = ""; // Global variable. Means client side web browser's tab id. 
+URI = "./API";
 $(function(){
 	TAB = uuid.v4();
 });
@@ -55,7 +56,7 @@ function ajaxToMyogaAPI(method_obj, success_funciton){
 	var commandInJSON = {command: JSON.stringify({method:method_obj, who:WHO})};
 	$.ajax({
 		type:"POST",
-		url:"./API",
+		url:URI,
 		data:commandInJSON,
 		success:function(result){
 				console.log("/--- Ajax Success");

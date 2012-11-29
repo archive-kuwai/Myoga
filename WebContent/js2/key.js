@@ -16,9 +16,6 @@ var key = function(){
 		return false;
 	};
 	
-	// Private variable
-	var tabstops = []; 
-	
 	// Private function
 	var moveToNextTabStop = function(e){
 		var lastIdx = tabstops.length-1;
@@ -38,8 +35,11 @@ var key = function(){
 		return prevent(e.keyCode);
 	};
 	
-	// Once call function - Prevent F1 Help on IE
-	window.onhelp = function(){return false;};
+	// Private variable
+	var tabstops = []; 
+	var tabstopForEscKey = null; /*jQuery object*/
+	var enterkeyMode = 0;
+	
 	
 	// Once call function - Bind the keys
 	$(document).keydown(function(e){
@@ -55,27 +55,43 @@ var key = function(){
 			case 9: /*Tab*/
 				return moveToNextTabStop(e);
 			case 13: /*Enter*/
-				if(type == 'textarea') return true;
-				return moveToNextTabStop(e);
+				if(enterkeyMode == 0){
+					return true;
+				}else if(enterkeyMode == 1){
+					if(e.altKey) {e.altKey=false; return true;}
+					return moveToNextTabStop(e);
+				}else if(enterkeyMode == 2){
+					if(type == 'textarea') return true;
+					if(type == 'submit') return true;
+					if(type == 'button') return true;
+					return moveToNextTabStop(e);
+				}else{
+					return true;
+				}
+			case 27: /*ESC*/
+				if(tabstopForEscKey) tabstopForEscKey[0].focus();
 		}
 	});
 
-	var listTabstopsOnConsole = function(){
-		console.log("/* listTabstopsOnConsole---------------------------------------");
-		console.log("tabstops.length is [" + tabstops.length + "].");
-		$(tabstops).each(function(){console.log(this[0]);});
-		console.log("---------------------------------------listTabstopsOnConsole */");
-	};
-
+	// Once call function - Prevent F1 Help on IE
+	window.onhelp = function(){return false;};
+	
 	return { 
 		// Public function
-		setTabstops: function(root_id){
+		setTabstops: function(root/*jqObject*/){
 			tabstops = [];
-			$('#'+root_id).find("input,textarea,select").each(function(){
+			root.find("input,textarea,select,button").each(function(){
 				/*if(isInputType($(this).type)) */tabstops.push($(this));
 			});
-			listTabstopsOnConsole();
+			console.log("tabstops.length is [" + tabstops.length + "].");
+		},
+		setTabstopForEscKey: function(jq){
+			tabstopForEscKey = jq;
+		},
+		setEnterkeyMode: function(num){
+			enterkeyMode = num;
 		}
+	
 	};
 	
 }();

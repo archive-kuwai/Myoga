@@ -28,7 +28,7 @@
 		<script>$(function(){$(window).bind("beforeunload", function(e){return　"";});});/*iOS does not recognize*/</script>
 		<!-- ---------------------------------------- -->
 
-		<!-- key handling --------------------------- -->
+		<!-- key handling --------------------------- --
 		<script src="js1/jqKey__mod__.js"></script>
 		<script>
 			function setKeys(){
@@ -41,6 +41,12 @@
 			$(function(){setKeys();});
 		</script>
  		<!-- ---------------------------------------- -->
+
+		<!-- key handling --------------------------- -->
+		<script src="js2/key.js"></script>
+ 		<!-- ---------------------------------------- -->
+
+
 
 		<!-- Cookie util ---------------------------- -->
 		<script src="js1/jquery.cookie.js"></script>
@@ -105,6 +111,7 @@
 							$(function(){
 								whenIE_placeholderize();
 								hideURLBar();
+								key.registTabStopArea("main_content");
 							});
 						}
 				);
@@ -142,9 +149,9 @@
 			</div>
 			<hr/>
 		</header>
-		<form id='main_content'> <!-- Use form tag for jqKey.js tab/enter key handling -->
+		<section id='main_content'> <!-- Use form tag for jqKey.js tab/enter key handling -->
 			<h1>myoga web application</h1>
-		</form>
+		</section>
 		<footer>
 			<hr/>
 			&copy; 2012 Naohiro OHTA

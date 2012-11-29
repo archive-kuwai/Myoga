@@ -18,8 +18,22 @@ var key = function(){
 	
 	var tabstops = []; 
 	
-	var moveToNextTabStop = function(){
-		
+	var moveToNextTabStop = function(e){
+		var lastIdx = tabstops.length-1;
+		var hit = false;
+		$(tabstops).each(function(idx){
+			if(this[0] == e.target){
+				var direction = (e.shiftKey) ? -1 : +1; 
+				var idxWillFocus = idx + direction;
+				if(idxWillFocus < 0) idxWillFocus = lastIdx;
+				if(lastIdx < idxWillFocus) idxWillFocus = 0;
+				tabstops[idxWillFocus][0].focus();
+				hit = true;
+				return false; // like 'break'.
+			}
+		});
+		if(!hit && tabstops[0]){tabstops[0][0].focus();} 
+		return prevent(e.keyCode);
 	};
 	
 	$(document).keydown(function(e){
@@ -32,22 +46,11 @@ var key = function(){
 			case 112: /*F1*/
 				alert("F1 key down!");
 				return prevent(code);
+			case 9: /*Tab*/
+				return moveToNextTabStop(e);
 			case 13: /*Enter*/
 				if(type == 'textarea') return true;
-				/* GOTO case 9 */
-			case 9: /*Tab*/
-				var lastIdx = tabstops.length - 1;
-				$(tabstops).each(function(idx){
-					if(this[0] == e.target){
-						if(idx == lastIdx){
-							tabstops[0][0].focus();
-						}else{
-							tabstops[idx+1][0].focus();
-						}
-						return false; // break for jQuery's each().
-					}
-				});
-				return prevent(code);
+				return moveToNextTabStop(e);
 		}
 	});
 	

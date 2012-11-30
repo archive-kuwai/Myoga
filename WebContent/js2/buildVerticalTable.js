@@ -1,7 +1,7 @@
-function buildVerticalTable(tbl, rows){
+function buildVerticalTable(tbl, records){
 	tbl.empty();
-	for(var i=0; i<rows.length; i++){
-		tbl.append("<tr>" + td_head(i+1) + td(dig("",rows[i])) + "</tr>");
+	for(var i=0; i<records.length; i++){
+		tbl.append("<tr>" + td_head(i+1) + td(dig("",records[i])) + "</tr>");
 	}
 };
 

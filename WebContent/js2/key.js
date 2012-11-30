@@ -1,3 +1,6 @@
+/**
+ * key.js by Naohiro OHTA, all right reserved.
+ */
 var key = function(){
 
 	// Private function
@@ -40,7 +43,6 @@ var key = function(){
 	var tabstopForEscKey = null; /*jQuery object*/
 	var enterkeyMode = 0;
 	
-	
 	// Once call function - Bind the keys
 	$(document).keydown(function(e){
 		var type = e.target.type;
@@ -58,8 +60,35 @@ var key = function(){
 				if(enterkeyMode == 0){
 					return true;
 				}else if(enterkeyMode == 1){
-					if(e.altKey) {e.altKey=false; return true;}
+					if(e.ctrlKey && type=='textarea') {
+						if($.support.opacity){ // not IE 
+							var val = e.target.value;
+							var st = e.target.selectionStart;
+							var ed = e.target.selectionEnd;
+							e.target.value = val.substr(0,st) + "\n" + val.substr(ed);
+							e.target.setSelectionRange(st+1,st+1);
+							return prevent(code);
+						}else{ // IE
+							var rng = document.selection.createRange();
+							rng.text = "\n";
+							rng.select();
+							return prevent(code);
+						}
+					}
 					return moveToNextTabStop(e);
+/*
+				}else if(enterkeyMode == 1){
+					if(e.ctrlKey && type=='textarea') {
+						var $obj = $(e.target);
+						var val = $obj.val();
+						var st = $obj.attr('selStart');
+						var ed = $obj.attr('selEnd');
+						$obj.val(val.substr(0,st) + "\n" + val.substr(ed));
+						$obj.attr('selectionRange',st+1,st+1);
+						return prevent(code);
+					}
+					return moveToNextTabStop(e);
+*/					
 				}else if(enterkeyMode == 2){
 					if(type == 'textarea') return true;
 					if(type == 'submit') return true;

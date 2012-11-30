@@ -1,8 +1,8 @@
 /**
- * verticalTable.js by Naohiro OHTA, all right reserved.
+ * localize.js by Naohiro OHTA, all right reserved.
  */
 
-var verticalTable = function(){
+var localizer = function(){
 	
 	// --------------------------------------------
 	// Private members
@@ -19,8 +19,8 @@ var verticalTable = function(){
 		// dig function 's  main procedure.
 		for(var k in o){
 			var v = o[k];
-			var keyInJpn = localizer.toJpn(k);
-			var dottedKey = (parentkey) ? parentkey+"."+keyInJpn : keyInJpn;
+			var keyInJPN = localize.toJPN(k);
+			var dottedKey = (parentkey) ? parentkey+"."+keyInJPN : keyInJPN;
 			if(typeof(v)=='object')
 				s = dig(s,v,dottedKey);
 			else
@@ -33,10 +33,18 @@ var verticalTable = function(){
 	// Public members
 	// --------------------------------------------
 	return{
-		build: function($tbl, records){
-			$tbl.empty();
-			for(var i=0; i<records.length; i++){
-				$tbl.append(tr(td1(i+1)+td2(dig("",records[i]))));
+		toJpn: function(eng){
+			switch(eng){
+				case "who": return "ユーザ";
+				case "tab": return "ブラウザのタブID";
+				case "uid": return "ユーザID";
+				case "srvIn": return "サーバに依頼した時刻";
+				case "srvOut": return "サーバが応答した時刻";
+				case "method": return "メソッド";
+				case "name": return "名前";
+				case "params": return "引数";
+				case "filename": return "ファイル名";
+				default: return eng;
 			}
 		}
 	};

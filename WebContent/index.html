@@ -29,21 +29,15 @@
 		<script>$(function(){$(window).bind("beforeunload", function(e){return　"";});});/*iOS does not recognize*/</script>
 		<!-- ---------------------------------------- -->
 
-		<!-- key handling --------------------------- --
+		<!-- key handling 1 --------------------------- --
 		<script src="js1/jqKey__mod__.js"></script>
 		<script>
-			function setKeys(){
-				$(document).jqKey({
-					Enter:true,
-					Tab:true,
-					ESC:function(){$('#page_selector').focus();}
-				});
-			}
+			function setKeys(){$(document).jqKey({Enter:true,Tab:true,ESC:function(){$('#page_selector').focus();}});}
 			$(function(){setKeys();});
 		</script>
  		<!-- ---------------------------------------- -->
 
-		<!-- key handling --------------------------- -->
+		<!-- key handling 2 --------------------------- -->
 		<script src="js2/key.js"></script>
  		<!-- ---------------------------------------- -->
 
@@ -131,6 +125,22 @@
 				$("#ajax_status").removeClass("hidden");
 				$("#page_selector").focus();
 			}
+			
+			function login(){
+				$('#login_user').text("…");
+				//setWHO("太田直宏です","Dummy_Password");
+				setWHO($("#login_input_uid").val(), $("#login_input_pw").val());
+				var when_succeed = function(result){
+					var maxLength = 5;
+					$('#login_user').text(cutStringByLength(result.realname, maxLength));
+					$('#login_user').removeClass("pink");
+					$('#login_user').addClass("white_weak");
+					build_page_selector();
+					hideURLBar();
+				};
+				ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);					    	
+				$(this).dialog('close');
+			}
 		</script>
 	</head>
 
@@ -148,12 +158,31 @@
 				</button>
 			</nav>
 			<div id='login' class='right'>
-				<button id='login_user' onClick="$('#login_dialog').dialog('open')" class='round_rect pink'>ログイン</button>
+				<button id='login_user2' onClick="(function(){
+					$('#login_div').animate({opacity:1},1200);
+					console.log($('#login_div'));
+				})();" class='round_rect pink'>ログインb</button>
 			</div>
 			<hr/>
 		</header>
 		<section id='main_content'> <!-- Use form tag for jqKey.js tab/enter key handling -->
 			<h1>myoga web application</h1>
+			<div id="login_div" style="opacity:0">
+				<input id="login_input_uid" type="text" placeholder="ユーザーネーム"></input>
+				<input id="login_input_pw" type="password" placeholder="パスワード"></input>
+				<input id="login_input_button" type="button" onClick="(function(){
+					$('#login_user').text('…');
+					setWHO($('#login_input_uid').val(), $('#login_input_pw').val());
+					ajaxToMyogaAPI({name:'getPerson'}, function(result){
+						var maxLength = 5;
+						$('#login_user').text(cutStringByLength(result.realname, maxLength));
+						$('#login_user').removeClass('pink');
+						$('#login_user').addClass('white_weak');
+						build_page_selector();
+						hideURLBar();
+					});					    	
+				})()">LOGINする</input>
+			</div>
 		</section>
 		<footer>
 			<hr/>
@@ -161,15 +190,12 @@
 		</footer>
 
 		<!-- Dialogs --------------------------------------------------------------->
-		<div id="login_dialog">
-			<input id="login_input_uid" type="text" placeholder="ユーザーネーム"></input>
-			<input id="login_input_pw" type="password" placeholder="パスワード"></input>
-		</div>
 		<div id="ajax_status_dialog">
 			<div id='ajax_history_box'></div>
 		</div>
 		<script>
 			$(function(){
+				/*
 				$('#login_dialog').dialog({
 					autoOpen:false, title:'Login3', closeOnEscape:true, modal:true,
 					open:function(){key.setTabstops($(this).parent());},
@@ -192,6 +218,7 @@
 						} // "OK":function(){}
 					} // buttons:{}
 				});	// .dialog(){}	
+				*/
 				$('#ajax_status_dialog').dialog({
 					autoOpen:false, title:'Ajax Status', closeOnEscape:true, modal:false,
 					open:function(){key.setTabstops($(this).parent());},

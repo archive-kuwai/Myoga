@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja"><!-- manifest="cache.manifest"> --> 
+<html lang="ja"> <!-- manifest="cache.manifest">  --> 
 	<head>
 		<meta charset="utf-8">
 		<title>myoga by Naohiro OHTA</title>
@@ -172,7 +172,8 @@
 			$(function(){
 				$('#login_dialog').dialog({
 					autoOpen:false, title:'Login3', closeOnEscape:true, modal:true,
-					open:function(){key.setTabstops($("#login_dialog").parent());},
+					open:function(){key.setTabstops($(this).parent());},
+					close:function(){key.setTabstops($("#main_content"))},
 					buttons:{
 						"OK":function(){
 							$('#login_user').text("…");
@@ -193,6 +194,8 @@
 				});	// .dialog(){}	
 				$('#ajax_status_dialog').dialog({
 					autoOpen:false, title:'Ajax Status', closeOnEscape:true, modal:false,
+					open:function(){key.setTabstops($(this).parent());},
+					close:function(){key.setTabstops($("#main_content"))},
 					buttons:{
 						"OK":function(){$(this).dialog('close');}
 					} // buttons:{}

@@ -47,11 +47,7 @@ function ajaxToMyogaAPI(method_obj, success_funciton){
 	/* ==================== */
 	
 	ajaxHistory_Req(ajax_id, method_obj);
-	
-	console.log("/--- Ajax Request");
-	console.log(method_obj);
-	console.log(WHO);
-	console.log("---/");
+	console.log("/--- Ajax Request");console.log(method_obj);console.log(WHO);console.log("---/");
 
 	var commandInJSON = {command: JSON.stringify({method:method_obj, who:WHO})};
 	$.ajax({
@@ -59,16 +55,12 @@ function ajaxToMyogaAPI(method_obj, success_funciton){
 		url:URI,
 		data:commandInJSON,
 		success:function(result){
-				console.log("/--- Ajax Success");
-				console.log(result);
-				console.log("---/");
+				console.log("/--- Ajax Success");console.log(result);console.log("---/");
 				success_funciton(result, ajax_id);
 				ajaxHistory_OK(ajax_id);
 			},
 		error:function(error){
-			console.log("/--- Ajax Error");
-			console.log(error);
-			console.log("---/");
+			console.log("/--- Ajax Error");console.log(error);console.log("---/");
 		}
 	});	
 }

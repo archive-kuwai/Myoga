@@ -39,7 +39,7 @@ var localizer = function(){
 				case "tab": return "ブラウザのタブID";
 				case "uid": return "ユーザID";
 				case "srvIn": return "サーバに依頼した時刻";
-				case "srvOut": return "サーバが応答した時刻";
+				case "srvOut": return "サーバが返答した時刻";
 				case "method": return "メソッド";
 				case "name": return "名前";
 				case "params": return "引数";

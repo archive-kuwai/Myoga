@@ -43,8 +43,21 @@ var key = function(){
 	var tabstopForEscKey = null; /*jQuery object*/
 	var enterkeyMode = 0;
 	
+	/*
+	$(document).keyup(function(e){console.log("keyup ",e);});
+	$(document).keypress(function(e){console.log("keypress ",e);});
+	*/	
+	
 	// Once call function - Bind the keys
 	$(document).keydown(function(e){
+		/*
+		console.log("keydown ",e);
+		console.log("e.originalEvent.keyLocation(Chrome): ",e.originalEvent.keyLocation);
+		console.log("e.originalEvent.location(Firefox-Alt,Ctrl,Win is detected as sameKey): ",e.originalEvent.location);
+		for(var key in e){console.log("IE ", key, ": ", e[key]);}
+		for(var key in e.originalEvent){console.log("e.originalEvent ", key, ": ", e.originalEvent[key]);}
+		for(var key in e.boundElements){console.log("e.boundElements ", key, ": ", e.boundElements[key]);}
+		*/
 		var type = e.target.type;
 		var code = e.keyCode;
 		switch(code){

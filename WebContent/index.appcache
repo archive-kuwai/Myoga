@@ -1,0 +1,13 @@
+CACHE MANIFEST
+
+CACHE:
+index.html
+index.css
+html5shiv.js
+jquery.placeholder.js
+jquery.cookie.js
+uuid.js
+ajaxHistory.js
+ajaxHistory2_Simple.js
+ajaxToMyogaAPI.js
+cutStringByLength.js

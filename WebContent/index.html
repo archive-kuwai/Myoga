@@ -73,7 +73,7 @@
 				$("#login_user").focus();
 				hideURLBar();
 				NAKey.setTabstopForEscKey($("#page_selector"));
-				NAKey.setEnterkeyMode(1);
+				NAKey.setEnterkeyMode(3);
 			});
 		</script>
 		<!-- ---------------------------------------- -->
@@ -133,12 +133,12 @@
 		<header>
 			<nav class='left'>
 				<select id="page_selector" onChange="load_page_as_main_content($('#page_selector').val())" class="hidden" style="width:160px"></select>
-				<button id='ajax_status' onClick='$("#ajax_status_dialog").dialog("open")' class="hidden">
+				<button type="button" id='ajax_status' onClick='$("#ajax_status_dialog").dialog("open")' class="hidden">
 					<img id='ajax_status_img' src='pict/loading(ShigenoriTanaka).gif' class="hidden"></img>
 				</button>
 			</nav>
 			<div id='login' class='right'>
-				<button id='login_user' onClick="$('#login_dialog').dialog('open')" class='round_rect pink'>ログイン</button>
+				<button type="button" id='login_user' onClick="$('#login_dialog').dialog('open')" class='round_rect pink'>ログイン</button>
 			</div>
 			<hr/>
 		</header>

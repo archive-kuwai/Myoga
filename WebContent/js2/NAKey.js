@@ -43,13 +43,23 @@ var NAKey = function(){
 	var tabstopForEscKey = null; /*jQuery object*/
 	var enterkeyMode = 0;
 	
-	/*
-	$(document).keyup(function(e){console.log("keyup ",e);});
-	$(document).keypress(function(e){console.log("keypress ",e);});
-	*/	
-	
+
+	//Private variable
+	var has_keyLocation = null; // When keydown(e), e.originalEvent.keyLocation
+	var has_location = null; // When keydown(e), e.originalEvent.Location
+
 	// Once call function - Bind the keys
 	$(document).keydown(function(e){
+		if(has_keyLocation==null){
+			if (e.originalEvent.keyLocation==undefined) has_keyLocation=false;
+			else{has_keyLocation=true;alert("has_keyLocation");}
+		}
+				
+		if(has_location==null){
+			if(e.originalEvent.location==undefined) has_location=false;
+			else{has_location=true;alert("has_location");}
+		}
+		
 		/*
 		console.log("keydown ",e);
 		console.log("e.originalEvent.keyLocation(Chrome): ",e.originalEvent.keyLocation);
@@ -89,24 +99,21 @@ var NAKey = function(){
 						}
 					}
 					return moveToNextTabStop(e);
-/*
-				}else if(enterkeyMode == 1){
-					if(e.ctrlKey && type=='textarea') {
-						var $obj = $(e.target);
-						var val = $obj.val();
-						var st = $obj.attr('selStart');
-						var ed = $obj.attr('selEnd');
-						$obj.val(val.substr(0,st) + "\n" + val.substr(ed));
-						$obj.attr('selectionRange',st+1,st+1);
-						return prevent(code);
-					}
-					return moveToNextTabStop(e);
-*/					
 				}else if(enterkeyMode == 2){
 					if(type == 'textarea') return true;
 					if(type == 'submit') return true;
 					if(type == 'button') return true;
 					return moveToNextTabStop(e);
+				}else if(enterkeyMode == 3){
+					var loc = null;
+					if(has_keyLocation) loc = e.originalEvent.keyLocation;
+					if(has_location) loc = e.originalEvent.location;
+					if(loc==null){
+						return true;
+					}else{
+						if(loc==3/*means numpad enter key*/) return moveToNextTabStop(e);
+						else return true;
+					}
 				}else{
 					return true;
 				}

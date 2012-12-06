@@ -62,6 +62,18 @@ class Dispatcher {
 				coll = (Collection)cmd.map.values();
 			}
 			return json.format(coll);
+		}else if("getLocalizeMap".equals(methodName)){
+			Map<String,String> m = new HashMap<String,String>();
+			m.put("who", "ユーザ");
+			m.put("tab", "ブラウザのタブID");
+			m.put("uid", "ユーザID");
+			m.put("srvIn", "サーバに依頼した時刻");
+			m.put("srvOut", "サーバが返答した時刻");
+			m.put("method", "メソッド");
+			m.put("name", "名前");
+			m.put("params", "引数");
+			m.put("filename", "ファイル名");
+			return json.format(m);
 		}else{
 			return null;
 		}

@@ -1,8 +1,8 @@
 /**
- * localize.js by Naohiro OHTA, all right reserved.
+ * NALocalizer.js by Naohiro OHTA, All Rights Reserved.
  */
 
-var localizer = function(){
+var NALocalizer = function(){
 	
 	// --------------------------------------------
 	// Private members
@@ -22,9 +22,8 @@ var localizer = function(){
 	setWHO("noone","this_is_not_secret_data");
 	var map = [];
 	var loadMap = function(){
-		ajaxToMyogaAPI({"name":"gerLocalizeMap"},function(result){
-			console.log(result);
-			if(result) map = result;
+		ajaxToMyogaAPI({"name":"getLocalizeMap"},function(result){
+			if(result!=null) map = result;
 			else map = [];
 		});
 	};

@@ -19,7 +19,7 @@ var NAVerticalTable = function(){
 		// dig function 's  main procedure.
 		for(var k in o){
 			var v = o[k];
-			var keyInJpn = localizer.toJpn(k);
+			var keyInJpn = NALocalizer.toJpn(k);
 			var dottedKey = (parentkey) ? parentkey+"."+keyInJpn : keyInJpn;
 			if(typeof(v)=='object')
 				s = dig(s,v,dottedKey);

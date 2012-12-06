@@ -50,29 +50,25 @@ var NAKey = function(){
 
 	// Once call function - Bind the keys
 	$(document).keydown(function(e){
-		if(has_keyLocation==null){
+		
+		if(has_keyLocation==null){ /*Chrome*/
 			if (e.originalEvent.keyLocation==undefined) has_keyLocation=false;
-			else{has_keyLocation=true;alert("has_keyLocation");}
+			else has_keyLocation=true;
 		}
 				
-		if(has_location==null){
+		if(has_location==null){ /*Firefox LeftRight-Alt,Ctrl,Win is detected as sameKey*/
 			if(e.originalEvent.location==undefined) has_location=false;
-			else{has_location=true;alert("has_location");}
+			else has_location=true;
 		}
 		
-		/*
-		console.log("keydown ",e);
-		console.log("e.originalEvent.keyLocation(Chrome): ",e.originalEvent.keyLocation);
-		console.log("e.originalEvent.location(Firefox-Alt,Ctrl,Win is detected as sameKey): ",e.originalEvent.location);
-		for(var key in e){console.log("IE ", key, ": ", e[key]);}
-		for(var key in e.originalEvent){console.log("e.originalEvent ", key, ": ", e.originalEvent[key]);}
-		for(var key in e.boundElements){console.log("e.boundElements ", key, ": ", e.boundElements[key]);}
-		*/
 		var type = e.target.type;
 		var code = e.keyCode;
 		switch(code){
 			case 8: /*backspace*/
 				if(isInputType(type)) return true;
+				return prevent(code);
+			case 27: /*ESC*/
+				if(tabstopForEscKey) tabstopForEscKey[0].focus();
 				return prevent(code);
 			case 112: /*F1*/
 				alert("F1 key down!");
@@ -111,19 +107,23 @@ var NAKey = function(){
 					if(loc==null){
 						return true;
 					}else{
-						if(loc==3/*means numpad enter key*/) return moveToNextTabStop(e);
+						if(loc==3/*means numpad enter key*/) return funcWhenNumpadEnterkeyDown(e);
 						else return true;
 					}
 				}else{
 					return true;
 				}
-			case 27: /*ESC*/
-				if(tabstopForEscKey) tabstopForEscKey[0].focus();
 		}
 	});
 
 	// Once call function - Prevent F1 Help on IE
 	window.onhelp = function(){return false;};
+	
+	// Private function
+	var funcWhenNumpadEnterkeyDown = function(e){
+		console.log("Now you did down Numpad-enter-key.");
+		return moveToNextTabStop(e);
+	};
 	
 	return { 
 		// Public function
@@ -140,7 +140,6 @@ var NAKey = function(){
 		setEnterkeyMode: function(num){
 			enterkeyMode = num;
 		}
-	
 	};
 	
 }();

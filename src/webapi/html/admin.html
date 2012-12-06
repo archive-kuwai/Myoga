@@ -26,7 +26,7 @@ function getUserActs(user){
 			params:{"uid":user}
 		},
 		function(result){
-			verticalTable.build($('#login_users_table'), result);
+			NAVerticalTable.build($('#login_users_table'), result);
 		}
 	);
 };

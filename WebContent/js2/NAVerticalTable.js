@@ -1,8 +1,8 @@
 /**
- * verticalTable.js by Naohiro OHTA, all right reserved.
+ * NAVerticalTable.js by Naohiro OHTA, All Rights Reserved.
  */
 
-var verticalTable = function(){
+var NAVerticalTable = function(){
 	
 	// --------------------------------------------
 	// Private members

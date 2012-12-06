@@ -6,150 +6,39 @@
 		<style>
 			.ime-off {ime-mode:inactive;}
 			.ime-on {ime-mode:active;}
-			table{border:solid thin; border-collapse:collapse;}
-			table td,th{border:solid thin;}
 		</style>
-		<!--[if lt IE 9]>
-		<script src="../plugins/ie/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-                                        
-	<body onhelp='return false;'>
-		<header>
-			<h1>キー制御に関するサンプルページ</h1>
-			<hr/>
-		</header>
-
-		<section id='main_content'>
-			<h2>テキストボックスを使用したサンプル</h2>
-			<form>
-				<ul style='margin-left:50px; list-style-type:none'>
-					<li>企業
-						<input type='text' class='ime-off' size=15 placeholder='企業コード（英数）'/>
-						<input type='text' class='ime-on' size=30 placeholder='企業名（日本語）'/>
-					</li>
-					<li>店舗
-						<input type='text' class='ime-off' size=15 placeholder='店舗コード（英数）'/>
-						<input type='text' class='ime-on' size=30 placeholder='店舗名（日本語）'/>
-					</li>
-					<li>商品
-						<input type='text' class='ime-off' size=15 placeholder='商品コード（英数）'/>
-						<input type='text' class='ime-on' size=30 placeholder='商品名（日本語）'/>
-					</li>
-				</ul>
-			</form>
-		</section>
-		
-		<section>
-			<hr/>
-			<h2>説明</h2>
-			<!-- 
-			<style>
-				section>ol>li{margin:1em; font-size:1.5em;}
-				section>ol>li>ul{font-size:0.7em;}
-				section li div{margin:1em;}
-				section li{margin:0.3em;}
-			</style>
-			 -->
-			<ol>
-				<li class='slidable'>試したブラウザ
-					<ul>
-						<li>Chrome22</li>
-						<li>Firefox16</li>
-						<li>IE8</li>
-						<li>iPhone (iOS6)</li>
-					</ul>
-				</li>
-				<li class='slidable'>Backspaceキーの制御
-					<table>
-						<tr><th>フォーカスがどこにあるか？</th><th>テキストボックス</th><th>それ以外</th></tr>
-						<tr><th></th><td>Backspaceキー有効（テキストの削除が出来る）</td><td>Backspaceキー無効（キー押下時に前画面に移動してしまう事はない）</td></tr>
-					</table>
-					<!-- 
-					<ul>
-						<li>フォーカスがテキストボックスにある場合
-							<ul><li>Backspaceキーが有効</li></ul>
-						</li>
-						<li>フォーカスがテキストボックスにない場合
-							<ul>
-								<li>Backspaceキーは無効</li>
-								<li>キー押下時に前画面に移動してしまう事はない</li>
-							</ul>
-						</li>
-					</ul>
-					 -->
-				</li>
-				<li class='slidable'>Functionキーの制御
-					<ul>
-						<li>F9キー押下時に、押下検出の旨をポップアップする。</li>
-						<li>ESCキー押下時に、押下検出の旨をポップアップする。</li>
-						<li>その他のFunctionキー押下は、無効とする。
-						  	<div>行いたい事
-								<ol>
-									<li>IEにおいて、F1キー押下でヘルプが表示されないこと</li>
-									<li>IEにおいて、F12キー押下で、「開発ツール」が出現しないこと</li>
-									<li>各ブラウザで、F5キー押下でリロードされないこと</li>
-								</ol>
-							</div>
-						  	<div>問題
-								<ol>
-									<li>Firefox/Chromeにおいて。ブラウザのURLテキストボックスにフォーカスがある状態でF5キー（リロード）が有効になる。</li>
-									<li>IEにおいて。ブラウザのURLテキストボックス（およびタブ）にフォーカスがある状態では、F1（ヘルプ）/F5（リロード）/F12（開発ツール）などが有効になる。</li>
-								</ol>
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li class='slidable'>ESCキーの制御
-					<ul>
-						<li>ESCキー押下時に、押下検出の旨をポップアップする。</li>
-					</ul>
-				</li>
-				<li class='slidable'>Tabキーの制御
-				</li>		
-				<li class='slidable'>Enterキーの制御
-				</li>		
-			</ol>
-			<hr/>
-			<div id='msg_area' style='background-color:green'></div>
-		</section>
-
-		<footer>
-			<hr/>
-			&copy; 2012 Naohiro OHTA
-		</footer>
-
-		<!-- Placed at the end of the document so the pages load faster -->
+		<!--[if lt IE 9]><script src="../plugins/ie/html5shiv.js"></script><![endif]-->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-		<!-- 
-		<script src="keyboard.js"></script>
-		-->
-		<script src="../plugins/jqKey_modified.js"></script>
-		<script>
-			$(document).jqKey({
-				Enter:true
-				,Tab:true
-				,F9:function(){alert("F9キーが押されました。");}
-				,ESC:function(){alert("ESCキーが押されました。");}
-			});
-		</script>
-		<script src="../plugins/ie/jquery.placeholder.js"></script>
-		<script>
-			$(function(){
-				$('input,textarea').placeholder();
-			});
-		</script>
-		<style>
-			.placeholder{color:#aaa;}		
-		</style>
-		<script>
-			$(function(){
-				$('.slidable').click(function(){
-					$(this).children().slideToggle();
-				}).children().hide();
-			});
-		</script>
+		<script src="../js2/NAKey.js"></script>
+		<script>$(function(){NAKey.setTabstops($("body"));NAKey.setEnterkeyMode(1);});</script>
+ 	</head>
+                                        
+	<body>
+		<h1>key.html - キーボード制御サンプルページ</h1>
+		<h2>概要</h2>
+		<ul>
+			<li>Firefox　/ Chrome / IE8</li>
+			<li>F1キーによるヘルプページ表示を無効化</li>
+			<li>Backspaceキーによる前画面表示を無効化</li>
+			<li>Tab移動出来る範囲を制限</li>
+			<li>EnterキーでTab移動する</li>
+		</ul>
+		<h3>テキストボックスの例</h3>
+		<div>
+			<h6>backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。</h6>
+			<input type='text' class='ime-off' size=20 placeholder='商品コード（英数）を入力'/>
+			<h6>backspaceキーが動作する。IE,Firefoxでは自動的に 日本語入力ONとなる。</h6>
+			<input type='text' class='ime-on' size=20 placeholder='商品名（日本語）を入力'/>
+		</div>
+		<h3>テキストエリアの例</h3>
+		<div>
+			<textarea class='ime-off' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力OFFとなる。[Ctrl+Enter]キーで改行を入力できる。'></textarea>
+			<textarea class='ime-on' cols=35 rows=5 placeholder='テキストエリアの例。backspaceキーが動作する。IE,Firefoxでは自動的に日本語入力ONとなる。[Ctrl+Enter]キーで改行を入力できる。'></textarea>
+		</div>
+		<h3>リンクの例</h3>
+		<ul>
+			<li><a href="https://www.google.co.jp/">link to Google page</a></li>	
+			<li><a href="http://www.yahoo.co.jp/">link to Yahoo page</a></li>	
+		</ul>
 	</body>
-
 </html>

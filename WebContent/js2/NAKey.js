@@ -1,7 +1,7 @@
 /**
- * key.js by Naohiro OHTA, all right reserved.
+ * NAKey.js by Naohiro OHTA, All Rights Reserved.
  */
-var key = function(){
+var NAKey = function(){
 
 	// Private function
 	var prevent = function(code){
@@ -122,7 +122,7 @@ var key = function(){
 		// Public function
 		setTabstops: function(root/*jqObject*/){
 			tabstops = [];
-			root.find("input,textarea,select,button").each(function(){
+			root.find("input,textarea,select,button,a").each(function(){
 				/*if(isInputType($(this).type)) */tabstops.push($(this));
 			});
 			console.log("tabstops.length is [" + tabstops.length + "].");

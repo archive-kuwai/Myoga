@@ -92,7 +92,7 @@
 						{name:"getHTML", params:{"filename":filename_without_extension} },  
 						function(result,ajax_id){
 							if(latest_request_page != filename_without_extension){
-								ajaxHistory_NoUse(ajax_id);
+								NAAjax.ajaxHistory_NoUse(ajax_id);
 								return;
 							}
 							/*

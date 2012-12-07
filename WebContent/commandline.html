@@ -37,7 +37,7 @@
 		<!-- Initialize ----------------------------- -->
 		<script>
 			$(function(){
-				setWHO("commandline-dummy","commandline-dummy_PW");
+				setWho("commandline-dummy","commandline-dummy_PW");
 				$("#login_user").focus();
 				hideURLBar();
 			});
@@ -69,7 +69,7 @@
 			<h2 id="result_msg"></h2>
 			<script>
 				function req(){
-					ajaxToMyogaAPI(
+					NAAjax.ajax(
 						JSON.parse($("#input_area").val()),
 						function(result){$("#result_msg").text("Success! See Developer's console log.");}
 					);
@@ -96,8 +96,8 @@
 					buttons:{
 						"OK":function(){
 							$('#login_user').text("…");
-							//setWHO("太田直宏です","Dummy_Password");
-							setWHO($("#login_input_uid").val(), $("#login_input_pw").val());
+							//setWho("太田直宏です","Dummy_Password");
+							setWho($("#login_input_uid").val(), $("#login_input_pw").val());
 							var when_succeed = function(result){
 								var maxLength = 5;
 								$('#login_user').text(cutStringByLength(result.realname, maxLength));
@@ -106,7 +106,7 @@
 								build_page_selector();
 								hideURLBar();
 							};
-							ajaxToMyogaAPI({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);					    	
+							NAAjax.ajax({name:"getPerson",params:{a:5,b:6,c:7}}, when_succeed);					    	
 							$(this).dialog('close');
 						} // "OK":function(){}
 					} // buttons:{}

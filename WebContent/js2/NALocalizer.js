@@ -19,10 +19,10 @@ var NALocalizer = function(){
 		"filename": "ファイル名"
 	};
 	
-	setWHO("noone","this_is_not_secret_data");
+	NAAjax.setWho("noone","this_is_not_secret_data",null);
 	var map = [];
 	var loadMap = function(){
-		ajaxToMyogaAPI({"name":"getLocalizeMap"},function(result){
+		NAAjax.ajax({"name":"getLocalizeMap"},function(result){
 			if(result!=null) map = result;
 			else map = [];
 		});

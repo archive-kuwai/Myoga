@@ -1,66 +1,59 @@
-/*
- * NEED 
- * 	- Div element id='who_am_i'
- *  - Div element id='ajax_history_box'
+/**
+ * NAAjax.js by Naohiro OHTA, All Rights Reserved.
  */
 
-WHO = ""; // Global variable
-TAB = ""; // Global variable. Means client side web browser's tab id. 
-URI = "./API";
+// NEED uuid
 $(function(){
-	TAB = uuid.v4();
+	console.log(uuid.v4());
 });
-
-function setWHO(uid,pw){
-	WHO = {"uid":uid,"key":generateHashKey(uid,pw),"tab":TAB};
-	$("#who_am_i").text(uid);
-}
-
-function generateHashKey(uid,pw){
-    return CryptoJS.SHA256(uid+"MyogaWebAppYay!!Woo!!Bow!!"+pw).toString(CryptoJS.enc.HEX);
-}
-
-/* -------------------------------- */
-/* Request History */
-function ajaxHistory_Req(ajax_id, method_obj){IMPL_ajaxHistory_Req(ajax_id, method_obj);}
-/* -------------------------------- */
-
-
-/* -------------------------------- */
-/* log res */
-function ajaxHistory_OK(ajax_id){IMPL_ajaxHistory_OK(ajax_id);}
-function ajaxHistory_NoUse(ajax_id){IMPL_ajaxHistory_NoUse(ajax_id);}
-/* -------------------------------- */
-
-AJAX_ID = -1; // Global variable
-AJAX_REQUEST_TIME = [];  // Global variable
-function ajaxToMyogaAPI(method_obj, success_funciton){
-	if(WHO == ""){
-		console.log("WHO is zero length string. so I didnt do ajax call.");
-		return false;
-	}
-
-	/* ==================== */
-	AJAX_ID++;
-	var ajax_id = AJAX_ID;
-	AJAX_REQUEST_TIME[ajax_id] = new Date();
-	/* ==================== */
+var NAAjax = function(){
+	var who = "";
+	var uri = "./API";
+	var browser_s_tab_id = "fuuo";// uuid.v4();
+	var ajaxHistory_Req = function(ajax_id, method_obj){IMPL_ajaxHistory_Req(ajax_id, method_obj);};
+	var ajaxHistory_OK = function(ajax_id){IMPL_ajaxHistory_OK(ajax_id);};
+	var ajaxHistory_NoUse = function(ajax_id){IMPL_ajaxHistory_NoUse(ajax_id);};
 	
-	ajaxHistory_Req(ajax_id, method_obj);
-	console.log("/--- Ajax Request");console.log(method_obj);console.log(WHO);console.log("---/");
+	return{
+		setWho: function(uid,pw,$disp){
+			who = {
+					"uid":uid,
+					"tab":browser_s_tab_id,
+					"key":CryptoJS.SHA256(uid+"MyogaWebAppYay!!Woo!!Bow!!"+pw).toString(CryptoJS.enc.HEX)
+			};
+			if($disp!=null) $disp.text(uid);
+		},
+		AJAX_ID: -1,
+		AJAX_REQUEST_TIME: [],
+		ajax: function(method_obj, success_funciton){
+			if(who == ""){
+				console.log("'who' is zero length string. so I didnt do ajax call.");
+				return false;
+			}
 
-	var commandInJSON = {command: JSON.stringify({method:method_obj, who:WHO})};
-	$.ajax({
-		type:"POST",
-		url:URI,
-		data:commandInJSON,
-		success:function(result){
-				console.log("/--- Ajax Success");console.log(result);console.log("---/");
-				success_funciton(result, ajax_id);
-				ajaxHistory_OK(ajax_id);
-			},
-		error:function(error){
-			console.log("/--- Ajax Error");console.log(error);console.log("---/");
+			/* ==================== */
+			this.AJAX_ID++;
+			var ajax_id = this.AJAX_ID;
+			this.AJAX_REQUEST_TIME[ajax_id] = new Date();
+			/* ==================== */
+			
+			ajaxHistory_Req(ajax_id, method_obj);
+			console.log("/--- Ajax Request");console.log(method_obj);console.log(who);console.log("---/");
+
+			var commandInJSON = {command: JSON.stringify({method:method_obj,who:who})};
+			$.ajax({
+				type:"POST",
+				url:uri,
+				data:commandInJSON,
+				success:function(result){
+						console.log("/--- Ajax Success");console.log(result);console.log("---/");
+						success_funciton(result, ajax_id);
+						ajaxHistory_OK(ajax_id);
+				},
+				error:function(error){
+					console.log("/--- Ajax Error");console.log(error);console.log("---/");
+				}
+			});				
 		}
-	});	
-}
+	}
+}();

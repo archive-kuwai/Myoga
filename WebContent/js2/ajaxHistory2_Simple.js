@@ -1,7 +1,7 @@
 
 function IMPL_ajaxHistory_Req(ajax_id, method_obj){
 	var ajax_history_html = "<ul style='float:left' class='ajax_history_not_received' id='ajax_history_" +ajax_id+ "'>" 
-		+ li_with_class(shortTime(AJAX_REQUEST_TIME[ajax_id]),'request_time')
+		+ li_with_class(shortTime(NAAjax.AJAX_REQUEST_TIME[ajax_id]),'request_time')
 		+ li(method_obj.name)
 		+ li(JSON.stringify(method_obj.params))
 		+ li_with_class('---','response_time')
@@ -37,5 +37,5 @@ function IMPL_ajaxHistory_NoUse(ajax_id){
 function writeTime(ajax_id){
 	var now = new Date();
 	$('#ajax_history_'+ajax_id+' .response_time').text(shortTime(now));
-	$('#ajax_history_'+ajax_id+' .response_interval').text((now - AJAX_REQUEST_TIME[ajax_id]) +"ms" );
+	$('#ajax_history_'+ajax_id+' .response_interval').text((now - NAAjax.AJAX_REQUEST_TIME[ajax_id]) +"ms" );
 }

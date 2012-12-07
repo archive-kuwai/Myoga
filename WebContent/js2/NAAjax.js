@@ -1,5 +1,5 @@
 /**
- * NAAjax.js / ajaxToMyogaAPI.js by Naohiro OHTA, All Rights Reserved.
+ * NAAjax.js by Naohiro OHTA, All Rights Reserved.
  */
 
 var NAAjax = function(){
@@ -51,8 +51,7 @@ var NAAjax = function(){
 					console.log("/--- Ajax Error");console.log(error);console.log("---/");
 				}
 			});				
-		},
-		set_Browser_s_tab_id: function(val){browser_s_tab_id=val;}
+		}
 	}
 }();
 

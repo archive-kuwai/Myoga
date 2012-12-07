@@ -1,15 +1,12 @@
 /**
- * NAAjax.js by Naohiro OHTA, All Rights Reserved.
+ * NAAjax.js / ajaxToMyogaAPI.js by Naohiro OHTA, All Rights Reserved.
  */
 
-// NEED uuid
-$(function(){
-	console.log(uuid.v4());
-});
 var NAAjax = function(){
 	var who = "";
 	var uri = "./API";
-	var browser_s_tab_id = "fuuo";// uuid.v4();
+	var browser_s_tab_id = "not yet initialized";
+	$(function(){browser_s_tab_id=uuid.v4();});
 	var ajaxHistory_Req = function(ajax_id, method_obj){IMPL_ajaxHistory_Req(ajax_id, method_obj);};
 	var ajaxHistory_OK = function(ajax_id){IMPL_ajaxHistory_OK(ajax_id);};
 	var ajaxHistory_NoUse = function(ajax_id){IMPL_ajaxHistory_NoUse(ajax_id);};
@@ -54,6 +51,8 @@ var NAAjax = function(){
 					console.log("/--- Ajax Error");console.log(error);console.log("---/");
 				}
 			});				
-		}
+		},
+		set_Browser_s_tab_id: function(val){browser_s_tab_id=val;}
 	}
 }();
+

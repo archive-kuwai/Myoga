@@ -3,6 +3,7 @@
  */
 
 var NAAjax_HistoryDisplayExtension = function(){
+	
 	var li = function(s){return "<li style='text-align:left'>" +s+ "</li>";};
 	var li_with_class = function(s,cls){return "<li style='text-align:left' class='" +cls+ "'>" +s+ "</li>";};
 	var writeTime = function(ajax_id){

@@ -5,13 +5,24 @@ import net.arnx.jsonic.JSON;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
+import data.user.SimpleString;
+
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.*;
 
 @WebServlet("/API")
 public class THE_ONLY_SERVLET extends HttpServlet {
-
 	private static final long serialVersionUID = 3383077259036476263L;
 	
 	protected void doGet(HttpServletRequest httpReq, HttpServletResponse httpRes) throws ServletException, IOException {
@@ -79,7 +90,7 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		HTMLCacher.initNORMAL(getServletContext().getRealPath("/"));
 		JSON json = new JSON(); // TODO 毎回インスタンス化する？
 		json.setDateFormat("yyyy/MM/dd HH:mm(ss.SSS)");
-		String resultInJSONString = Dispatcher.dispatch(cmd, json);
+		String resultInJSONString = dispatch(cmd, json);
 		
 		//HTTPレスポンスを作成する
 		httpRes.getWriter().println(resultInJSONString);
@@ -92,4 +103,95 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 		cmd.srvOut = new Date();
 		cmd.save();
 	}
+	
+	private String dispatch(Command cmd, JSON json){
+		String methodName = cmd.method.name;
+		if("getHTML".equals(methodName)){
+			if(cmd.method.params.get("filename").equals("page3")){
+				System.out.println("page3 waiting...");
+				try{Thread.sleep(5000);}catch(Exception e){}
+				System.out.println("page3 waiting... Finished.");
+			}
+			String filename = cmd.method.params.get("filename") + ".html";
+			return json.format(HTMLCacher.getHTML(filename));
+		}else if("getPerson".equals(methodName)){
+			HashSet<String> s = new HashSet<String>();
+			s.add("Order");
+			s.add("SayShipIt");
+			data.user.Role r = new data.user.Role("the1st_operator", s);
+			data.user.User u = new data.user.User("nao01", "a++b++C--qwert", "太田直一郎", r);
+    		return json.format(u);
+		}else if("getListAsTest".equals(methodName)){
+			List<String> ls = new ArrayList<String>();
+			ls.add("test1"); ls.add("test2"); ls.add("test3"); ls.add("test4");
+			return json.format(ls);
+		}else if("getLoginUsers".equals(methodName)){
+			//List<String> ls = new webapi.command.Command().distinctUniqueNames();
+			//return json.format(Command.loginUsers());
+			List<String> ls = new ArrayList<String>();
+			ls.add("User1");
+			ls.add("User2");
+			ls.add("User3");
+			return json.format(ls);
+		}else if("getUserActs".equals(methodName)){
+			String uid = cmd.method.params.get("uid");
+			//List<webapi.command.Command> ls = null;
+			//List ls = new webapi.command.Command().userActs(uid);
+			//
+			//return json.format(Command.userActs(uid));
+			
+			Collection coll;
+			if(uid.equals("User2")){
+				coll = new ArrayList<String>();
+				coll.add("yahoooo");
+				coll.add("mm...");
+				coll.add("wooowwowww");
+				coll.add("こんにちはー");
+			}else{
+				coll = (Collection)cmd.map.values();
+			}
+			return json.format(coll);
+		}else if("getLocalizeMap".equals(methodName)){
+			Map<String,String> m = new HashMap<String,String>();
+			m.put("who", "ユーザ");
+			m.put("tab", "ブラウザのタブID");
+			m.put("uid", "ユーザID");
+			m.put("srvIn", "サーバに依頼した時刻");
+			m.put("srvOut", "サーバが返答した時刻");
+			m.put("method", "メソッド");
+			m.put("name", "名前");
+			m.put("params", "引数");
+			m.put("filename", "ファイル名");
+			return json.format(m);
+		}else if("mashup".equals(methodName)){
+			System.out.println("mashup");
+			URL url;
+			String resultString = null;
+			try {
+				url = new URL("http://myoga6.elasticbeanstalk.com/index.html");
+				HttpURLConnection cnct = (HttpURLConnection)url.openConnection();
+				cnct.setRequestMethod("GET");
+				int bufSize;
+				byte[] buf = new byte[1024];
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				//START
+				System.out.println("START");
+				cnct.connect();
+				InputStream in = cnct.getInputStream();
+				while((bufSize=in.read(buf)) >= 0) out.write(buf,0,bufSize);
+				in.close();
+				System.out.println("END");
+				//END
+				byte[] resultByteArray = out.toByteArray();
+				resultString = new String(resultByteArray,"utf-8");
+				System.out.println(resultString);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return json.format(new SimpleString(resultString));
+		}else{
+			return null;
+		}
+	}
+	
 }

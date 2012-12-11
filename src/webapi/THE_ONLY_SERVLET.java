@@ -171,24 +171,47 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 				url = new URL("http://myoga6.elasticbeanstalk.com/index.html");
 				HttpURLConnection cnct = (HttpURLConnection)url.openConnection();
 				cnct.setRequestMethod("GET");
-				int bufSize;
-				byte[] buf = new byte[1024];
-				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				//START
-				System.out.println("START");
+				byte[] buf = new byte[1024]; int bufSize; ByteArrayOutputStream outStrm = new ByteArrayOutputStream();
+
+				/*START*/System.out.println("START");
 				cnct.connect();
-				InputStream in = cnct.getInputStream();
-				while((bufSize=in.read(buf)) >= 0) out.write(buf,0,bufSize);
-				in.close();
-				System.out.println("END");
-				//END
-				byte[] resultByteArray = out.toByteArray();
+				InputStream inStrm = cnct.getInputStream();
+				while((bufSize=inStrm.read(buf)) >= 0) outStrm.write(buf,0,bufSize);
+				inStrm.close();
+				/*END*/System.out.println("END");
+
+				byte[] resultByteArray = outStrm.toByteArray();
 				resultString = new String(resultByteArray,"utf-8");
-				System.out.println(resultString);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			} catch (Exception e) {e.printStackTrace();}
 			return json.format(new SimpleString(resultString));
+		}else if("mashup2".equals(methodName)){
+			System.out.println("mashup2_post");
+			URL url;
+			String resultString = null;
+			try {
+				url = new URL("http://myoga6.elasticbeanstalk.com/API");
+				HttpURLConnection cnct = (HttpURLConnection)url.openConnection();
+				cnct.setRequestMethod("POST");
+				cnct.setDoOutput(true);
+				String body = "command={\"method\":{name:\"getPerson\"}}";
+
+				/*START*/System.out.println("START");
+				cnct.connect();
+				OutputStream outStrm = cnct.getOutputStream();
+				PrintStream prStrm = new PrintStream(outStrm);
+				prStrm.print(body);
+				prStrm.close(); outStrm.close();
+				InputStream inStrm = cnct.getInputStream();
+				BufferedReader r = new BufferedReader(new InputStreamReader(inStrm, "utf-8"));
+				String s; StringBuffer sb = new StringBuffer();
+				while((s=r.readLine())!=null) sb.append(s);
+				r.close(); inStrm.close();
+				/*END*/System.out.println("END");
+
+				resultString = sb.toString();
+			} catch (Exception e) {e.printStackTrace();}
+			return json.format(new SimpleString(resultString));
+
 		}else{
 			return null;
 		}

@@ -163,7 +163,7 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 			m.put("params", "引数");
 			m.put("filename", "ファイル名");
 			return json.format(m);
-		}else if("mashup".equals(methodName)){
+		}else if("mashup1".equals(methodName)){
 			System.out.println("mashup");
 			URL url;
 			String resultString = null;
@@ -211,7 +211,63 @@ public class THE_ONLY_SERVLET extends HttpServlet {
 				resultString = sb.toString();
 			} catch (Exception e) {e.printStackTrace();}
 			return json.format(new SimpleString(resultString));
+		}else if("mashup2b".equals(methodName)){
+			System.out.println("mashup2b_post");
+			URL url;
+			String resultString = null;
+			try {
+				url = new URL("myoga6.elasticbeanstalk.com/API");
+				HttpURLConnection cnct = (HttpURLConnection)url.openConnection();
+				cnct.setRequestMethod("POST");
+				cnct.setDoOutput(true);
+				//cnct.setRequestProperty("", value)
+				String body = "command={\"method\":{name:\"getPerson\"}}";
 
+				/*START*/System.out.println("START");
+				cnct.connect();
+				OutputStream outStrm = cnct.getOutputStream();
+				PrintStream prStrm = new PrintStream(outStrm);
+				prStrm.print(body);
+				prStrm.close(); outStrm.close();
+				InputStream inStrm = cnct.getInputStream();
+				BufferedReader r = new BufferedReader(new InputStreamReader(inStrm, "utf-8"));
+				String s; StringBuffer sb = new StringBuffer();
+				while((s=r.readLine())!=null) sb.append(s);
+				r.close(); inStrm.close();
+				/*END*/System.out.println("END");
+
+				resultString = sb.toString();
+			} catch (Exception e) {e.printStackTrace();}
+			return json.format(new SimpleString(resultString));
+		}else if("mashup3".equals(methodName)){
+			System.out.println("mashup3_post");
+			URL url;
+			String resultString = null;
+			try {
+				url = new URL("http://dynamodb.us-east-1.amazonaws.com");
+				HttpURLConnection cnct = (HttpURLConnection)url.openConnection();
+				cnct.setRequestMethod("POST");
+				cnct.setDoOutput(true);
+				cnct.setRequestProperty("x-amz-target", "DynamoDB_20111205.GetItem");
+				cnct.setRequestProperty("Authorization", "AWS4-HMAC-SHA256 Credential=AccessKeyID/20120116/us-east-1/dynamodb/aws4_request,SignedHeaders=host;x-amz-date;x-amz-target,Signature=ccb4ee48bcb506aaa7e412a7f2f5dceef338666e2478b34acf6631623d377d51");
+				String body = "{\"TableName\":\"my-table\",\"Keys\":[{\"HashKeyElement\":{\"S\":\"Bill & Ted's Excellent Adventure\"},\"RangeKeyElement\":{\"S\":1989}}]}";
+
+				/*START*/System.out.println("START");
+				cnct.connect();
+				OutputStream outStrm = cnct.getOutputStream();
+				PrintStream prStrm = new PrintStream(outStrm);
+				prStrm.print(body);
+				prStrm.close(); outStrm.close();
+				InputStream inStrm = cnct.getInputStream();
+				BufferedReader r = new BufferedReader(new InputStreamReader(inStrm, "utf-8"));
+				String s; StringBuffer sb = new StringBuffer();
+				while((s=r.readLine())!=null) sb.append(s);
+				r.close(); inStrm.close();
+				/*END*/System.out.println("END");
+
+				resultString = sb.toString();
+			} catch (Exception e) {e.printStackTrace();}
+			return json.format(new SimpleString(resultString));
 		}else{
 			return null;
 		}

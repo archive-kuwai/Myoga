@@ -9,6 +9,7 @@ import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
 // http://eureka.ykyuen.info/2010/07/29/java-connect-windows-active-directory-through-ldap-1/
+// http://www.emxas.co.jp/itblog/item_309.html
 public class LdapContextCreation {
 
 	public static void main(String[] args) {
@@ -19,7 +20,18 @@ public class LdapContextCreation {
 			//env.put(Context.SECURITY_AUTHENTICATION, "simple");  
 			//env.put(Context.SECURITY_PRINCIPAL, "ohta_n@agricom.co.jp");  
 			//env.put(Context.SECURITY_CREDENTIALS, "lovemedo");  
-			env.put(Context.PROVIDER_URL, "ldap://ldap.ucdavis.edu:389");
+			
+			//http://www.emailman.com/ldap/public.html  -  University of California Davis
+			//env.put(Context.PROVIDER_URL, "ldap://ldap.ucdavis.edu:389");
+			
+			//env.put(Context.PROVIDER_URL, "ldap://mail.agricom.co.jp:636");
+
+			//http://blog.stuartlewis.com/2008/07/07/test-ldap-service/
+			env.put(Context.PROVIDER_URL, "ldap://ldap.testathon.net:389");
+			env.put(Context.SECURITY_AUTHENTICATION, "simple");  
+			env.put(Context.SECURITY_PRINCIPAL, "john@ldap.testathon.net");  
+			env.put(Context.SECURITY_CREDENTIALS, "john");  
+
 			LdapContext ctx = new InitialLdapContext(env, null);  
 			System.out.println("Connection Successful.");
 

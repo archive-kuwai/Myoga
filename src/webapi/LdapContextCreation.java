@@ -16,10 +16,10 @@ public class LdapContextCreation {
 			// Create a LDAP Context
 			Hashtable env = new Hashtable();  
 			env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");  
-			env.put(Context.SECURITY_AUTHENTICATION, "simple");  
-			env.put(Context.SECURITY_PRINCIPAL, "ohta_n@agricom.co.jp");  
-			env.put(Context.SECURITY_CREDENTIALS, "太田のパスワード");  
-			env.put(Context.PROVIDER_URL, "ldap://mail.agricom.co.jp:389");
+			//env.put(Context.SECURITY_AUTHENTICATION, "simple");  
+			//env.put(Context.SECURITY_PRINCIPAL, "ohta_n@agricom.co.jp");  
+			//env.put(Context.SECURITY_CREDENTIALS, "lovemedo");  
+			env.put(Context.PROVIDER_URL, "ldap://ldap.ucdavis.edu:389");
 			LdapContext ctx = new InitialLdapContext(env, null);  
 			System.out.println("Connection Successful.");
 

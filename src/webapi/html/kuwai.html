@@ -1,0 +1,25 @@
+<h1>kuwai</h1>
+
+<select id='login_users'></select>
+<textarea>http://</textarea>
+<input type="button" id="btn" onClick='console.log("huuu");callWebAPI()' value='GO!'>
+<table id="tbl"></table>
+
+<script>
+	function callWebAPI(){
+		$.ajax({
+			type:"GET",
+			url:"http://kuwai.herokuapp.com/test/json",
+			dataType:"jsonp",
+			jsonpCallback:'pad',
+			contentType:"application/json",
+			success:function(result){
+				console.log("callWebAPI-Success");
+				NAVerticalTable.build($('#tbl'), result);
+			},
+			error:function(){
+				console.log("callWebAPI-Error");
+			}
+		});
+	};	
+</script>

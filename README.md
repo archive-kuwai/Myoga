@@ -1,4 +1,5 @@
-Myogoin
+Myoga
 =======
 
-Java EE Sample Project, from Myoga Project d7de183372.
+My Sample JavaEE Web Application.
+Using Tomcat7.
